@@ -14,7 +14,7 @@ typedef struct {
     Mode *mode;
     Score *score;
     FILE *fichier;
-}
+} Partie;
 
 Partie* Partie_initialiser(void);
 Partie* Partie_charger(FILE *file);
