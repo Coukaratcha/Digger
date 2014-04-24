@@ -1,5 +1,5 @@
-#include <SDL/SDL.h>
-
+ #include <SDL/SDL.h>
+/*coucou michel :) */
 void pause(void);
 
 int main(int argc, char *argv[])
