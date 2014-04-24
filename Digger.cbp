@@ -30,7 +30,15 @@
 		</Build>
 		<Compiler>
 			<Add option="-Wall" />
+			<Add directory="src" />
+			<Add directory="include" />
 		</Compiler>
+		<Linker>
+			<Add option="-lSDL" />
+		</Linker>
+		<Unit filename="src/main.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Extensions>
 			<code_completion />
 			<debugger />
