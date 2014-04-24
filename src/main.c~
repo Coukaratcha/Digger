@@ -1,0 +1,12 @@
+<<<<<<< HEAD
+#include <SDL/SDL.h>
+=======
+ #include <SDL/SDL.h>
+/*coucou michel :) */
+void pause(void);
+>>>>>>> 57de26aaa9a010fc556979a3ae068d9a5fd45961
+
+int main(int argc, char *argv[])
+{
+    return EXIT_SUCCESS;
+}
