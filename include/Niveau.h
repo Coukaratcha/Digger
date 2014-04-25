@@ -20,6 +20,6 @@ typedef struct {
 } Niveau;
 
 Niveau* Niveau_charger(FILE *fichier);
-void Niveau_afficer(void);
+void Niveau_afficher(void);
 
 #endif
