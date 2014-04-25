@@ -20,6 +20,11 @@ typedef struct {
 } Niveau;
 
 Niveau* Niveau_charger(FILE *fichier);
+<<<<<<< HEAD
 void Niveau_afficher(void);
+=======
+void Niveau_ordonner(Niveau *niveau);
+void Niveau_afficer(Niveau *niveau);
+>>>>>>> 24240dc8d906d28172308b400a9c5e12fe215fe8
 
 #endif

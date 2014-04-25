@@ -9,7 +9,7 @@ typedef struct {
 
 Profil* Profil_creer(void);
 void Profil_modifier(Profil *profil);
-void Profil_charger(FILE *fichier);
+Profil* Profil_charger(FILE *fichier);
 void Profil_supprimer(Profil *profil);
 
 #endif
