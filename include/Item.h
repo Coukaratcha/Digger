@@ -12,8 +12,9 @@ typedef struct {
 } Item;
 
 Item* Item_initialiser(void);
-void Item_ajouter(TypeItem item);
-void Item_enlever(TypeItem item);
-void Item_faireEffet(TypeItem item);
+void Item_ajouter(Item *item, TypeItem type);
+void Item_enlever(Item *item, TypeItem type);
+void Item_faireEffet(TypeItem type);
+void Item_utiliser(Item *item, TypeItem type)
 
 #endif

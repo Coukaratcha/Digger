@@ -16,9 +16,9 @@ typedef struct {
     FILE *fichier;
 } Partie;
 
-Partie* Partie_initialiser(void);
+Partie* Partie_creer(void);
 Partie* Partie_charger(FILE *file);
-void Partie_sauvegarder(void);
+void Partie_sauvegarder(Partie *partie);
 void Partie_supprimer(Partie *partie);
 Partie** Partie_lister(void);
 

@@ -10,9 +10,10 @@ typedef enum {
 } TypeMode;
 
 typedef struct {
-    TypeMode mode;
+    TypeMode type;
 } Mode;
 
 Mode* Mode_creer(void);
+void Mode_supprimer(Mode *mode);
 
 #endif
