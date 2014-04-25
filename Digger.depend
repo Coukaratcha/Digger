@@ -1,0 +1,76 @@
+# depslib dependency file v1.0
+1398364145 source:/home/mickael/ProjetsC/Digger/src/Item.c
+
+1398364145 source:/home/mickael/ProjetsC/Digger/src/Menu.c
+
+1398364145 source:/home/mickael/ProjetsC/Digger/src/Mode.c
+
+1398364145 source:/home/mickael/ProjetsC/Digger/src/Niveau.c
+
+1398430195 source:/home/mickael/ProjetsC/Digger/src/Option.c
+
+1398364145 source:/home/mickael/ProjetsC/Digger/src/Partie.c
+
+1398364145 source:/home/mickael/ProjetsC/Digger/src/Personnage.c
+
+1398364145 source:/home/mickael/ProjetsC/Digger/src/Sauvegarde.c
+
+1398364145 source:/home/mickael/ProjetsC/Digger/src/Score.c
+
+1398442391 source:/home/mickael/ProjetsC/Digger/src/main.c
+	"../include/Profil.h"
+	"../include/Partie.h"
+	"../include/Personnage.h"
+	"../include/Record.h"
+	"../include/Menu.h"
+	<SDL/SDL.h>
+
+1398440903 /home/mickael/ProjetsC/Digger/include/Profil.h
+	<stdio.h>
+	<stdlib.h>
+
+1398438207 /home/mickael/ProjetsC/Digger/include/Partie.h
+	<stdio.h>
+	<stdlib.h>
+	"Item.h"
+	"Niveau.h"
+	"Mode.h"
+	"Score.h"
+	"Profil.h"
+
+1398440547 /home/mickael/ProjetsC/Digger/include/Item.h
+	"Partie.h"
+
+1398438140 /home/mickael/ProjetsC/Digger/include/Niveau.h
+	"Partie.h"
+
+1398431873 /home/mickael/ProjetsC/Digger/include/Mode.h
+	"Partie.h"
+
+1398438242 /home/mickael/ProjetsC/Digger/include/Score.h
+	<stdio.h>
+	<stdlib.h>
+	"Partie.h"
+	"Mode.h"
+
+1398438212 /home/mickael/ProjetsC/Digger/include/Personnage.h
+	<stdio.h>
+	<stdlib.h>
+
+1398438222 /home/mickael/ProjetsC/Digger/include/Record.h
+	<stdio.h>
+	<stdlib.h>
+	"Mode.h"
+
+1398438184 /home/mickael/ProjetsC/Digger/include/Menu.h
+	<stdio.h>
+	<stdlib.h>
+	"Option.h"
+
+1398430557 /home/mickael/ProjetsC/Digger/include/Option.h
+
+1398364145 source:/home/mickael/ProjetsC/Digger/src/Record.c
+
+1398442452 source:/home/mickael/ProjetsC/Digger/src/Profil.c
+	"../include/Profil.h"
+

@@ -1,6 +1,9 @@
 #ifndef PERSONNAGE_H
 #define PERSONNAGE_H
 
+#include <stdio.h>
+#include <stdlib.h>
+
 typedef struct {
     unsigned int posx;
     unsigned int posy;

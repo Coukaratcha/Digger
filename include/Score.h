@@ -1,6 +1,9 @@
 #ifndef SCORE_H
 #define SCORE_H
 
+#include <stdio.h>
+#include <stdlib.h>
+
 #include "Partie.h"
 #include "Mode.h"
 

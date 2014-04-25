@@ -1,6 +1,9 @@
 #ifndef RECORD_H
 #define RECORD_H
 
+#include <stdio.h>
+#include <stdlib.h>
+
 #include "Mode.h"
 
 typedef struct {

@@ -1,6 +1,9 @@
 #ifndef PARTIE_H
 #define PARTIE_H
 
+#include <stdio.h>
+#include <stdlib.h>
+
 #include "Item.h"
 #include "Niveau.h"
 #include "Mode.h"

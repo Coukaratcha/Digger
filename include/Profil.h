@@ -3,6 +3,9 @@
 
 #define NOM_TAILLE_MAX 20
 
+#include <stdio.h>
+#include <stdlib.h>
+
 typedef struct {
     unsigned int identifiant;
     char *nom;
@@ -13,5 +16,6 @@ Profil* Profil_creer(void);
 void Profil_modifier(Profil *profil);
 Profil* Profil_charger(FILE *fichier);
 void Profil_supprimer(Profil *profil);
+unsigned int Profil_prochainID(void);
 
 #endif
