@@ -19,3 +19,7 @@
 
 #Fichiers temporaires
 *~
+
+#Fichiers Projet
+*.layout
+*.cbp
