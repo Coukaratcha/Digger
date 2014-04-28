@@ -4,11 +4,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "Item.h"
-#include "Niveau.h"
-#include "Mode.h"
-#include "Score.h"
-#include "Profil.h"
+#include "../include/Item.h"
+#include "../include/Niveau.h"
+#include "../include/Mode.h"
+#include "../include/Score.h"
+#include "../include/Profil.h"
 
 typedef struct {
     Profil *profil;

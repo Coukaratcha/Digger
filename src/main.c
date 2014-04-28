@@ -7,14 +7,22 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <SDL/SDL.h>
+#include <SDL/SDL_ttf.h>
 
 int main(int argc, char *argv[])
 {
-    FILE *fichier = fopen("/home/mickael/ProjetsC/Digger/profil/profil.base", "wb");
+    SDL_Init(SDL_INIT_EVERYTHING);
 
-    fclose(fichier);
+    if(TTF_Init() == -1)
+    {
+        fprintf(stderr, "Erreur d'initialisation de TTF_Init : %s\n", TTF_GetError());
+        exit(EXIT_FAILURE);
+    }
 
-    printf("%u\n", Profil_prochainID());
+
+    TTF_Quit();
+
+    SDL_Quit();
 
     return 0;
 }

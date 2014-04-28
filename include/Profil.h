@@ -5,10 +5,12 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <SDL/SDL.h>
+#include <SDL/SDL_ttf.h>
 
 typedef struct {
     unsigned int identifiant;
-    char *nom;
+    char nom[NOM_TAILLE_MAX];
     FILE *fichier;
 } Profil;
 
