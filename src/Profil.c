@@ -1,6 +1,5 @@
 #include "../include/Profil.h"
 
-
 void Profil_recupererPseudo(Profil* profil)
 {
     SDL_Event Texte_Pour_Pseudo;
@@ -196,7 +195,7 @@ unsigned int Profil_prochainID(void)
     unsigned int maxID = 0;
     unsigned int courrantID = maxID;
 
-    FILE *fichier = fopen("/home/mickael/ProjetsC/Digger/profil/profil.base", "rb");
+    FILE *fichier = fopen("../profil.base", "rb");
 
     if (fichier == NULL)
     {
