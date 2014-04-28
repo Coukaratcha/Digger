@@ -37,50 +37,90 @@
 			<Add option="-lSDL" />
 		</Linker>
 		<Unit filename="include/Item.h" />
+		<Unit filename="include/ItemUnit.h" />
 		<Unit filename="include/Menu.h" />
+		<Unit filename="include/MenuUnit.h" />
 		<Unit filename="include/Mode.h" />
+		<Unit filename="include/ModeUnit.h" />
 		<Unit filename="include/Niveau.h" />
+		<Unit filename="include/NiveauUnit.h" />
 		<Unit filename="include/Option.h" />
+		<Unit filename="include/OptionUnit.h" />
 		<Unit filename="include/Partie.h" />
+		<Unit filename="include/PartieUnit.h" />
 		<Unit filename="include/Personnage.h" />
+		<Unit filename="include/PersonnageUnit.h" />
 		<Unit filename="include/Profil.h" />
+		<Unit filename="include/ProfilUnit.h" />
 		<Unit filename="include/Record.h" />
-		<Unit filename="include/Sauvegarde.h" />
+		<Unit filename="include/RecordUnit.h" />
 		<Unit filename="include/Score.h" />
+		<Unit filename="include/ScoreUnit.h" />
+		<Unit filename="include/mainUnit.h" />
 		<Unit filename="src/Item.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/ItemUnit.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="src/Menu.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/MenuUnit.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="src/Mode.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/ModeUnit.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="src/Niveau.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/NiveauUnit.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="src/Option.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/OptionUnit.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="src/Partie.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/PartieUnit.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="src/Personnage.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/PersonnageUnit.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="src/Profil.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/ProfilUnit.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="src/Record.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/Sauvegarde.c">
+		<Unit filename="src/RecordUnit.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="src/Score.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/ScoreUnit.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="src/main.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/mainUnit.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Extensions>

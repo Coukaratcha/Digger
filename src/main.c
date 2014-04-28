@@ -8,10 +8,15 @@
 #include <stdio.h>
 #include <SDL/SDL.h>
 #include <SDL/SDL_ttf.h>
+#include <SDL/SDL_image.h>
 
 int main(int argc, char *argv[])
 {
-    SDL_Init(SDL_INIT_EVERYTHING);
+    if (SDL_Init(SDL_INIT_VIDEO) == -1) // Démarrage de la SDL. Si erreur :
+    {
+        fprintf(stderr, "Erreur d'initialisation de la SDL : %s\n", SDL_GetError()); // Écriture de l'erreur
+        exit(EXIT_FAILURE); // On quitte le programme
+    }
 
     if(TTF_Init() == -1)
     {
@@ -19,6 +24,13 @@ int main(int argc, char *argv[])
         exit(EXIT_FAILURE);
     }
 
+/////////////////////////AFFICHAGE DU MENU//////////////////////////////////////
+
+
+/////////////////////////SWITCH SUIVANT CHOIX DU MENU////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////////
 
     TTF_Quit();
 
