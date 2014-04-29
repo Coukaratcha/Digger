@@ -90,7 +90,7 @@
 
 1398604622 source:c:\users\florian\documents\github\digger\src\itemunit.c
 
-1398693314 source:c:\users\florian\documents\github\digger\src\main.c
+1398696004 source:c:\users\florian\documents\github\digger\src\main.c
 	"../include/Profil.h"
 	"../include/Partie.h"
 	"../include/Personnage.h"
@@ -100,6 +100,7 @@
 	<stdio.h>
 	<SDL/SDL.h>
 	<SDL/SDL_ttf.h>
+	<SDL/SDL_image.h>
 
 1398692854 c:\users\florian\documents\github\digger\include\profil.h
 	<stdio.h>

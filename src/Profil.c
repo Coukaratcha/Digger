@@ -18,7 +18,7 @@ void Profil_recupererPseudo(Profil* profil)
 
                             case SDLK_a:
                             (*profil).nom[i++] = 'a';
-                            break; // si lettre = a, alors on met la lettre a dans tableau[i]
+                            break; // si lettre = a, alors on met la lettre a dans (*profil).nom[i]
 
                             case SDLK_b:
                             (*profil).nom[i++] = 'b';
@@ -187,7 +187,60 @@ Profil* Profil_charger(FILE *fichier)
 
 void Profil_supprimer(Profil *profil)
 {
+    /*unsigned int nb_enregistrements, id;
+    char nom[NOM_TAILLE_MAX];
+    FILE* fichier = fopen("../profil.base", "w+b");
 
+    fread(&nb_enregistrements,sizeof(unsigned int),1,fichier);
+    fread(&id,sizeof(unsigned int),1,fichier);
+
+    while(id!=(profil->identifiant))
+    {
+        fseek(fichier,sizeof(char)*(NOM_TAILLE_MAX+1),SEEK_CUR);
+        fread(&id,sizeof(unsigned int),1,fichier);
+    }
+
+    fseek(fichier,sizeof(char)*(NOM_TAILLE_MAX+1),SEEK_CUR);
+
+    while(fread(&id,sizeof(unsigned int),1,fichier)!=EOF)
+    {
+        fread(nom,sizeof(char)*(NOM_TAILLE_MAX+1),1,fichier)
+        fseek(fichier,-2*((sizeof(char)*(NOM_TAILLE_MAX+1))+ sizeof(unsigned int)),SEEK_CUR);
+        fwrite(&id,sizeof(unsigned int),1,fichier);
+        fwrite(nom,sizeof(char)*(NOM_TAILLE_MAX+1),1,fichier);
+        fseek(fichier,(sizeof(char)*(NOM_TAILLE_MAX+1))+ sizeof(unsigned int),SEEK_CUR);
+    }
+
+    fclose(fichier);*/
+
+    unsigned int nb_enregistrements, id;
+    char nom[NOM_TAILLE_MAX];
+    FILE* fichier = fopen("../profil.base", "w+b");
+
+    fread(&nb_enregistrements,sizeof(unsigned int),1,fichier);
+    FILE* fichier2 = fopen("../profil2.base", "wb");
+    fwrite(&nb_enregistrements,sizeof(unsigned int),1,fichier2);
+
+    while(fread(&id,sizeof(unsigned int),1,fichier)!=(profil->identifiant))
+    {
+        fread(nom,sizeof(char)*(NOM_TAILLE_MAX+1),1,fichier);
+        fwrite(&id,sizeof(unsigned int),1,fichier2);
+        fwrite(nom,sizeof(char)*(NOM_TAILLE_MAX+1),1,fichier2);
+    }
+    fseek(fichier,sizeof(char)*(NOM_TAILLE_MAX+1),SEEK_CUR);
+
+    while(fread(&id,sizeof(unsigned int),1,fichier)!=EOF)
+    {
+        fread(nom,sizeof(char)*(NOM_TAILLE_MAX+1),1,fichier);
+        fwrite(&id,sizeof(unsigned int),1,fichier2);
+        fwrite(nom,sizeof(char)*(NOM_TAILLE_MAX+1),1,fichier2);
+    }
+
+    fclose(fichier2);
+    fclose(fichier);
+
+    if(remove("../profil.base")!=0) printf("Erreur lors de la suppression");
+    if(rename("../profil2.base","../profil.base")!=0)printf("Erreur lors du renommage");
 }
 
 unsigned int Profil_prochainID(void)
