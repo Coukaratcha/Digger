@@ -1,7 +1,8 @@
 #ifndef ITEM_H
 #define ITEM_H
 
-#include "Partie.h"
+#include <stdio.h>
+#include <stdlib.h>
 
 typedef enum {
     FORCE = 0, FLASHBACK = 1, KEYSWITCH = 2, ROCK = 3

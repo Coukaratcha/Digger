@@ -74,7 +74,8 @@
 1398442452 source:/home/mickael/ProjetsC/Digger/src/Profil.c
 	"../include/Profil.h"
 
-1398366811 source:c:\users\florian\documents\github\digger\src\item.c
+1398781283 source:c:\users\florian\documents\github\digger\src\item.c
+	"../include/Item.h"
 
 1398366811 source:c:\users\florian\documents\github\digger\src\menu.c
 
@@ -108,7 +109,7 @@
 	<SDL/SDL.h>
 	<SDL/SDL_ttf.h>
 
-1398692349 c:\users\florian\documents\github\digger\include\partie.h
+1398781210 c:\users\florian\documents\github\digger\include\partie.h
 	<stdio.h>
 	<stdlib.h>
 	"../include/Item.h"
@@ -117,8 +118,9 @@
 	"../include/Score.h"
 	"../include/Profil.h"
 
-1398604621 c:\users\florian\documents\github\digger\include\item.h
-	"Partie.h"
+1398781310 c:\users\florian\documents\github\digger\include\item.h
+	<stdio.h>
+	<stdlib.h>
 
 1398690720 c:\users\florian\documents\github\digger\include\niveau.h
 	"Partie.h"
@@ -172,6 +174,6 @@
 
 1398604622 source:c:\users\florian\documents\github\digger\src\scoreunit.c
 
-1398695397 source:c:\users\florian\documents\github\digger\src\profil.c
+1398779905 source:c:\users\florian\documents\github\digger\src\profil.c
 	"../include/Profil.h"
 
