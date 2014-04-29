@@ -1,5 +1,7 @@
 #include "../include/Profil.h"
 
+const char *cheminFichier = "../../profil/profil.base";
+
 void Profil_recupererPseudo(Profil* profil)
 {
     SDL_Event Texte_Pour_Pseudo;
@@ -142,21 +144,19 @@ void Profil_recupererPseudo(Profil* profil)
 
 Profil* Profil_creer(void)
 {
-    unsigned int id=Profil_prochainID();
-    Profil* profil=malloc(sizeof(Profil));
-    (*profil).identifiant=id;
+    Profil* profil = (Profil*)malloc(sizeof(Profil));
+    profil->identifiant=Profil_prochainID();
     Profil_recupererPseudo(profil);
 
-    FILE* fichier = fopen("../profil.base", "wb");
+    FILE* fichier = fopen(cheminFichier, "wb");
 
     unsigned int nb_enregistrements;
     fread(&nb_enregistrements,sizeof(unsigned int),1,fichier);
     fseek(fichier,0,SEEK_END);
-    fwrite(&id,sizeof(unsigned int),1,fichier);
-    fwrite((*profil).nom,sizeof(char[NOM_TAILLE_MAX]),1,fichier);
+    fwrite(&(profil->identifiant),sizeof(unsigned int),1,fichier);
+    fwrite(profil->nom,sizeof(char)*(NOM_TAILLE_MAX+1),1,fichier);
     fseek(fichier,0,SEEK_SET);
-    nb_enregistrements++;
-    fwrite(&nb_enregistrements,sizeof(unsigned int),1,fichier);
+    fwrite(&(++nb_enregistrements),sizeof(unsigned int),1,fichier);
 
     fclose(fichier);
     return profil;
