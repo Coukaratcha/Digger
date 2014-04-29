@@ -159,7 +159,7 @@ Profil* Profil_creer(void)
     fwrite(&nb_enregistrements,sizeof(unsigned int),1,fichier);
 
     fclose(fichier);
-    return NULL;
+    return profil;
 }
 
 void Profil_modifier(Profil *profil)
@@ -180,9 +180,27 @@ void Profil_modifier(Profil *profil)
     fclose(fichier);
 }
 
-Profil* Profil_charger(FILE *fichier)
+Profil* Profil_charger(FILE *fichier, unsigned int id)
 {
-    return NULL;
+    Profil* profil= Profil_creer();
+    unsigned int identifiant;
+    char nomf[NOM_TAILLE_MAX];
+    fseek(fichier, sizeof(unsigned int),SEEK_SET);
+
+    do{
+        fread(&identifiant,sizeof(unsigned int),1,fichier);
+        fread(nomf,sizeof(char)*(NOM_TAILLE_MAX+1),1,fichier);
+    }while(identifiant!=id);
+
+    profil->identifiant=id;
+
+    unsigned int i=0;
+    while(nomf[i]!='\0')
+    {
+        profil->nom[i]=nomf[i];
+    }
+
+    return profil;
 }
 
 void Profil_supprimer(Profil *profil)
@@ -235,6 +253,10 @@ void Profil_supprimer(Profil *profil)
         fwrite(&id,sizeof(unsigned int),1,fichier2);
         fwrite(nom,sizeof(char)*(NOM_TAILLE_MAX+1),1,fichier2);
     }
+
+    nb_enregistrements++;
+    fseek(fichier2,0,SEEK_SET);
+    fwrite(&nb_enregistrements,sizeof(unsigned int),1,fichier2);
 
     fclose(fichier2);
     fclose(fichier);

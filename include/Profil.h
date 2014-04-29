@@ -11,12 +11,11 @@
 typedef struct {
     unsigned int identifiant;
     char nom[NOM_TAILLE_MAX];
-    FILE *fichier;
 } Profil;
 
 Profil* Profil_creer(void);
 void Profil_modifier(Profil *profil);
-Profil* Profil_charger(FILE *fichier);
+Profil* Profil_charger(FILE *fichier, unsigned int id);
 void Profil_supprimer(Profil *profil);
 unsigned int Profil_prochainID(void);
 
