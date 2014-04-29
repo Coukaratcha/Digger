@@ -76,5 +76,6 @@ void Item_faireEffet(TypeItem type)
 
 void Item_utiliser(Item *item, TypeItem type)
 {
-
+    Item_enlever(item,type);
+    Item_faireEffet(type);
 }
