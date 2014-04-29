@@ -156,7 +156,8 @@ Profil* Profil_creer(void)
     fwrite(&(profil->identifiant),sizeof(unsigned int),1,fichier);
     fwrite(profil->nom,sizeof(char)*(NOM_TAILLE_MAX+1),1,fichier);
     fseek(fichier,0,SEEK_SET);
-    fwrite(&(++nb_enregistrements),sizeof(unsigned int),1,fichier);
+    nb_enregistrements++;
+    fwrite(&nb_enregistrements,sizeof(unsigned int),1,fichier);
 
     fclose(fichier);
     return profil;

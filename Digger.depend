@@ -1,5 +1,6 @@
 # depslib dependency file v1.0
-1398364145 source:/home/mickael/ProjetsC/Digger/src/Item.c
+1398795798 source:/home/mickael/ProjetsC/Digger/src/Item.c
+	"../include/Item.h"
 
 1398364145 source:/home/mickael/ProjetsC/Digger/src/Menu.c
 
@@ -17,31 +18,38 @@
 
 1398364145 source:/home/mickael/ProjetsC/Digger/src/Score.c
 
-1398442391 source:/home/mickael/ProjetsC/Digger/src/main.c
+1398795798 source:/home/mickael/ProjetsC/Digger/src/main.c
 	"../include/Profil.h"
 	"../include/Partie.h"
 	"../include/Personnage.h"
 	"../include/Record.h"
 	"../include/Menu.h"
+	<stdlib.h>
+	<stdio.h>
 	<SDL/SDL.h>
+	<SDL/SDL_ttf.h>
+	<SDL/SDL_image.h>
 
-1398440903 /home/mickael/ProjetsC/Digger/include/Profil.h
+1398795798 /home/mickael/ProjetsC/Digger/include/Profil.h
+	<stdio.h>
+	<stdlib.h>
+	<SDL/SDL.h>
+	<SDL/SDL_ttf.h>
+
+1398795798 /home/mickael/ProjetsC/Digger/include/Partie.h
+	<stdio.h>
+	<stdlib.h>
+	"../include/Item.h"
+	"../include/Niveau.h"
+	"../include/Mode.h"
+	"../include/Score.h"
+	"../include/Profil.h"
+
+1398795798 /home/mickael/ProjetsC/Digger/include/Item.h
 	<stdio.h>
 	<stdlib.h>
 
-1398438207 /home/mickael/ProjetsC/Digger/include/Partie.h
-	<stdio.h>
-	<stdlib.h>
-	"Item.h"
-	"Niveau.h"
-	"Mode.h"
-	"Score.h"
-	"Profil.h"
-
-1398440547 /home/mickael/ProjetsC/Digger/include/Item.h
-	"Partie.h"
-
-1398438140 /home/mickael/ProjetsC/Digger/include/Niveau.h
+1398795798 /home/mickael/ProjetsC/Digger/include/Niveau.h
 	"Partie.h"
 
 1398431873 /home/mickael/ProjetsC/Digger/include/Mode.h
@@ -176,4 +184,24 @@
 
 1398779905 source:c:\users\florian\documents\github\digger\src\profil.c
 	"../include/Profil.h"
+
+1398446477 source:/home/mickael/ProjetsC/Digger/src/ItemUnit.c
+
+1398446477 source:/home/mickael/ProjetsC/Digger/src/mainUnit.c
+
+1398446477 source:/home/mickael/ProjetsC/Digger/src/MenuUnit.c
+
+1398446477 source:/home/mickael/ProjetsC/Digger/src/ModeUnit.c
+
+1398446477 source:/home/mickael/ProjetsC/Digger/src/NiveauUnit.c
+
+1398446477 source:/home/mickael/ProjetsC/Digger/src/OptionUnit.c
+
+1398446477 source:/home/mickael/ProjetsC/Digger/src/PartieUnit.c
+
+1398446477 source:/home/mickael/ProjetsC/Digger/src/PersonnageUnit.c
+
+1398446477 source:/home/mickael/ProjetsC/Digger/src/RecordUnit.c
+
+1398446477 source:/home/mickael/ProjetsC/Digger/src/ScoreUnit.c
 
