@@ -204,6 +204,46 @@ Profil* Profil_charger(FILE *fichier, unsigned int id)
     return profil;
 }
 
+int Profil_chercherFichier(Profil *profil)
+{
+    FILE *fichier = NULL;
+    int trouve = 0;
+    fichier = fopen(cheminFichier, "rb");
+
+    unsigned int index = 0;
+    unsigned int idCourant;
+    unsigned int nbEnregistrements;
+
+    fread(&nbEnregistrements, sizeof(unsigned int), 1, fichier);
+
+    do
+    {
+        fread(&idCourant, sizeof(unsigned int), 1, fichier);
+
+        if (idCourant == profil->identifiant)
+        {
+            trouve = 1;
+        }
+        else
+        {
+            index++;
+        }
+
+        fseek(fichier, sizeof(char)*(NOM_TAILLE_MAX+1), SEEK_CUR);
+    } while (index < nbEnregistrements && !trouve);
+
+    fclose(fichier);
+
+    if (trouve)
+    {
+        return index;
+    }
+    else
+    {
+        return -1;
+    }
+}
+
 void Profil_supprimer(Profil *profil)
 {
     /*unsigned int nb_enregistrements, id;

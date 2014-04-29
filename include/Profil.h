@@ -16,6 +16,7 @@ typedef struct {
 Profil* Profil_creer(void);
 void Profil_modifier(Profil *profil);
 Profil* Profil_charger(FILE *fichier, unsigned int id);
+int Profil_chercherFichier(Profil *profil);
 void Profil_supprimer(Profil *profil);
 unsigned int Profil_prochainID(void);
 
