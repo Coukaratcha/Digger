@@ -257,64 +257,51 @@ int Profil_chercherFichier(Profil *profil)
 
 void Profil_supprimer(Profil *profil)
 {
-    /*unsigned int nb_enregistrements, id;
-    char nom[NOM_TAILLE_MAX];
-    FILE* fichier = fopen("../profil.base", "w+b");
-
-    fread(&nb_enregistrements,sizeof(unsigned int),1,fichier);
-    fread(&id,sizeof(unsigned int),1,fichier);
-
-    while(id!=(profil->identifiant))
+    int index = Profil_chercherFichier(profil);
+    if (index != -1)
     {
-        fseek(fichier,sizeof(char)*(NOM_TAILLE_MAX+1),SEEK_CUR);
-        fread(&id,sizeof(unsigned int),1,fichier);
+        unsigned int nbEnregistrements;
+        unsigned int place = (unsigned int)index;
+
+        unsigned int dernierIdentifiant;
+        char dernierNom[NOM_TAILLE_MAX+1];
+
+        /* Valeurs du dernier enregistrement à écrire à la place du profil à supprimer */
+
+        memset(dernierNom, '\0', NOM_TAILLE_MAX+1);
+
+        FILE *fichier = fopen(cheminFichier, "r+b");
+
+        fread(&nbEnregistrements, sizeof(unsigned int) ,1 ,fichier);
+
+        nbEnregistrements--;
+
+        fseek(fichier, (sizeof(unsigned int)+sizeof(char)*(NOM_TAILLE_MAX+1))*nbEnregistrements, SEEK_CUR);
+
+        fread(&dernierIdentifiant, sizeof(unsigned int), 1, fichier);
+        fread(dernierNom, sizeof(char)*(NOM_TAILLE_MAX+1), 1, fichier);
+
+        /* On va chercher les informations de ce dernier profil */
+
+        fseek(fichier, 0, SEEK_SET);
+
+        fwrite(&nbEnregistrements, sizeof(unsigned int), 1, fichier);
+
+        /* On actualise le nombre d'enregistrements */
+
+        fseek(fichier, (sizeof(unsigned int)+sizeof(char)*(NOM_TAILLE_MAX+1))*place, SEEK_CUR);
+
+        fwrite(&dernierIdentifiant, sizeof(unsigned int), 1, fichier);
+        fwrite(dernierNom, sizeof(char)*(NOM_TAILLE_MAX+1), 1, fichier);
+
+        /* On écrit par dessus pour supprimer le profil */
+
+        free(profil);
+
+        /* On oublie pas de supprimer le fichier en mémoire sur la pile */
+
+        fclose(fichier);
     }
-
-    fseek(fichier,sizeof(char)*(NOM_TAILLE_MAX+1),SEEK_CUR);
-
-    while(fread(&id,sizeof(unsigned int),1,fichier)!=EOF)
-    {
-        fread(nom,sizeof(char)*(NOM_TAILLE_MAX+1),1,fichier)
-        fseek(fichier,-2*((sizeof(char)*(NOM_TAILLE_MAX+1))+ sizeof(unsigned int)),SEEK_CUR);
-        fwrite(&id,sizeof(unsigned int),1,fichier);
-        fwrite(nom,sizeof(char)*(NOM_TAILLE_MAX+1),1,fichier);
-        fseek(fichier,(sizeof(char)*(NOM_TAILLE_MAX+1))+ sizeof(unsigned int),SEEK_CUR);
-    }
-
-    fclose(fichier);*/
-
-    unsigned int nb_enregistrements, id;
-    char nom[NOM_TAILLE_MAX];
-    FILE* fichier = fopen("../profil.base", "w+b");
-
-    fread(&nb_enregistrements,sizeof(unsigned int),1,fichier);
-    FILE* fichier2 = fopen("../profil2.base", "wb");
-    fwrite(&nb_enregistrements,sizeof(unsigned int),1,fichier2);
-
-    while(fread(&id,sizeof(unsigned int),1,fichier)!=(profil->identifiant))
-    {
-        fread(nom,sizeof(char)*(NOM_TAILLE_MAX+1),1,fichier);
-        fwrite(&id,sizeof(unsigned int),1,fichier2);
-        fwrite(nom,sizeof(char)*(NOM_TAILLE_MAX+1),1,fichier2);
-    }
-    fseek(fichier,sizeof(char)*(NOM_TAILLE_MAX+1),SEEK_CUR);
-
-    while(fread(&id,sizeof(unsigned int),1,fichier)!=EOF)
-    {
-        fread(nom,sizeof(char)*(NOM_TAILLE_MAX+1),1,fichier);
-        fwrite(&id,sizeof(unsigned int),1,fichier2);
-        fwrite(nom,sizeof(char)*(NOM_TAILLE_MAX+1),1,fichier2);
-    }
-
-    nb_enregistrements++;
-    fseek(fichier2,0,SEEK_SET);
-    fwrite(&nb_enregistrements,sizeof(unsigned int),1,fichier2);
-
-    fclose(fichier2);
-    fclose(fichier);
-
-    if(remove("../profil.base")!=0) printf("Erreur lors de la suppression");
-    if(rename("../profil2.base","../profil.base")!=0)printf("Erreur lors du renommage");
 }
 
 unsigned int Profil_prochainID(void)
