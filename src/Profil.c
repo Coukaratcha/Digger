@@ -321,6 +321,8 @@ unsigned int Profil_prochainID(void)
 {
     unsigned int maxID = 0;
     unsigned int courrantID = maxID;
+    unsigned int nbEnregistrements;
+    unsigned int i;
 
     FILE *fichier = fopen(cheminFichier, "rb");
 
@@ -329,8 +331,13 @@ unsigned int Profil_prochainID(void)
         printf("Erreur [Profil_prochainId] : Ouverture de profil.base\n");
     }
 
-    while (fread(&courrantID, sizeof(unsigned int), 1, fichier) != 0)
+    fread(&nbEnregistrements, sizeof(unsigned int), 1, fichier);
+
+    for (i=0; i < nbEnregistrements; i++)
     {
+        fread(&courrantID, sizeof(unsigned int), 1, fichier);
+        fseek(fichier, sizeof(char)*(NOM_TAILLE_MAX+1), SEEK_CUR);
+
         if (courrantID > maxID)
             maxID = courrantID;
     }
