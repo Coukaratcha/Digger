@@ -186,25 +186,33 @@ void Profil_modifier(Profil *profil)
 
 Profil* Profil_charger(FILE *fichier, unsigned int id)
 {
-    Profil* profil= Profil_creer();
-    unsigned int identifiant;
-    char nomf[NOM_TAILLE_MAX];
-    fseek(fichier, sizeof(unsigned int),SEEK_SET); // on se place après le nombres d'enregistrements du fichier
+    Profil *profil = Profil_creer();
+    profil->identifiant = id;
 
-    do{
-        fread(&identifiant,sizeof(unsigned int),1,fichier); // on lit l'id
-        fread(nomf,sizeof(char)*(NOM_TAILLE_MAX+1),1,fichier); // on lit le pseudo
-    }while(identifiant!=id); // tant qu'on a pas trouvé l'id recherché
+    int index = Profil_chercherFichier(profil);
 
-    profil->identifiant=id;
-
-    unsigned int i=0;
-    while(nomf[i]!='\0')
+    if (index != -1)
     {
-        profil->nom[i]=nomf[i];
-    }
+        unsigned int place = (unsigned int)index;
 
-    return profil;
+        FILE *fichier = fopen(cheminFichier, "rb");
+
+        fseek(fichier, 2*sizeof(unsigned int)+(sizeof(unsigned int)+sizeof(char)*(NOM_TAILLE_MAX+1))*place, SEEK_SET);
+
+        /* On accède à l'enregistrement : unsigned int + (unsigned int + char * 21)*index + unsigned int */
+
+        fread(profil->nom, sizeof(char)*(NOM_TAILLE_MAX+1), 1, fichier);
+
+        fclose(fichier);
+
+        return profil;
+    }
+    else
+    {
+        free(profil);
+
+        return NULL;
+    }
 }
 
 int Profil_chercherFichier(Profil *profil)
@@ -314,7 +322,7 @@ unsigned int Profil_prochainID(void)
     unsigned int maxID = 0;
     unsigned int courrantID = maxID;
 
-    FILE *fichier = fopen("../profil.base", "rb");
+    FILE *fichier = fopen(cheminFichier, "rb");
 
     if (fichier == NULL)
     {

@@ -4,19 +4,23 @@
 
 1398364145 source:/home/mickael/ProjetsC/Digger/src/Menu.c
 
-1398364145 source:/home/mickael/ProjetsC/Digger/src/Mode.c
+1398855865 source:/home/mickael/ProjetsC/Digger/src/Mode.c
+	"../include/Mode.h"
 
-1398364145 source:/home/mickael/ProjetsC/Digger/src/Niveau.c
+1398855865 source:/home/mickael/ProjetsC/Digger/src/Niveau.c
+	"../include/Niveau.h"
 
 1398430195 source:/home/mickael/ProjetsC/Digger/src/Option.c
 
-1398364145 source:/home/mickael/ProjetsC/Digger/src/Partie.c
+1398855865 source:/home/mickael/ProjetsC/Digger/src/Partie.c
+	"../include/Partie.h"
 
 1398364145 source:/home/mickael/ProjetsC/Digger/src/Personnage.c
 
 1398364145 source:/home/mickael/ProjetsC/Digger/src/Sauvegarde.c
 
-1398364145 source:/home/mickael/ProjetsC/Digger/src/Score.c
+1398855865 source:/home/mickael/ProjetsC/Digger/src/Score.c
+	"../include/Score.h"
 
 1398795798 source:/home/mickael/ProjetsC/Digger/src/main.c
 	"../include/Profil.h"
@@ -30,7 +34,7 @@
 	<SDL/SDL_ttf.h>
 	<SDL/SDL_image.h>
 
-1398797138 /home/mickael/ProjetsC/Digger/include/Profil.h
+1398856659 /home/mickael/ProjetsC/Digger/include/Profil.h
 	<stdio.h>
 	<stdlib.h>
 	<SDL/SDL.h>
