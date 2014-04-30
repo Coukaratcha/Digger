@@ -1,7 +1,8 @@
 #ifndef MODE_H
 #define MODE_H
 
-#include "Partie.h"
+#include <stdio.h>
+#include <stdlib.h>
 
 typedef enum {
     NORMAL,
@@ -14,6 +15,6 @@ typedef struct {
 } Mode;
 
 Mode* Mode_creer(void);
-void Mode_supprimer(Mode *mode);
+void Mode_chargerRegles(Mode *mode);
 
 #endif

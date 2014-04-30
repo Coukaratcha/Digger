@@ -1,7 +1,9 @@
 #ifndef NIVEAU_H
 #define NIVEAU_H
 
-#include "Partie.h"
+#include <stdio.h>
+#include <stdlib.h>
+
 
 typedef enum {
     VIDE,

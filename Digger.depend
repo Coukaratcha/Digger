@@ -82,20 +82,23 @@
 1398442452 source:/home/mickael/ProjetsC/Digger/src/Profil.c
 	"../include/Profil.h"
 
-1398781283 source:c:\users\florian\documents\github\digger\src\item.c
+1398787948 source:c:\users\florian\documents\github\digger\src\item.c
 	"../include/Item.h"
 
 1398366811 source:c:\users\florian\documents\github\digger\src\menu.c
 
-1398366811 source:c:\users\florian\documents\github\digger\src\mode.c
+1398854294 source:c:\users\florian\documents\github\digger\src\mode.c
+	"../include/Mode.h"
 
-1398366811 source:c:\users\florian\documents\github\digger\src\niveau.c
+1398854077 source:c:\users\florian\documents\github\digger\src\niveau.c
+	"../include/Niveau.h"
 
 1398366811 source:c:\users\florian\documents\github\digger\src\partie.c
 
 1398366811 source:c:\users\florian\documents\github\digger\src\personnage.c
 
-1398366811 source:c:\users\florian\documents\github\digger\src\score.c
+1398854488 source:c:\users\florian\documents\github\digger\src\score.c
+	"../include/Score.h"
 
 1398604622 source:c:\users\florian\documents\github\digger\src\itemunit.c
 
@@ -111,13 +114,13 @@
 	<SDL/SDL_ttf.h>
 	<SDL/SDL_image.h>
 
-1398779470 c:\users\florian\documents\github\digger\include\profil.h
+1398851076 c:\users\florian\documents\github\digger\include\profil.h
 	<stdio.h>
 	<stdlib.h>
 	<SDL/SDL.h>
 	<SDL/SDL_ttf.h>
 
-1398781210 c:\users\florian\documents\github\digger\include\partie.h
+1398855124 c:\users\florian\documents\github\digger\include\partie.h
 	<stdio.h>
 	<stdlib.h>
 	"../include/Item.h"
@@ -130,16 +133,17 @@
 	<stdio.h>
 	<stdlib.h>
 
-1398690720 c:\users\florian\documents\github\digger\include\niveau.h
-	"Partie.h"
-
-1398433138 c:\users\florian\documents\github\digger\include\mode.h
-	"Partie.h"
-
-1398604622 c:\users\florian\documents\github\digger\include\score.h
+1398854129 c:\users\florian\documents\github\digger\include\niveau.h
 	<stdio.h>
 	<stdlib.h>
-	"Partie.h"
+
+1398854294 c:\users\florian\documents\github\digger\include\mode.h
+	<stdio.h>
+	<stdlib.h>
+
+1398854488 c:\users\florian\documents\github\digger\include\score.h
+	<stdio.h>
+	<stdlib.h>
 	"Mode.h"
 
 1398604622 c:\users\florian\documents\github\digger\include\personnage.h
@@ -182,7 +186,7 @@
 
 1398604622 source:c:\users\florian\documents\github\digger\src\scoreunit.c
 
-1398779905 source:c:\users\florian\documents\github\digger\src\profil.c
+1398853879 source:c:\users\florian\documents\github\digger\src\profil.c
 	"../include/Profil.h"
 
 1398446477 source:/home/mickael/ProjetsC/Digger/src/ItemUnit.c

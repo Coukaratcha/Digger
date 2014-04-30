@@ -4,7 +4,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "Partie.h"
 #include "Mode.h"
 
 typedef struct {
@@ -13,7 +12,7 @@ typedef struct {
     Mode *mode;
 } Score;
 
-Score* Score_creer(void);
+Score* Score_initialiser(void);
 void Score_augmenter(Score *score, unsigned int points);
 void Score_miseAJour(Score *score);
 

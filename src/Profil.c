@@ -145,19 +145,19 @@ void Profil_recupererPseudo(Profil* profil)
 Profil* Profil_creer(void)
 {
     Profil* profil = (Profil*)malloc(sizeof(Profil));
-    profil->identifiant=Profil_prochainID();
-    Profil_recupererPseudo(profil);
+    profil->identifiant=Profil_prochainID(); //récupération du prochain id a attribuer
+    Profil_recupererPseudo(profil); // récupération du pseudo du joueur
 
     FILE* fichier = fopen(cheminFichier, "wb");
 
     unsigned int nb_enregistrements;
-    fread(&nb_enregistrements,sizeof(unsigned int),1,fichier);
-    fseek(fichier,0,SEEK_END);
-    fwrite(&(profil->identifiant),sizeof(unsigned int),1,fichier);
-    fwrite(profil->nom,sizeof(char)*(NOM_TAILLE_MAX+1),1,fichier);
-    fseek(fichier,0,SEEK_SET);
+    fread(&nb_enregistrements,sizeof(unsigned int),1,fichier); // on lit le nombres d'enregistrements du fichier
+    fseek(fichier,0,SEEK_END); // on se place à la fin du fichier pour pouvoir écrire le nouvel enregistrement
+    fwrite(&(profil->identifiant),sizeof(unsigned int),1,fichier); //on écrit l'id
+    fwrite(profil->nom,sizeof(char)*(NOM_TAILLE_MAX+1),1,fichier);  // on écrit le pseudo
+    fseek(fichier,0,SEEK_SET);// on se place au début du fichier
     nb_enregistrements++;
-    fwrite(&nb_enregistrements,sizeof(unsigned int),1,fichier);
+    fwrite(&nb_enregistrements,sizeof(unsigned int),1,fichier);// on actualise le nombres d'enregistrements et on le réécrit dans le fichier
 
     fclose(fichier);
     return profil;
@@ -166,17 +166,16 @@ Profil* Profil_creer(void)
 void Profil_modifier(Profil *profil)
 {
     unsigned int id;
-    Profil_recupererPseudo(profil);
+    Profil_recupererPseudo(profil); //on récupère le nouveau pseudo
 
-    FILE* fichier = fopen("../profil.base", "wb");
-    fseek(fichier,sizeof(unsigned int),SEEK_SET);
-    fread(&id,sizeof(unsigned int),1,fichier);
-    while(id!=(*profil).identifiant){
-        fseek(fichier,sizeof(char[20]),SEEK_CUR);
-        fread(&id,sizeof(unsigned int),1,fichier);
+    FILE* fichier = fopen(cheminFichier, "wb");
+    fseek(fichier,sizeof(unsigned int),SEEK_SET); // on se place juste après le nombre d'enregistrements dans le fichier
+    fread(&id,sizeof(unsigned int),1,fichier); // on lit le premier id
+    while(id!=(*profil).identifiant){ // tant que l'id lu n'est pas celui recherché
+        fseek(fichier,sizeof(char)*(NOM_TAILLE_MAX+1),SEEK_CUR); // on saute le pseudo pour se placer au prochain id
+        fread(&id,sizeof(unsigned int),1,fichier); // on lit l'id
     }
-    fseek(fichier,sizeof(unsigned int),SEEK_CUR);
-    fwrite((*profil).nom,sizeof(char[20]),1,fichier);
+    fwrite((*profil).nom,sizeof(char[20]),1,fichier); // on écrit le nouveau pseudo après la lecture du bon id
 
     fclose(fichier);
 }
@@ -186,12 +185,12 @@ Profil* Profil_charger(FILE *fichier, unsigned int id)
     Profil* profil= Profil_creer();
     unsigned int identifiant;
     char nomf[NOM_TAILLE_MAX];
-    fseek(fichier, sizeof(unsigned int),SEEK_SET);
+    fseek(fichier, sizeof(unsigned int),SEEK_SET); // on se place après le nombres d'enregistrements du fichier
 
     do{
-        fread(&identifiant,sizeof(unsigned int),1,fichier);
-        fread(nomf,sizeof(char)*(NOM_TAILLE_MAX+1),1,fichier);
-    }while(identifiant!=id);
+        fread(&identifiant,sizeof(unsigned int),1,fichier); // on lit l'id
+        fread(nomf,sizeof(char)*(NOM_TAILLE_MAX+1),1,fichier); // on lit le pseudo
+    }while(identifiant!=id); // tant qu'on a pas trouvé l'id recherché
 
     profil->identifiant=id;
 
