@@ -49,16 +49,17 @@
 	<stdio.h>
 	<stdlib.h>
 
-1398795798 /home/mickael/ProjetsC/Digger/include/Niveau.h
-	"Partie.h"
-
-1398431873 /home/mickael/ProjetsC/Digger/include/Mode.h
-	"Partie.h"
-
-1398438242 /home/mickael/ProjetsC/Digger/include/Score.h
+1398855865 /home/mickael/ProjetsC/Digger/include/Niveau.h
 	<stdio.h>
 	<stdlib.h>
-	"Partie.h"
+
+1398855865 /home/mickael/ProjetsC/Digger/include/Mode.h
+	<stdio.h>
+	<stdlib.h>
+
+1398855865 /home/mickael/ProjetsC/Digger/include/Score.h
+	<stdio.h>
+	<stdlib.h>
 	"Mode.h"
 
 1398438212 /home/mickael/ProjetsC/Digger/include/Personnage.h
