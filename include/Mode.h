@@ -7,7 +7,8 @@
 typedef enum {
     NORMAL,
     MONTRE,
-    BONUS
+    BONUS,
+    DEFAULT
 } TypeMode;
 
 typedef struct {
@@ -15,6 +16,7 @@ typedef struct {
 } Mode;
 
 Mode* Mode_creer(void);
+Mode* Mode_assignerMode(Mode* mode, unsigned int numeroMode);
 void Mode_chargerRegles(Mode *mode);
 
 #endif
