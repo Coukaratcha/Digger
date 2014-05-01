@@ -1,34 +1,52 @@
-.PHONY: clean, mrproper
-.SUFFIXES:
+# ------------------------------------------------
+# Generic Makefile
+#
+# Original author: yanick.rochon@gmail.com
+# Date  : 2011-08-10
+#
+# Changelog :
+#   2010-11-05 - first version
+#   2011-08-10 - added structure : sources, objects, binaries
+#                thanks to http://stackoverflow.com/users/128940/beta
+# ------------------------------------------------
 
-CC = gcc
-EXEC = Digger
-DEBUG = yes
-CFLAGS = -Wall `sdl-config --cflags`
-LDFLAGS = `sdl-config --libs`
-SRC= $(wildcard src/*.c)
-OBJ= $(SRC:.c=.o)
-HEADERS= $(wildcard include/*.h)
-# création de l'exécutable 'Programme'
-all: $(EXEC)
+# project name (generate executable with this name)
+TARGET   = Digger
 
-$(EXEC): $(OBJ)
-		$(CC) $(LDFLAGS) -o bin/$@ $^
+CC       = gcc
+# compiling flags here
+CFLAGS   = -Wall `sdl-config --cflags`
 
-main.o: $(HEADERS)
+LINKER   = gcc -o
+# linking flags here
+LFLAGS   = -Wall -I. -lm `sdl-config --libs`
 
-%.o: %.c
-		$(CC) -o $@ -c $< $(CFLAGS)
+# change these to set the proper directories where each files should be
+SRCDIR   = src
+HDRDIR   = include
+OBJDIR   = obj
+BINDIR   = bin
 
-# suppression des fichiers temporaires
+SOURCES  := $(wildcard $(SRCDIR)/*.c)
+INCLUDES := $(wildcard $(HDRDIR)/*.h)
+OBJECTS  := $(SOURCES:$(SRCDIR)/%.c=$(OBJDIR)/%.o)
+
+all: $(BINDIR)/$(TARGET)
+
+$(BINDIR)/$(TARGET): $(OBJECTS)
+	@$(LINKER) $@ $(LFLAGS) $(OBJECTS)
+	@echo "Linking complete!"
+
+$(OBJECTS): $(OBJDIR)/%.o : $(SRCDIR)/%.c
+	@$(CC) $(CFLAGS) -c $< -o $@
+	@echo "Compiled "$<" successfully!"
+
+.PHONY: clean
 clean:
-		rm -rf src/*.o
+	@rm -f $(OBJECTS)
+	@echo "Cleanup complete!"
 
-# suppression de tous les fichiers, sauf les sources,
-# en vue d'une reconstruction complète
-mrproper: clean
-		rm -rf bin/$(EXEC)
-
-# test des fuites mémoires avec valgrind
-valgrind: $(EXEC)
-		valgring bin/$@
+.PHONY: remove
+remove: clean
+	@rm -f $(BINDIR)/$(TARGET)
+	@echo "Executable removed!"

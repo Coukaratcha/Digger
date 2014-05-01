@@ -18,12 +18,6 @@ int main(int argc, char *argv[])
         exit(EXIT_FAILURE); // On quitte le programme
     }
 
-    if(TTF_Init() == -1)
-    {
-        fprintf(stderr, "Erreur d'initialisation de TTF_Init : %s\n", TTF_GetError());
-        exit(EXIT_FAILURE);
-    }
-
 /////////////////////////AFFICHAGE DU MENU//////////////////////////////////////
 
 
@@ -31,8 +25,6 @@ int main(int argc, char *argv[])
 
 
 /////////////////////////////////////////////////////////////////////////////////
-
-    TTF_Quit();
 
     SDL_Quit();
 

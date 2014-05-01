@@ -2,7 +2,7 @@
 
 Item* Item_initialiser(void)
 {
-   Item* item=(Item*)malloc(sizeof(Item*));
+   Item* item=(Item*)malloc(sizeof(Item));
    item->table[FORCE]=0;
    item->table[FLASHBACK]=0;
    item->table[KEYSWITCH]=0;

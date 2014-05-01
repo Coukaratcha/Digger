@@ -4,13 +4,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-
 typedef enum {
     VIDE,
     HERBE,
     MUR,
     FRUIT,
     ROCHER,
+    ROCHER_TOMBANT,
     PERSO
 } Bloc;
 
