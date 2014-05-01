@@ -3,11 +3,10 @@
 Item* Item_initialiser(void)
 {
    Item* item=(Item*)malloc(sizeof(Item*));
-   int i;
-   for(i=0;i<4;i++)
-   {
-      item->table[i]=0;
-   }
+   item->table[FORCE]=0;
+   item->table[FLASHBACK]=0;
+   item->table[KEYSWITCH]=0;
+   item->table[ROCK]=0;
    return item;
 }
 
@@ -15,17 +14,17 @@ void Item_ajouter(Item *item, TypeItem type)
 {
     switch(type)
     {
-    case 0:
-        item->table[0]++;
+    case FORCE:
+        item->table[FORCE]++;
         break;
-    case 1:
-        item->table[1]++;
+    case FLASHBACK:
+        item->table[FLASHBACK]++;
         break;
-    case 2:
-        item->table[2]++;
+    case KEYSWITCH:
+        item->table[KEYSWITCH]++;
         break;
-    case 3:
-        item->table[0]++;
+    case ROCK:
+        item->table[ROCK]++;
         break;
     default:
         break;
@@ -36,17 +35,17 @@ void Item_enlever(Item *item, TypeItem type)
 {
     switch(type)
     {
-    case 0:
-        if(item->table[0]!=0) item->table[0]--;
+    case FORCE:
+        if(item->table[FORCE]!=0) item->table[FORCE]--;
         break;
-    case 1:
-        if(item->table[1]!=0) item->table[1]--;
+    case FLASHBACK:
+        if(item->table[FLASHBACK]!=0) item->table[FLASHBACK]--;
         break;
-    case 2:
-        if(item->table[2]!=0) item->table[2]--;
+    case KEYSWITCH:
+        if(item->table[KEYSWITCH]!=0) item->table[KEYSWITCH]--;
         break;
-    case 3:
-        if(item->table[3]!=0) item->table[0]--;
+    case ROCK:
+        if(item->table[ROCK]!=0) item->table[ROCK]--;
         break;
     default:
         break;
@@ -57,16 +56,16 @@ void Item_faireEffet(TypeItem type)
 {
     switch(type)
     {
-    case 0:
+    case FORCE:
         ///////////// effet de force ///////////////////
         break;
-    case 1:
+    case FLASHBACK:
         //////////// effet de flashback ///////////
         break;
-    case 2:
+    case KEYSWITCH:
         //////////// effet de keyswitch /////////////
         break;
-    case 3:
+    case ROCK:
         //////////// effet de rock ///////////////
         break;
     default:
