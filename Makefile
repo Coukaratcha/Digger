@@ -31,6 +31,11 @@ SOURCES  := $(wildcard $(SRCDIR)/*.c)
 INCLUDES := $(wildcard $(HDRDIR)/*.h)
 OBJECTS  := $(SOURCES:$(SRCDIR)/%.c=$(OBJDIR)/%.o)
 
+launch: $(BINDIR)/$(TARGET)
+	cd $(BINDIR)	
+	./$(TARGET)
+	cd ../..
+
 all: $(BINDIR)/$(TARGET)
 
 $(BINDIR)/$(TARGET): $(OBJECTS)

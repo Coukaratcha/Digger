@@ -1,28 +1,30 @@
 # depslib dependency file v1.0
-1398943234 source:/home/mickael/ProjetsC/Digger/src/Item.c
+1399029752 source:/home/mickael/ProjetsC/Digger/src/Item.c
 	"../include/Item.h"
 
-1398364145 source:/home/mickael/ProjetsC/Digger/src/Menu.c
+1399029752 source:/home/mickael/ProjetsC/Digger/src/Menu.c
+	"../include/Menu.h"
 
-1398884125 source:/home/mickael/ProjetsC/Digger/src/Mode.c
+1399029752 source:/home/mickael/ProjetsC/Digger/src/Mode.c
 	"../include/Mode.h"
 
-1398944209 source:/home/mickael/ProjetsC/Digger/src/Niveau.c
+1399045155 source:/home/mickael/ProjetsC/Digger/src/Niveau.c
 	"../include/Niveau.h"
 
 1398430195 source:/home/mickael/ProjetsC/Digger/src/Option.c
 
-1398855865 source:/home/mickael/ProjetsC/Digger/src/Partie.c
+1399029752 source:/home/mickael/ProjetsC/Digger/src/Partie.c
 	"../include/Partie.h"
 
-1398364145 source:/home/mickael/ProjetsC/Digger/src/Personnage.c
+1399029855 source:/home/mickael/ProjetsC/Digger/src/Personnage.c
+	"../include/Personnage.h"
 
 1398364145 source:/home/mickael/ProjetsC/Digger/src/Sauvegarde.c
 
 1398855865 source:/home/mickael/ProjetsC/Digger/src/Score.c
 	"../include/Score.h"
 
-1398795798 source:/home/mickael/ProjetsC/Digger/src/main.c
+1399044300 source:/home/mickael/ProjetsC/Digger/src/main.c
 	"../include/Profil.h"
 	"../include/Partie.h"
 	"../include/Personnage.h"
@@ -49,13 +51,16 @@
 	"../include/Score.h"
 	"../include/Profil.h"
 
-1398795798 /home/mickael/ProjetsC/Digger/include/Item.h
+1399029855 /home/mickael/ProjetsC/Digger/include/Item.h
 	<stdio.h>
 	<stdlib.h>
+	"../include/Niveau.h"
 
-1398943621 /home/mickael/ProjetsC/Digger/include/Niveau.h
+1399044985 /home/mickael/ProjetsC/Digger/include/Niveau.h
 	<stdio.h>
 	<stdlib.h>
+	<SDL/SDL.h>
+	<SDL/SDL_image.h>
 
 1398884125 /home/mickael/ProjetsC/Digger/include/Mode.h
 	<stdio.h>
@@ -70,19 +75,20 @@
 	<stdio.h>
 	<stdlib.h>
 
-1398438222 /home/mickael/ProjetsC/Digger/include/Record.h
+1399029855 /home/mickael/ProjetsC/Digger/include/Record.h
 	<stdio.h>
 	<stdlib.h>
-	"Mode.h"
+	"../include/Mode.h"
 
-1398438184 /home/mickael/ProjetsC/Digger/include/Menu.h
+1399029752 /home/mickael/ProjetsC/Digger/include/Menu.h
 	<stdio.h>
 	<stdlib.h>
-	"Option.h"
+	"../include/Option.h"
 
 1398430557 /home/mickael/ProjetsC/Digger/include/Option.h
 
-1398364145 source:/home/mickael/ProjetsC/Digger/src/Record.c
+1399029855 source:/home/mickael/ProjetsC/Digger/src/Record.c
+	"../include/Record.h"
 
 1398861590 source:/home/mickael/ProjetsC/Digger/src/Profil.c
 	"../include/Profil.h"

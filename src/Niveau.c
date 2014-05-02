@@ -4,25 +4,22 @@ SDL_Surface *sprites = NULL;
 
 Niveau* Niveau_charger(FILE *fichier)
 {
-	sprites = IMG_Load("../../img/sprites.png"); 
-	/* 
+	sprites = IMG_Load("../../img/sprites.png");
+	/*
 		On initalise ici "sprites", ce code sera forcément exécuter avant d'utiliser quelconques fonctions de ce module.
 		Impossible d'initialiser une variable globale avec le retour d'une fonction (non constante) lors de sa déclaration.
 	*/
     Niveau *niveau = (Niveau*)malloc(sizeof(Niveau));
     niveau->fichier = fichier;
-    unsigned int i;
 
-    for (i=0; i < HAUTEUR; i++) {
-    	fread(niveau->grille[i], sizeof(Bloc), LARGEUR, fichier);
-    }
+    fread(niveau->grille, sizeof(Bloc), LARGEUR*HAUTEUR, fichier);
 
     return niveau;
 }
 
 void Niveau_ordonner(Niveau *niveau)
 {
-	/* 
+	/*
 		On ordonne chaque ligne, si une ligne est parfaitement ordonnée alors elle le sera toujours pour ce tour.
 		De façon générale avec ce parcours, aucune modification ne peut entrainer une incohérence sur les cases précédentes.
 	*/
@@ -47,7 +44,7 @@ void Niveau_ordonner(Niveau *niveau)
 						niveau->grille[i][j] = VIDE;
 						niveau->grille[i+1][j-1] = ROCHER_TOMBANT;
 					}
-					/* 
+					/*
 						S'il ne peut pas, il cherchera à aller en bas à gauche.
 					*/
 					else if (j < LARGEUR - 1 && niveau->grille[i+1][j+1]) {
@@ -74,13 +71,13 @@ void Niveau_afficher(Niveau *niveau, SDL_Surface *ecran)
 
 	for (i=0; i < HAUTEUR; i++) {
 		for (j=0; j < LARGEUR; j++) {
-			Bloc_afficher(niveau->grille[i][j], ecran, BORD_SUP_NIVEAU + i*TAILLE_BLOC, j*TAILLE_BLOC);
+			Bloc_afficher(niveau->grille[i][j], ecran, j*TAILLE_BLOC, BORD_SUP_NIVEAU + i*TAILLE_BLOC);
 		}
 	}
 }
 
 void Bloc_afficher(Bloc bloc, SDL_Surface *ecran, unsigned int x, unsigned int y) {
-	
+
 	SDL_Rect position;
 
 	position.x = x;

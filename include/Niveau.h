@@ -22,7 +22,7 @@ typedef enum {
 } Bloc;
 
 typedef struct {
-    Bloc **grille;
+    Bloc grille[18][25];
     FILE *fichier;
 } Niveau;
 

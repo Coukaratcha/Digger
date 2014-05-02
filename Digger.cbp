@@ -36,6 +36,7 @@
 		<Linker>
 			<Add option="-lSDL" />
 			<Add option="-lSDL_ttf" />
+			<Add option="-lSDL_image" />
 		</Linker>
 		<Unit filename="include/Item.h" />
 		<Unit filename="include/ItemUnit.h" />
