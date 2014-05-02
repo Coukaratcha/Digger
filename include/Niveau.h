@@ -6,6 +6,11 @@
 #include <SDL/SDL.h>
 #include <SDL/SDL_image.h>
 
+#define BORD_SUP_NIVEAU 24
+#define HAUTEUR 18
+#define LARGEUR 25
+#define TAILLE_BLOC 32
+
 typedef enum {
     VIDE,
     HERBE,
@@ -17,8 +22,6 @@ typedef enum {
 } Bloc;
 
 typedef struct {
-    unsigned int largeur;
-    unsigned int hauteur;
     Bloc **grille;
     FILE *fichier;
 } Niveau;

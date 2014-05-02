@@ -10,13 +10,11 @@ Niveau* Niveau_charger(FILE *fichier)
 		Impossible d'initialiser une variable globale avec le retour d'une fonction (non constante) lors de sa déclaration.
 	*/
     Niveau *niveau = (Niveau*)malloc(sizeof(Niveau));
+    niveau->fichier = fichier;
     unsigned int i;
 
-    fread(&(niveau->largeur), sizeof(unsigned int), 1, fichier);
-    fread(&(niveau->hauteur), sizeof(unsigned int), 1, fichier);
-
-    for (i=0; i < niveau->hauteur; i++) {
-    	fread(niveau->grille[i], sizeof(Bloc), niveau->largeur, fichier);
+    for (i=0; i < HAUTEUR; i++) {
+    	fread(niveau->grille[i], sizeof(Bloc), LARGEUR, fichier);
     }
 
     return niveau;
@@ -30,8 +28,8 @@ void Niveau_ordonner(Niveau *niveau)
 	*/
 		unsigned int i, j;
 
-		for (i=0; i < niveau->hauteur - 1; i++) {
-			for (j=0; j < niveau->largeur; j++) {
+		for (i=0; i < HAUTEUR - 1; i++) {
+			for (j=0; j < LARGEUR; j++) {
 				if (niveau->grille[i][j] == ROCHER && niveau->grille[i+1][j] == VIDE)
 					niveau->grille[i][j] = ROCHER_TOMBANT;
 				/*
@@ -52,7 +50,7 @@ void Niveau_ordonner(Niveau *niveau)
 					/* 
 						S'il ne peut pas, il cherchera à aller en bas à gauche.
 					*/
-					else if (j < niveau->largeur - 1 && niveau->grille[i+1][j+1]) {
+					else if (j < LARGEUR - 1 && niveau->grille[i+1][j+1]) {
 						niveau->grille[i][j] = VIDE;
 						niveau->grille[i+1][j+1] = ROCHER_TOMBANT;
 					}
@@ -72,7 +70,13 @@ void Niveau_ordonner(Niveau *niveau)
 
 void Niveau_afficher(Niveau *niveau, SDL_Surface *ecran)
 {
+	unsigned int i, j;
 
+	for (i=0; i < HAUTEUR; i++) {
+		for (j=0; j < LARGEUR; j++) {
+			Bloc_afficher(grille[i][j], ecran, BORD_SUP_NIVEAU + i*TAILLE_BLOC, j*TAILLE_BLOC);
+		}
+	}
 }
 
 void Bloc_afficher(Bloc *bloc, SDL_Surface *ecran, unsigned int x, unsigned int y) {
