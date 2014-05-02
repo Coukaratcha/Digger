@@ -19,13 +19,13 @@ CFLAGS   = -Wall `sdl-config --cflags`
 
 LINKER   = gcc -o
 # linking flags here
-LFLAGS   = -Wall -I. -lm `sdl-config --libs`
+LFLAGS   = -Wall -I. -lm `sdl-config --libs` -lSDL_image -lSDL_ttf
 
 # change these to set the proper directories where each files should be
 SRCDIR   = src
 HDRDIR   = include
 OBJDIR   = obj
-BINDIR   = bin
+BINDIR   = bin/Debug
 
 SOURCES  := $(wildcard $(SRCDIR)/*.c)
 INCLUDES := $(wildcard $(HDRDIR)/*.h)
