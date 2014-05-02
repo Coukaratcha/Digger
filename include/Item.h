@@ -3,6 +3,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include "../include/Niveau.h"
 
 typedef enum {
     FORCE = 0, FLASHBACK = 1, KEYSWITCH = 2, ROCK = 3
