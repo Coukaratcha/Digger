@@ -87,12 +87,12 @@
 1398861590 source:/home/mickael/ProjetsC/Digger/src/Profil.c
 	"../include/Profil.h"
 
-1398787948 source:c:\users\florian\documents\github\digger\src\item.c
+1399023511 source:c:\users\florian\documents\github\digger\src\item.c
 	"../include/Item.h"
 
 1398366811 source:c:\users\florian\documents\github\digger\src\menu.c
 
-1399022092 source:c:\users\florian\documents\github\digger\src\mode.c
+1399023767 source:c:\users\florian\documents\github\digger\src\mode.c
 	"../include/Mode.h"
 
 1399019284 source:c:\users\florian\documents\github\digger\src\niveau.c
@@ -156,15 +156,15 @@
 	<stdio.h>
 	<stdlib.h>
 
-1398604622 c:\users\florian\documents\github\digger\include\record.h
+1399024139 c:\users\florian\documents\github\digger\include\record.h
 	<stdio.h>
 	<stdlib.h>
-	"Mode.h"
+	"../include/Mode.h"
 
-1398604622 c:\users\florian\documents\github\digger\include\menu.h
+1399024139 c:\users\florian\documents\github\digger\include\menu.h
 	<stdio.h>
 	<stdlib.h>
-	"Option.h"
+	"../include/Option.h"
 
 1398433138 c:\users\florian\documents\github\digger\include\option.h
 

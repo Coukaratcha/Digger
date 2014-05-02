@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "Mode.h"
+#include "../include/Mode.h"
 
 typedef struct {
     FILE *fichier;

@@ -16,12 +16,15 @@ Mode* Mode_assignerMode(Mode* mode, unsigned int numeroMode)
         case 0:
             mode->type=NORMAL;
             break;
+
         case 1:
             mode->type=MONTRE;
             break;
+
         case 2:
             mode->type=BONUS;
             break;
+
         default:
             break;
         }
@@ -38,10 +41,13 @@ void Mode_chargerRegles(Mode *mode)
     {
     case NORMAL:
         break;
+
     case MONTRE:
         break;
+
     case BONUS:
         break;
+
     default:
         break;
     }

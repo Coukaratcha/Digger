@@ -84,15 +84,19 @@ void Item_faireEffet(TypeItem type)
     case FORCE:
         ///////////// effet de force ///////////////////
         break;
+
     case FLASHBACK:
         //////////// effet de flashback ///////////
         break;
+
     case KEYSWITCH:
         //////////// effet de keyswitch /////////////
         break;
+
     case ROCK:
         //////////// effet de rock ///////////////
         break;
+
     default:
         break;
     }
