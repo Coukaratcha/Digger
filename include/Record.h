@@ -6,13 +6,15 @@
 
 #include "../include/Mode.h"
 
+#define NB_RECORDS_MAX 10
+
 typedef struct {
     FILE *fichier;
     Mode *mode;
     unsigned int valeur;
 } Record;
 
-Record* Record_creer(void);
+Record* Record_creer(Mode* mode);
 Record* Record_charger(FILE *fichier);
 void Record_sauvegarder(Record *record);
 void Record_supprimer(Record *record);
