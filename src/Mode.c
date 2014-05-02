@@ -2,7 +2,7 @@
 
 Mode* Mode_creer(void)
 {
-    Mode* mode=(Mode*)malloc(sizeof(Mode*));
+    Mode* mode=(Mode*)malloc(sizeof(Mode));
     mode->type=DEFAULT;
     return mode;
 }
