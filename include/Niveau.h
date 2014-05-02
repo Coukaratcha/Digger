@@ -29,6 +29,6 @@ typedef struct {
 Niveau* Niveau_charger(FILE *fichier);
 void Niveau_ordonner(Niveau *niveau);
 void Niveau_afficher(Niveau *niveau, SDL_Surface *ecran);
-void Bloc_afficher(Bloc *bloc, SDL_Surface *ecran, unsigned int x, unsigned int y);
+void Bloc_afficher(Bloc bloc, SDL_Surface *ecran, unsigned int x, unsigned int y);
 
 #endif

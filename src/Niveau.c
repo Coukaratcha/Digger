@@ -74,12 +74,12 @@ void Niveau_afficher(Niveau *niveau, SDL_Surface *ecran)
 
 	for (i=0; i < HAUTEUR; i++) {
 		for (j=0; j < LARGEUR; j++) {
-			Bloc_afficher(grille[i][j], ecran, BORD_SUP_NIVEAU + i*TAILLE_BLOC, j*TAILLE_BLOC);
+			Bloc_afficher(niveau->grille[i][j], ecran, BORD_SUP_NIVEAU + i*TAILLE_BLOC, j*TAILLE_BLOC);
 		}
 	}
 }
 
-void Bloc_afficher(Bloc *bloc, SDL_Surface *ecran, unsigned int x, unsigned int y) {
+void Bloc_afficher(Bloc bloc, SDL_Surface *ecran, unsigned int x, unsigned int y) {
 	
 	SDL_Rect position;
 
@@ -92,7 +92,7 @@ void Bloc_afficher(Bloc *bloc, SDL_Surface *ecran, unsigned int x, unsigned int 
 	section.w = 32;
 	section.h = 32;
 
-	switch (*bloc) {
+	switch (bloc) {
 		case VIDE:
 			section.x = 32*5;
 			break;
