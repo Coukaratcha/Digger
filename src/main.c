@@ -29,7 +29,7 @@ int main(int argc, char *argv[])
 
     SDL_Surface *ecran = SDL_SetVideoMode(800, 600, 32, SDL_HWSURFACE|SDL_DOUBLEBUF);
 
-    FILE *fichier = fopen("../../niveau/1.niveau", "rb");
+    FILE *fichier = fopen("niveau/1.niveau", "rb");
 
     if (fichier == NULL)
     	printf("Erreur ouverture fichier.\n");
@@ -43,7 +43,7 @@ int main(int argc, char *argv[])
     Niveau_afficher(niveau, ecran);
 
     Mode *mode = Mode_creer();
-    Mode_assignerMode(mode, BONUS);
+    Mode_assignerMode(mode, MONTRE);
     Score *score = Score_initialiser(mode);
 
     while(loop) {

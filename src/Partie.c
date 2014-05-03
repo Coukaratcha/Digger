@@ -5,8 +5,8 @@ Partie* Partie_creer(void)
     Partie* partie= (Partie*)malloc(sizeof(Partie));
     partie->profil= Profil_creer();
     partie->item= Item_initialiser();
-    partie->score= Score_initialiser();
     partie->mode= Mode_creer();
+    partie->score= Score_initialiser(partie->mode);
     /*partie->fichier=;*/
     return partie;
 }

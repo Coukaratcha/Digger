@@ -1,6 +1,6 @@
 #include "../include/Profil.h"
 
-const char *cheminFichier = "../../profil/profil.base";
+const char *cheminFichier = "profil/profil.base";
 
 void Profil_recupererPseudo(Profil* profil)
 {
