@@ -23,13 +23,13 @@ typedef enum {
 
 typedef struct {
     Bloc grille[18][25];
-    FILE *fichier;
+    unsigned int index;
 } Niveau;
 
-Niveau* Niveau_charger(FILE *fichier);
+Niveau* Niveau_charger(unsigned int index);
 void Niveau_ordonner(Niveau *niveau);
 void Niveau_afficher(Niveau *niveau, SDL_Surface *ecran);
 void Bloc_afficher(Bloc bloc, SDL_Surface *ecran, unsigned int x, unsigned int y);
-void Niveau_detruire(Niveau *niveau);
+void Niveau_liberer(Niveau *niveau);
 
 #endif

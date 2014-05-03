@@ -110,3 +110,7 @@ void Item_utiliser(Item *item, TypeItem type)
     }
 
 }
+
+void Item_liberer(Item *item) {
+    free(item);
+}

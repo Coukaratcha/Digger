@@ -29,16 +29,9 @@ int main(int argc, char *argv[])
 
     SDL_Surface *ecran = SDL_SetVideoMode(800, 600, 32, SDL_HWSURFACE|SDL_DOUBLEBUF);
 
-    FILE *fichier = fopen("niveau/1.niveau", "rb");
-
-    if (fichier == NULL)
-    	printf("Erreur ouverture fichier.\n");
-    else
-    	printf("Fichier ouvert correctement.\n");
-
     Niveau *niveau;
 
-    niveau = Niveau_charger(fichier);
+    niveau = Niveau_charger(1);
 
     Niveau_afficher(niveau, ecran);
 
@@ -85,8 +78,6 @@ int main(int argc, char *argv[])
     	{HERBE, HERBE, HERBE, HERBE, HERBE, HERBE, HERBE, HERBE, HERBE, MUR, HERBE, HERBE, HERBE, HERBE, PERSO, HERBE, HERBE, HERBE, HERBE, HERBE, HERBE, HERBE, HERBE, HERBE, HERBE},
     	{HERBE, HERBE, HERBE, HERBE, HERBE, HERBE, HERBE, HERBE, HERBE, HERBE, HERBE, HERBE, HERBE, HERBE, HERBE, HERBE, HERBE, HERBE, HERBE, HERBE, HERBE, HERBE, HERBE, HERBE, HERBE}
     };*/
-
-    fclose(fichier);
 
     TTF_Quit();
     SDL_Quit();

@@ -16,13 +16,12 @@ typedef struct {
     Niveau *niveau;
     Mode *mode;
     Score *score;
-    FILE *fichier;
 } Partie;
 
-Partie* Partie_creer(Mode* mode);
+Partie* Partie_creer(Profil *profil, Mode* mode);
 Partie* Partie_charger(FILE *file);
 void Partie_sauvegarder(Partie *partie);
-void Partie_supprimer(Partie *partie);
+void Partie_liberer(Partie *partie);
 Partie** Partie_lister(void);
 
 #endif

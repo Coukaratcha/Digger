@@ -184,7 +184,7 @@ void Profil_modifier(Profil *profil)
     }
 }
 
-Profil* Profil_charger(FILE *fichier, unsigned int id)
+Profil* Profil_charger(unsigned int id)
 {
     Profil *profil = Profil_creer();
     profil->identifiant = id;
@@ -255,7 +255,7 @@ int Profil_chercherFichier(Profil *profil)
     }
 }
 
-void Profil_supprimer(Profil *profil)
+void Profil_detruire(Profil *profil)
 {
     int index = Profil_chercherFichier(profil);
     if (index != -1)
@@ -296,12 +296,12 @@ void Profil_supprimer(Profil *profil)
 
         /* On écrit par dessus pour supprimer le profil */
 
-        free(profil);
-
-        /* On oublie pas de supprimer le fichier en mémoire sur la pile */
-
         fclose(fichier);
     }
+}
+
+void Profil_liberer(Profil *profil) {
+    free(profil);
 }
 
 unsigned int Profil_prochainID(void)

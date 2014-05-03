@@ -13,11 +13,20 @@ typedef struct {
     char nom[NOM_TAILLE_MAX];
 } Profil;
 
+/* 
+	Ajoute un profil dans le fichier profil/profil.base et 
+	crée un profil sur la pile en renvoyant un pointeur vers ce profil 
+*/
 Profil* Profil_creer(void);
+
+/*
+	Modifie le nom du profil.
+*/
 void Profil_modifier(Profil *profil);
-Profil* Profil_charger(FILE *fichier, unsigned int id);
+Profil* Profil_charger(unsigned int id);
 int Profil_chercherFichier(Profil *profil);
-void Profil_supprimer(Profil *profil);
+void Profil_liberer(Profil *profil);
+void Profil_detruire(Profil *profil);
 unsigned int Profil_prochainID(void);
 
 #endif

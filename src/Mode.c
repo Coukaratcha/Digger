@@ -29,3 +29,7 @@ void Mode_chargerRegles(Mode *mode)
         break;
     }
 }
+
+void Mode_liberer(Mode *mode) {
+    free(mode);
+}

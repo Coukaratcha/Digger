@@ -13,14 +13,12 @@ Score* Score_initialiser(Mode *mode)
     score->temps = SDL_GetTicks()/1000;
 
     police = TTF_OpenFont("fonts/coolvetica.ttf", 20);
-<<<<<<< HEAD
+
     if(police==NULL)
     {
         printf("Erreur ouverture police. \n");
     }
     else printf("Police correctement chargée. \n");
-=======
->>>>>>> 09b7419f8f3619d91ea87d6e96643ce77c6d9390
 
     score->texte = TTF_RenderText_Solid(police, "0", blanc);
 
@@ -67,7 +65,7 @@ void Score_afficher(Score *score, SDL_Surface *ecran) {
 	SDL_BlitSurface(score->texte, NULL, ecran, &position);
 }
 
-void Score_detruire(Score *score) {
+void Score_liberer(Score *score) {
 	SDL_FreeSurface(score->texte);
 	free(score);
 	TTF_CloseFont(police);

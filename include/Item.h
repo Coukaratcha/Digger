@@ -18,5 +18,6 @@ void Item_ajouter(Item *item, TypeItem type);
 unsigned int Item_enlever(Item *item, TypeItem type);
 void Item_faireEffet(TypeItem type);
 void Item_utiliser(Item *item, TypeItem type);
+void Item_liberer(Item *item);
 
 #endif

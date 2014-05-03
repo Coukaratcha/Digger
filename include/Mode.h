@@ -18,5 +18,6 @@ typedef struct {
 Mode* Mode_creer(void);
 void Mode_assignerMode(Mode* mode, TypeMode type);
 void Mode_chargerRegles(Mode *mode);
+void Mode_liberer(Mode *mode);
 
 #endif

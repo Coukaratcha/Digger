@@ -18,6 +18,6 @@ Score* Score_initialiser(Mode *mode);
 void Score_augmenter(Score *score, int points);
 void Score_miseAJour(Score *score);
 void Score_afficher(Score *score, SDL_Surface *ecran);
-void Score_detruire(Score *score);
+void Score_liberer(Score *score);
 
 #endif

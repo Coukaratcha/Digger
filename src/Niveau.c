@@ -2,26 +2,33 @@
 
 SDL_Surface *sprites = NULL;
 
-Niveau* Niveau_charger(FILE *fichier)
+Niveau* Niveau_charger(unsigned int index)
 {
+	char chemin[255];
+
+	sprintf(chemin, "niveau/%d.niveau", index);
+
+	FILE *fichier = fopen(chemin, "rb");
+
 	sprites = IMG_Load("img/sprites.png");
-<<<<<<< HEAD
+	
 	if(sprites==NULL)
     {
         printf("Erreur chargement sprites. \n");
         exit(34);
     }
     else printf("Sprites correctement chargés. \n");
-=======
->>>>>>> 09b7419f8f3619d91ea87d6e96643ce77c6d9390
 	/*
 		On initalise ici "sprites", ce code sera forcément exécuter avant d'utiliser quelconques fonctions de ce module.
 		Impossible d'initialiser une variable globale avec le retour d'une fonction (non constante) lors de sa déclaration.
 	*/
     Niveau *niveau = (Niveau*)malloc(sizeof(Niveau));
-    niveau->fichier = fichier;
+
+    niveau->index = index;
 
     fread(niveau->grille, sizeof(Bloc), LARGEUR*HAUTEUR, fichier);
+
+    fclose(fichier);
 
     return niveau;
 }
@@ -128,7 +135,7 @@ void Bloc_afficher(Bloc bloc, SDL_Surface *ecran, unsigned int x, unsigned int y
 	SDL_BlitSurface(sprites, &section, ecran, &position);
 }
 
-void Niveau_detruire(Niveau *niveau) {
+void Niveau_liberer(Niveau *niveau) {
 	free(niveau);
 	SDL_FreeSurface(sprites);
 }
