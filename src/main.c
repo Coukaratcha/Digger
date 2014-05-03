@@ -43,7 +43,7 @@ int main(int argc, char *argv[])
     Niveau_afficher(niveau, ecran);
 
     Mode *mode = Mode_creer();
-    Mode_assignerMode(mode, BONUS);
+    Mode_assignerMode(mode, MONTRE);
     Score *score = Score_initialiser(mode);
 
     while(loop) {

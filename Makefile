@@ -32,9 +32,7 @@ INCLUDES := $(wildcard $(HDRDIR)/*.h)
 OBJECTS  := $(SOURCES:$(SRCDIR)/%.c=$(OBJDIR)/%.o)
 
 launch: $(BINDIR)/$(TARGET)
-	cd $(BINDIR)	
-	./$(TARGET)
-	cd ../..
+	@./$(BINDIR)/$(TARGET)
 
 all: $(BINDIR)/$(TARGET)
 
