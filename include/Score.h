@@ -5,15 +5,19 @@
 #include <stdlib.h>
 
 #include "Mode.h"
+#include <SDL/SDL_ttf.h>
 
 typedef struct {
     unsigned int temps;
     unsigned int pas;
-    Mode *mode;
+    Mode mode;
+    SDL_Surface *texte;
 } Score;
 
-Score* Score_initialiser(void);
-void Score_augmenter(Score *score, unsigned int points);
+Score* Score_initialiser(Mode *mode);
+void Score_augmenter(Score *score, int points);
 void Score_miseAJour(Score *score);
+void Score_afficher(Score *score, SDL_Surface *ecran);
+void Score_detruire(Score *score);
 
 #endif

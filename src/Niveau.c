@@ -118,3 +118,8 @@ void Bloc_afficher(Bloc bloc, SDL_Surface *ecran, unsigned int x, unsigned int y
 
 	SDL_BlitSurface(sprites, &section, ecran, &position);
 }
+
+void Niveau_detruire(Niveau *niveau) {
+	free(niveau);
+	SDL_FreeSurface(sprites);
+}

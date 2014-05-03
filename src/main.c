@@ -12,11 +12,17 @@
 
 int main(int argc, char *argv[])
 {
-    if (SDL_Init(SDL_INIT_VIDEO) == -1) // Démarrage de la SDL. Si erreur :
+    if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_TIMER) == -1) // Démarrage de la SDL. Si erreur :
     {
         fprintf(stderr, "Erreur d'initialisation de la SDL : %s\n", SDL_GetError()); // Écriture de l'erreur
         exit(EXIT_FAILURE); // On quitte le programme
     }
+
+    if(TTF_Init() == -1)
+	{
+	    fprintf(stderr, "Erreur d'initialisation de TTF_Init : %s\n", TTF_GetError());
+	    exit(EXIT_FAILURE);
+	}
 
     SDL_Event event;
     int loop = 1;
@@ -36,6 +42,10 @@ int main(int argc, char *argv[])
 
     Niveau_afficher(niveau, ecran);
 
+    Mode *mode = Mode_creer();
+    Mode_assignerMode(mode, BONUS);
+    Score *score = Score_initialiser(mode);
+
     while(loop) {
 
     	SDL_PollEvent(&event);
@@ -48,6 +58,10 @@ int main(int argc, char *argv[])
     			break;
     	}
 
+    	SDL_FillRect(ecran, NULL, SDL_MapRGB(ecran->format, 0, 0, 0));
+    	Score_miseAJour(score);
+    	Score_afficher(score, ecran);
+    	Niveau_afficher(niveau, ecran);
     	SDL_Flip(ecran);
     }
 
@@ -74,6 +88,7 @@ int main(int argc, char *argv[])
 
     fclose(fichier);
 
+    TTF_Quit();
     SDL_Quit();
 
     return 0;

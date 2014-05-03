@@ -7,32 +7,9 @@ Mode* Mode_creer(void)
     return mode;
 }
 
-Mode* Mode_assignerMode(Mode* mode, unsigned int numeroMode)
+void Mode_assignerMode(Mode* mode, TypeMode type)
 {
-    if(mode->type==DEFAULT)
-    {
-        switch(numeroMode)
-        {
-        case 0:
-            mode->type=NORMAL;
-            break;
-
-        case 1:
-            mode->type=MONTRE;
-            break;
-
-        case 2:
-            mode->type=BONUS;
-            break;
-
-        default:
-            break;
-        }
-        return mode;
-    }
-    else{
-        return NULL;
-    }
+    mode->type = type;
 }
 
 void Mode_chargerRegles(Mode *mode)
