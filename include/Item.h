@@ -20,9 +20,9 @@ unsigned int Item_enlever(Item *item, TypeItem type);
 void Item_faireEffet(TypeItem type);
 void Item_utiliser(Item *item, TypeItem type);
 void Item_liberer(Item *item);
-void Item_force();
-void Item_flashback();
+SDL_Rect Item_force(SDL_Rect positionPerso, Niveau* niveau);
+Niveau* Item_flashback(Niveau* niveau);
 SDL_Rect Item_keyswitch(SDL_Rect positionPerso, Niveau *niveau);
-void Item_rock();
+Niveau* Item_rock(Niveau* niveau);
 
 #endif

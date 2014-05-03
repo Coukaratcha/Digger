@@ -77,14 +77,14 @@ unsigned int Item_enlever(Item *item, TypeItem type)
     }
 }
 
-void Item_force()
+SDL_Rect Item_force(SDL_Rect positionPerso, Niveau* niveau)
 {
-
+    return positionPerso;
 }
 
-void Item_flashback()
+Niveau* Item_flashback(Niveau* niveau)
 {
-
+    return NULL;
 }
 
 SDL_Rect Item_keyswitch(SDL_Rect positionPerso, Niveau* niveau)
@@ -134,9 +134,9 @@ SDL_Rect Item_keyswitch(SDL_Rect positionPerso, Niveau* niveau)
     return positionPerso;
 }
 
-void Item_rock()
+Niveau* Item_rock(Niveau* niveau)
 {
-
+    return NULL;
 }
 
 void Item_liberer(Item *item) {

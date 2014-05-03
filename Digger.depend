@@ -1,0 +1,116 @@
+# depslib dependency file v1.0
+1398604622 source:c:\users\florian\documents\github\digger\src\itemunit.c
+
+1398604622 source:c:\users\florian\documents\github\digger\src\mainunit.c
+
+1399024180 source:c:\users\florian\documents\github\digger\src\menu.c
+	"../include/Menu.h"
+
+1399024139 c:\users\florian\documents\github\digger\include\menu.h
+	<stdio.h>
+	<stdlib.h>
+	"../include/Option.h"
+
+1398433138 c:\users\florian\documents\github\digger\include\option.h
+
+1398604622 source:c:\users\florian\documents\github\digger\src\menuunit.c
+
+1398604622 source:c:\users\florian\documents\github\digger\src\modeunit.c
+
+1398604622 source:c:\users\florian\documents\github\digger\src\niveauunit.c
+
+1398433138 source:c:\users\florian\documents\github\digger\src\option.c
+
+1398604622 source:c:\users\florian\documents\github\digger\src\optionunit.c
+
+1398604622 source:c:\users\florian\documents\github\digger\src\partieunit.c
+
+1399027439 source:c:\users\florian\documents\github\digger\src\personnage.c
+	"../include/Personnage.h"
+
+1398604622 c:\users\florian\documents\github\digger\include\personnage.h
+	<stdio.h>
+	<stdlib.h>
+
+1398604622 source:c:\users\florian\documents\github\digger\src\personnageunit.c
+
+1398604622 source:c:\users\florian\documents\github\digger\src\profilunit.c
+
+1399029688 source:c:\users\florian\documents\github\digger\src\record.c
+	"../include/Record.h"
+
+1399029486 c:\users\florian\documents\github\digger\include\record.h
+	<stdio.h>
+	<stdlib.h>
+	"../include/Mode.h"
+
+1399146538 c:\users\florian\documents\github\digger\include\mode.h
+	<stdio.h>
+	<stdlib.h>
+
+1398604622 source:c:\users\florian\documents\github\digger\src\recordunit.c
+
+1398604622 source:c:\users\florian\documents\github\digger\src\scoreunit.c
+
+1399146538 source:c:\users\florian\documents\github\digger\src\main.c
+	"../include/Profil.h"
+	"../include/Partie.h"
+	"../include/Personnage.h"
+	"../include/Record.h"
+	"../include/Menu.h"
+	<stdlib.h>
+	<stdio.h>
+	<SDL/SDL.h>
+	<SDL/SDL_ttf.h>
+	<SDL/SDL_image.h>
+
+1399146538 c:\users\florian\documents\github\digger\include\profil.h
+	<stdio.h>
+	<stdlib.h>
+	<SDL/SDL.h>
+	<SDL/SDL_ttf.h>
+
+1399146538 c:\users\florian\documents\github\digger\include\partie.h
+	<stdio.h>
+	<stdlib.h>
+	<dirent.h>
+	<sys/types.h>
+	"../include/Item.h"
+	"../include/Niveau.h"
+	"../include/Mode.h"
+	"../include/Score.h"
+	"../include/Profil.h"
+
+1399150294 c:\users\florian\documents\github\digger\include\item.h
+	<stdio.h>
+	<stdlib.h>
+	"../include/Niveau.h"
+	"../include/Personnage.h"
+
+1399146538 c:\users\florian\documents\github\digger\include\niveau.h
+	<stdio.h>
+	<stdlib.h>
+	<SDL/SDL.h>
+	<SDL/SDL_image.h>
+
+1399146538 c:\users\florian\documents\github\digger\include\score.h
+	<stdio.h>
+	<stdlib.h>
+	"Mode.h"
+	<SDL/SDL_ttf.h>
+
+1399146538 source:c:\users\florian\documents\github\digger\src\mode.c
+	"../include/Mode.h"
+
+1399146538 source:c:\users\florian\documents\github\digger\src\niveau.c
+	"../include/Niveau.h"
+
+1399146538 source:c:\users\florian\documents\github\digger\src\partie.c
+	"../include/Partie.h"
+
+1399146538 source:c:\users\florian\documents\github\digger\src\profil.c
+	"../include/Profil.h"
+
+1399146538 source:c:\users\florian\documents\github\digger\src\score.c
+	"../include/Score.h"
+
