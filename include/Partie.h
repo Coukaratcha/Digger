@@ -27,6 +27,12 @@ Partie* Partie_creer(Profil *profil, Mode* mode);
 Partie* Partie_charger(FILE *file);
 void Partie_sauvegarder(Partie *partie);
 void Partie_liberer(Partie *partie);
+void Partie_detruireSauv(Partie *partie);
+
+int Partie_estFinie(Partie *partie);
+unsigned int Partie_nbFruitsRestants(Partie *partie);
+void Partie_derouler(Partie *partie);
+
 unsigned int Partie_nbPartie(void);
 Partie** Partie_lister(void);
 void Parti_libererListe(Partie **liste);

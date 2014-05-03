@@ -9,8 +9,9 @@ typedef struct {
     unsigned int posy;
 } Personnage;
 
-Personnage* Personnage_initialiser(void);
-void Personnage_seDeplacer(Personnage *perso); /* Introduire la notion d'évènements SDL */
+/* Initialise la position du personnage à celle correspondant au niveau */
+void Personnage_initialiser(Personnage *perso, Niveau *niveau);
+void Personnage_seDeplacer(Personnage *perso);
 int Personnage_estVivant(Personnage *perso);
 
 #endif

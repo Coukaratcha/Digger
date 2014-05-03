@@ -66,6 +66,74 @@ void Partie_detruireSauv(Partie *partie) {
     remove(chemin);
 }
 
+int Partie_estFinie(Partie *partie) {
+    int finie = 1;
+    unsigned int i, j;
+
+    for (i=0; !finie && i < HAUTEUR; i++) {
+        for (j=0; !finie && j < LARGEUR; j++) {
+            if (partie->niveau->grille[i][j] == FRUIT)
+                finie = 0;
+        }
+    }
+
+    return finie;
+}
+
+void Partie_derouler(Partie *partie) {
+    SDL_Event event;
+    int loop;
+
+    Personnage personnage;
+
+    Personnage_initialiser(partie->niveau); 
+
+    SDL_Surface *ecran;
+
+    ecran = SDL_SetVideoMode(800, 600, 32, SDL_HWSURFACE|SDL_DOUBLEBUF);
+
+    while (loop) {
+        if (Partie_estFinie(partie) || !Personnage_estVivant(personnage))
+            loop = 0;
+
+        SDL_PollEvent(&event);
+        switch(event.type) {
+            case SDL_QUIT:
+                loop = 0;
+                break;
+            case SDL_KEYDOWN:
+                break;
+            default:
+                break;
+        }
+
+        SDL_FillRect(ecran, NULL, SDL_MapRGB(ecran->format, 0, 0, 0));
+
+        Score_miseAJour(partie->score);
+        Score_afficher(partie->score);
+
+        Niveau_ordonner(partie->niveau);
+        Niveau_afficher(partie->niveau);
+
+        SDL_Flip(ecran);
+    }
+}
+
+unsigned int Partie_nbFruitsRestants(Partie *partie) {
+    unsigned int nb = 0;
+
+    unsigned int i, j;
+
+    for (i=0; i < HAUTEUR; i++) {
+        for (j=0; j < HAUTEUR; j++) {
+            if (partie->niveau->grille[i][j] == FRUIT)
+                nb++;
+        }
+    }
+
+    return nb;
+}
+
 unsigned int Partie_nbPartie(void) {
     unsigned int taille = 0;
 
