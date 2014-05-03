@@ -31,6 +31,7 @@ void Partie_detruireSauv(Partie *partie);
 
 int Partie_estFinie(Partie *partie);
 unsigned int Partie_nbFruitsRestants(Partie *partie);
+void Partie_derouler(Partie *partie);
 
 unsigned int Partie_nbPartie(void);
 Partie** Partie_lister(void);
