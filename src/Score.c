@@ -12,7 +12,12 @@ Score* Score_initialiser(Mode *mode)
     score->pas = 0;
     score->temps = SDL_GetTicks()/1000;
 
-    police = TTF_OpenFont("../../fonts/coolvetica.ttf", 20);
+    police = TTF_OpenFont("fonts/coolvetica.ttf", 20);
+    if(police==NULL)
+    {
+        printf("Erreur ouverture police. \n");
+    }
+    else printf("Police correctement chargée. \n");
 
     score->texte = TTF_RenderText_Solid(police, "0", blanc);
 

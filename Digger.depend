@@ -99,24 +99,24 @@
 1399024180 source:c:\users\florian\documents\github\digger\src\menu.c
 	"../include/Menu.h"
 
-1399028975 source:c:\users\florian\documents\github\digger\src\mode.c
+1399106621 source:c:\users\florian\documents\github\digger\src\mode.c
 	"../include/Mode.h"
 
-1399061362 source:c:\users\florian\documents\github\digger\src\niveau.c
+1399108693 source:c:\users\florian\documents\github\digger\src\niveau.c
 	"../include/Niveau.h"
 
-1399022082 source:c:\users\florian\documents\github\digger\src\partie.c
+1399106889 source:c:\users\florian\documents\github\digger\src\partie.c
 	"../include/Partie.h"
 
 1399027439 source:c:\users\florian\documents\github\digger\src\personnage.c
 	"../include/Personnage.h"
 
-1398854488 source:c:\users\florian\documents\github\digger\src\score.c
+1399108764 source:c:\users\florian\documents\github\digger\src\score.c
 	"../include/Score.h"
 
 1398604622 source:c:\users\florian\documents\github\digger\src\itemunit.c
 
-1399061569 source:c:\users\florian\documents\github\digger\src\main.c
+1399108693 source:c:\users\florian\documents\github\digger\src\main.c
 	"../include/Profil.h"
 	"../include/Partie.h"
 	"../include/Personnage.h"
@@ -134,7 +134,7 @@
 	<SDL/SDL.h>
 	<SDL/SDL_ttf.h>
 
-1398862252 c:\users\florian\documents\github\digger\include\partie.h
+1399106889 c:\users\florian\documents\github\digger\include\partie.h
 	<stdio.h>
 	<stdlib.h>
 	"../include/Item.h"
@@ -148,20 +148,21 @@
 	<stdlib.h>
 	"../include/Niveau.h"
 
-1399057787 c:\users\florian\documents\github\digger\include\niveau.h
+1399106621 c:\users\florian\documents\github\digger\include\niveau.h
 	<stdio.h>
 	<stdlib.h>
 	<SDL/SDL.h>
 	<SDL/SDL_image.h>
 
-1398863709 c:\users\florian\documents\github\digger\include\mode.h
+1399106621 c:\users\florian\documents\github\digger\include\mode.h
 	<stdio.h>
 	<stdlib.h>
 
-1398854488 c:\users\florian\documents\github\digger\include\score.h
+1399106621 c:\users\florian\documents\github\digger\include\score.h
 	<stdio.h>
 	<stdlib.h>
 	"Mode.h"
+	<SDL/SDL_ttf.h>
 
 1398604622 c:\users\florian\documents\github\digger\include\personnage.h
 	<stdio.h>

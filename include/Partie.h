@@ -19,7 +19,7 @@ typedef struct {
     FILE *fichier;
 } Partie;
 
-Partie* Partie_creer(void);
+Partie* Partie_creer(Mode* mode);
 Partie* Partie_charger(FILE *file);
 void Partie_sauvegarder(Partie *partie);
 void Partie_supprimer(Partie *partie);

@@ -1,12 +1,12 @@
 #include "../include/Partie.h"
 
-Partie* Partie_creer(void)
+Partie* Partie_creer(Mode* mode)
 {
     Partie* partie= (Partie*)malloc(sizeof(Partie));
     partie->profil= Profil_creer();
     partie->item= Item_initialiser();
-    partie->score= Score_initialiser();
-    partie->mode= Mode_creer();
+    partie->score= Score_initialiser(mode);
+    partie->mode= mode;
     /*partie->fichier=;*/
     return partie;
 }
