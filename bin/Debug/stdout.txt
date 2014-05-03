@@ -1,0 +1,3 @@
+Fichier ouvert correctement.
+Sprites correctement chargÃ©s. 
+Police correctement chargée. 
