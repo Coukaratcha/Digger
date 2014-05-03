@@ -102,7 +102,7 @@
 1399028975 source:c:\users\florian\documents\github\digger\src\mode.c
 	"../include/Mode.h"
 
-1399019284 source:c:\users\florian\documents\github\digger\src\niveau.c
+1399061362 source:c:\users\florian\documents\github\digger\src\niveau.c
 	"../include/Niveau.h"
 
 1399022082 source:c:\users\florian\documents\github\digger\src\partie.c
@@ -116,7 +116,7 @@
 
 1398604622 source:c:\users\florian\documents\github\digger\src\itemunit.c
 
-1399019284 source:c:\users\florian\documents\github\digger\src\main.c
+1399061569 source:c:\users\florian\documents\github\digger\src\main.c
 	"../include/Profil.h"
 	"../include/Partie.h"
 	"../include/Personnage.h"
@@ -148,9 +148,11 @@
 	<stdlib.h>
 	"../include/Niveau.h"
 
-1399019284 c:\users\florian\documents\github\digger\include\niveau.h
+1399057787 c:\users\florian\documents\github\digger\include\niveau.h
 	<stdio.h>
 	<stdlib.h>
+	<SDL/SDL.h>
+	<SDL/SDL_image.h>
 
 1398863709 c:\users\florian\documents\github\digger\include\mode.h
 	<stdio.h>
@@ -195,7 +197,7 @@
 
 1398604622 source:c:\users\florian\documents\github\digger\src\profilunit.c
 
-1399024180 source:c:\users\florian\documents\github\digger\src\record.c
+1399029688 source:c:\users\florian\documents\github\digger\src\record.c
 	"../include/Record.h"
 
 1398604622 source:c:\users\florian\documents\github\digger\src\recordunit.c
