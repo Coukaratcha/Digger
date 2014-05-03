@@ -66,7 +66,68 @@ void Partie_detruireSauv(Partie *partie) {
     remove(chemin);
 }
 
+unsigned int Partie_nbPartie(void) {
+    unsigned int taille = 0;
+
+    DIR *rep = NULL;
+
+    struct dirent *lecture = NULL;
+
+    rep = opendir("sauvegarde");
+
+    while ((lecture = readdir(rep))) {
+        if (strcmp(lecture->d_name, ".") != 0 && strcmp(lecture->d_name, "..") != 0)
+            taille++;
+        /* On ne compte pas "." et "..". */
+    }
+
+    closedir(rep);
+
+    return taille;
+}
+
 Partie** Partie_lister(void)
 {
-    return NULL;
+    Partie **liste = NULL;
+    FILE *fichier;
+    char chemin[255];
+    unsigned int i = 0;
+
+    liste = (Partie**)malloc(sizeof(Partie*)*Partie_nbPartie());
+
+    struct dirent *lecture = NULL;
+
+    DIR *rep;
+
+    rep = opendir("sauvegarde");
+
+    while ((lecture = readdir(rep))) {
+        if (strcmp(lecture->d_name, ".") != 0 && strcmp(lecture->d_name, "..") != 0) {
+            /* On ne compte pas "." et ".." qui apparaitront avec cette fonction */
+            sprintf(chemin, "sauvegarde/%s.sauv", lecture->d_name);
+
+            fichier = fopen(chemin, "rb");
+
+            liste[i] = Partie_charger(fichier);
+
+            fclose(fichier);
+
+            i++;
+        }
+    }
+
+    closedir(rep);
+
+    return liste;
+}
+
+void Partie_libererListe(Partie **liste) {
+    unsigned int nbPartie = Partie_nbPartie();
+    unsigned int i;
+
+    for (i=0; i < nbPartie; i++) {
+        Partie_liberer(liste[i]);
+    }
+
+    free(liste);
 }

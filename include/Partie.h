@@ -3,6 +3,11 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <dirent.h>
+
+#ifndef WIN32
+	#include <sys/types.h>
+#endif
 
 #include "../include/Item.h"
 #include "../include/Niveau.h"
@@ -22,6 +27,8 @@ Partie* Partie_creer(Profil *profil, Mode* mode);
 Partie* Partie_charger(FILE *file);
 void Partie_sauvegarder(Partie *partie);
 void Partie_liberer(Partie *partie);
+unsigned int Partie_nbPartie(void);
 Partie** Partie_lister(void);
+void Parti_libererListe(Partie **liste);
 
 #endif
