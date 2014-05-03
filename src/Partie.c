@@ -80,6 +80,21 @@ int Partie_estFinie(Partie *partie) {
     return finie;
 }
 
+unsigned int Partie_nbFruitsRestants(Partie *partie) {
+    unsigned int nb = 0;
+
+    unsigned int i, j;
+
+    for (i=0; i < HAUTEUR; i++) {
+        for (j=0; j < HAUTEUR; j++) {
+            if (partie->niveau->grille[i][j] == FRUIT)
+                nb++;
+        }
+    }
+
+    return nb;
+}
+
 unsigned int Partie_nbPartie(void) {
     unsigned int taille = 0;
 
