@@ -77,36 +77,65 @@ unsigned int Item_enlever(Item *item, TypeItem type)
     }
 }
 
-void Item_faireEffet(TypeItem type)
+void Item_force()
 {
-    switch(type)
-    {
-    case FORCE:
-        ///////////// effet de force ///////////////////
-        break;
 
-    case FLASHBACK:
-        //////////// effet de flashback ///////////
-        break;
-
-    case KEYSWITCH:
-        //////////// effet de keyswitch /////////////
-        break;
-
-    case ROCK:
-        //////////// effet de rock ///////////////
-        break;
-
-    default:
-        break;
-    }
 }
 
-void Item_utiliser(Item *item, TypeItem type)
+void Item_flashback()
 {
-    if(Item_enlever(item,type)==0) // si on peut utiliser l'item choisi
-    {
-        Item_faireEffet(type); // on actionne son effet
-    }
 
 }
+
+SDL_Rect Item_keyswitch(SDL_Rect positionPerso, Niveau* niveau)
+{
+    SDL_Event event;
+    unsigned int nb_tours=0;
+
+    while(nb_tours<10)
+    {
+        SDL_WaitEvent(&event);
+        switch(event.type)
+        {
+            case SDL_KEYDOWN:
+                switch(event.key.keysym.sym)
+                {
+                    case SDLK_UP: // Flèche haut = gauche
+                        positionPerso.x-=32;
+                        nb_tours++;
+                        Niveau_ordonner(niveau);
+                        break;
+
+                    case SDLK_DOWN: // Flèche bas = haut
+                        positionPerso.y-=32;
+                        nb_tours++;
+                        Niveau_ordonner(niveau);
+                        break;
+
+                    case SDLK_RIGHT: // Flèche droite = bas
+                        positionPerso.y+=32;
+                        nb_tours++;
+                        Niveau_ordonner(niveau);
+                        break;
+
+                    case SDLK_LEFT: // Flèche gauche = droite
+                        positionPerso.x+=32;
+                        nb_tours++;
+                        Niveau_ordonner(niveau);
+                        break;
+
+                    default:
+                        break;
+                }
+             default:
+                break;
+        }
+    }
+    return positionPerso;
+}
+
+void Item_rock()
+{
+
+}
+
