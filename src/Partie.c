@@ -66,6 +66,20 @@ void Partie_detruireSauv(Partie *partie) {
     remove(chemin);
 }
 
+int Partie_estFinie(Partie *partie) {
+    int finie = 1;
+    unsigned int i, j;
+
+    for (i=0; !finie && i < HAUTEUR; i++) {
+        for (j=0; !finie && j < LARGEUR; j++) {
+            if (partie->niveau->grille[i][j] == FRUIT)
+                finie = 0;
+        }
+    }
+
+    return finie;
+}
+
 unsigned int Partie_nbPartie(void) {
     unsigned int taille = 0;
 
