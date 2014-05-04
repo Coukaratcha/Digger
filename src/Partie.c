@@ -86,14 +86,14 @@ void Partie_derouler(Partie *partie) {
 
     Personnage personnage;
 
-    Personnage_initialiser(partie->niveau); 
+    Personnage_initialiser(&personnage,partie->niveau);
 
     SDL_Surface *ecran;
 
     ecran = SDL_SetVideoMode(800, 600, 32, SDL_HWSURFACE|SDL_DOUBLEBUF);
 
     while (loop) {
-        if (Partie_estFinie(partie) || !Personnage_estVivant(personnage))
+        if (Partie_estFinie(partie) || !Personnage_estVivant(&personnage))
             loop = 0;
 
         SDL_PollEvent(&event);
@@ -110,10 +110,10 @@ void Partie_derouler(Partie *partie) {
         SDL_FillRect(ecran, NULL, SDL_MapRGB(ecran->format, 0, 0, 0));
 
         Score_miseAJour(partie->score);
-        Score_afficher(partie->score);
+        Score_afficher(partie->score, ecran);
 
         Niveau_ordonner(partie->niveau);
-        Niveau_afficher(partie->niveau);
+        Niveau_afficher(partie->niveau,ecran);
 
         SDL_Flip(ecran);
     }

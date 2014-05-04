@@ -22,7 +22,7 @@ void Item_utiliser(Item *item, TypeItem type);
 void Item_liberer(Item *item);
 SDL_Rect Item_force(SDL_Rect positionPerso, Niveau* niveau);
 Niveau* Item_flashback(Niveau* niveau);
-SDL_Rect Item_keyswitch(SDL_Rect positionPerso, Niveau *niveau);
+Personnage* Item_keyswitch(Personnage *perso, Niveau *niveau);
 Niveau* Item_rock(Niveau* niveau);
 
 #endif

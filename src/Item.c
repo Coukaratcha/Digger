@@ -1,5 +1,7 @@
 #include "../include/Item.h"
 
+#include <time.h> // pour utiliser srand()
+
 Item* Item_initialiser(void)
 {
    Item* item=(Item*)malloc(sizeof(Item));
@@ -87,10 +89,11 @@ Niveau* Item_flashback(Niveau* niveau)
     return NULL;
 }
 
-SDL_Rect Item_keyswitch(SDL_Rect positionPerso, Niveau* niveau)
+Personnage* Item_keyswitch(Personnage *perso, Niveau* niveau)
 {
     SDL_Event event;
     unsigned int nb_tours=0;
+    unsigned int postemp=0;
 
     while(nb_tours<10)
     {
@@ -101,27 +104,43 @@ SDL_Rect Item_keyswitch(SDL_Rect positionPerso, Niveau* niveau)
                 switch(event.key.keysym.sym)
                 {
                     case SDLK_UP: // Flèche haut = gauche
-                        positionPerso.x-=32;
-                        nb_tours++;
-                        Niveau_ordonner(niveau);
+                        postemp=perso->posx;
+                        if(postemp-32>=0 && Personnage_seDeplacer(perso))
+                        {
+                            perso->posx-=32;
+                            nb_tours++;
+                            Niveau_ordonner(niveau);
+                        }
                         break;
 
                     case SDLK_DOWN: // Flèche bas = haut
-                        positionPerso.y-=32;
-                        nb_tours++;
-                        Niveau_ordonner(niveau);
+                        postemp=perso->posy;
+                        if(postemp-32>=0 && Personnage_seDeplacer(perso))
+                        {
+                            perso->posy-=32;
+                            nb_tours++;
+                            Niveau_ordonner(niveau);
+                        }
                         break;
 
                     case SDLK_RIGHT: // Flèche droite = bas
-                        positionPerso.y+=32;
-                        nb_tours++;
-                        Niveau_ordonner(niveau);
+                        postemp=perso->posy;
+                        if(postemp+32<576 && Personnage_seDeplacer(perso)) // 576=32*18
+                        {
+                            perso->posy+=32;
+                            nb_tours++;
+                            Niveau_ordonner(niveau);
+                        }
                         break;
 
                     case SDLK_LEFT: // Flèche gauche = droite
-                        positionPerso.x+=32;
-                        nb_tours++;
-                        Niveau_ordonner(niveau);
+                        postemp=perso->posx;
+                        if(postemp+32<800 && Personnage_seDeplacer(perso)) // 800=32*25
+                        {
+                            perso->posx+=32;
+                            nb_tours++;
+                            Niveau_ordonner(niveau);
+                        }
                         break;
 
                     default:
@@ -131,12 +150,43 @@ SDL_Rect Item_keyswitch(SDL_Rect positionPerso, Niveau* niveau)
                 break;
         }
     }
-    return positionPerso;
+    return perso;
 }
 
 Niveau* Item_rock(Niveau* niveau)
 {
-    return NULL;
+    srand(time(NULL)); /* initialisation de rand */
+    unsigned int i= rand()%18; /* on génère des coordonnées aléatoires dans le but de trouver une pierre au hasard dans le niveau */
+    unsigned int j= rand()%25;
+    unsigned int nb_tentatives=0; /* Cette variable servira à sortir de la boucle si jamais plus aucuns rocher ne se trouve dans le niveau */
+    while(niveau->grille[i][j]!=ROCHER) /* Tant qu'on ne trouve pas un rocher... */
+    {
+        while(nb_tentatives<3) /* On tente 3 fois de trouver un rocher*/
+        {
+            if(j<24) /* Si on n'est pas à l'avant dernière colonne on passe à la suivante */
+            {
+                j++;
+            }
+            else if(j>=24 && i<17) /* Sinon si on est à la dernière colonne mais pas à la dernière ligne,
+                                on va à la première colonne de la ligne suivante */
+            {
+                j=0;
+                i++;
+            }
+            else{ /* Sinon si on est arrivé à la dernière colonne de la dernière ligne, on retourne au début,
+                c-à-d première colonne de la première ligne */
+                j=0;
+                i=0;
+                nb_tentatives++; /* On incremente le nombre de tentatives vu que l'on retourne au début*/
+            }
+        }
+    }
+    if(nb_tentatives!=3) /* Si on a réussi à trouvé un rocher ... */
+    {
+        niveau->grille[i][j]=VIDE; /* On le fait disparaitre ... */
+        Niveau_ordonner(niveau); /* Puis on ordonne le niveau */
+    } /* Sinon on retourne simplement le niveau */
+    return niveau;
 }
 
 void Item_liberer(Item *item) {
