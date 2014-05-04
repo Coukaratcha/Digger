@@ -79,14 +79,25 @@ unsigned int Item_enlever(Item *item, TypeItem type)
     }
 }
 
-SDL_Rect Item_force(SDL_Rect positionPerso, Niveau* niveau)
+Personnage* Item_force(Personnage* perso, Niveau* niveau)
 {
-    return positionPerso;
+    return perso;
 }
 
-Niveau* Item_flashback(Niveau* niveau)
+Niveau* Item_flashback(Niveau* niveau, Bloc** grilleSauv)
 {
-    return NULL;
+    unsigned int i;
+    unsigned int j;
+
+    for(i=0;i<18;i++)
+    {
+        for(j=0;j<25;j++)
+        {
+            niveau->grille[i][j]=grilleSauv[i][j];
+        }
+    }
+
+    return niveau;
 }
 
 Personnage* Item_keyswitch(Personnage *perso, Niveau* niveau)
