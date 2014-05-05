@@ -16,9 +16,9 @@ void Personnage_initialiser(Personnage *perso, Niveau *niveau)
 	}
 }
 
-unsigned int Personnage_seDeplacer(Personnage *perso)
+unsigned int Personnage_seDeplacer(Personnage *perso, SDL_Event *event)
 {
-    return 1;
+    
 }
 
 unsigned int Personnage_estVivant(Personnage *perso)
