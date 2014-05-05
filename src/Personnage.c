@@ -1,16 +1,16 @@
 #include "../include/Personnage.h"
 
-Personnage* Personnage_initialiser(void)
-{
-    return NULL;
-}
-
-void Personnage_seDeplacer(Personnage *perso)
+void Personnage_initialiser(Personnage *perso, Niveau *niveau)
 {
 
 }
 
-int Personnage_estVivant(Personnage *perso)
+unsigned int Personnage_seDeplacer(Personnage *perso)
+{
+    return 1;
+}
+
+unsigned int Personnage_estVivant(Personnage *perso)
 {
     return 0;
 }

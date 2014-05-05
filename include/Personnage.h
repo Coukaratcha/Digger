@@ -4,6 +4,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include "../include/Niveau.h"
+
 typedef struct {
     unsigned int posx;
     unsigned int posy;
@@ -11,7 +13,7 @@ typedef struct {
 
 /* Initialise la position du personnage à celle correspondant au niveau */
 void Personnage_initialiser(Personnage *perso, Niveau *niveau);
-void Personnage_seDeplacer(Personnage *perso, SDLKey touche);
-int Personnage_estVivant(Personnage *perso);
+unsigned int Personnage_seDeplacer(Personnage *perso); /* Renvoie 1 si le personnage peut se déplacer, 0 sinon.*/
+unsigned int Personnage_estVivant(Personnage *perso);
 
 #endif

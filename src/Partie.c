@@ -102,9 +102,7 @@ void Partie_derouler(Partie *partie) {
                 loop = 0;
                 break;
             case SDL_KEYDOWN:
-                if (event.key.keysym.sym == SDLK_UP || event.key.keysym.sym == SDLK_RIGHT || event.key.keysym.sym == SDLK_DOWN || event.key.keysym.sym == SDLK_LEFT) {
-                    Personnage_seDeplacer(&personnage, event.key.keysym.sym);
-                }
+                Personnage_seDeplacer(&personnage);
                 break;
             default:
                 break;
