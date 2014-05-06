@@ -186,7 +186,7 @@ void Profil_modifier(Profil *profil)
 
 Profil* Profil_charger(unsigned int id)
 {
-    Profil *profil = Profil_creer();
+    Profil *profil = (Profil*)malloc(sizeof(Profil));
     profil->identifiant = id;
 
     int index = Profil_chercherFichier(profil);
@@ -195,7 +195,8 @@ Profil* Profil_charger(unsigned int id)
     {
         unsigned int place = (unsigned int)index;
 
-        FILE *fichier = fopen(cheminFichier, "rb");
+        FILE *fichier = NULL;
+        fichier = fopen("profil/profil.base", "rb");
 
         fseek(fichier, 2*sizeof(unsigned int)+(sizeof(unsigned int)+sizeof(char)*(NOM_TAILLE_MAX+1))*place, SEEK_SET);
 
@@ -203,7 +204,7 @@ Profil* Profil_charger(unsigned int id)
 
         fread(profil->nom, sizeof(char)*(NOM_TAILLE_MAX+1), 1, fichier);
 
-        fclose(fichier);
+        //fclose(fichier);
 
         return profil;
     }

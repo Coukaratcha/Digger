@@ -11,7 +11,6 @@ Record* Record_creer(Mode* mode)
 
 Record* Record_charger(FILE *fichier)
 {
-    unsigned int records[NB_RECORDS_MAX];
     return NULL;
 }
 

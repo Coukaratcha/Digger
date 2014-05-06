@@ -24,39 +24,29 @@ int main(int argc, char *argv[])
 	    exit(EXIT_FAILURE);
 	}
 
-    SDL_Event event;
-    int loop = 1;
+    /*FILE *fichier;
 
-    SDL_Surface *ecran = SDL_SetVideoMode(800, 600, 32, SDL_HWSURFACE|SDL_DOUBLEBUF);
+    fichier = fopen("profil/profil.base", "wb");
 
-    Niveau *niveau;
+    unsigned int nb = 1;
+    char nom[21] = {'M', 'i', 'c', 'h', 'e', 'l'};
 
-    niveau = Niveau_charger(1);
+    fwrite(&nb, sizeof(unsigned int), 1, fichier);
+    fwrite(&nb, sizeof(unsigned int), 1, fichier);
+    fwrite(nom, sizeof(char)*21, 1, fichier);*/
 
-    Niveau_afficher(niveau, ecran);
-
-    Mode *mode = Mode_creer();
+    Mode *mode = NULL;
+    mode = Mode_creer();
     Mode_assignerMode(mode, MONTRE);
-    Score *score = Score_initialiser(mode);
 
-    while(loop) {
+    Profil *profil = NULL;
+    profil = Profil_charger(1);
+    printf("Identifiant: %d, Nom : %s\n", profil->identifiant, profil->nom);
 
-    	SDL_PollEvent(&event);
+    Partie *partie = NULL;
+    partie = Partie_creer(profil, mode);
 
-    	switch(event.type) {
-    		case SDL_QUIT:
-    			loop = 0;
-    			break;
-    		default:
-    			break;
-    	}
-
-    	SDL_FillRect(ecran, NULL, SDL_MapRGB(ecran->format, 0, 0, 0));
-    	Score_miseAJour(score);
-    	Score_afficher(score, ecran);
-    	Niveau_afficher(niveau, ecran);
-    	SDL_Flip(ecran);
-    }
+    Partie_derouler(partie);
 
     /*Bloc grille[18][25] = {
     	{FRUIT, FRUIT, FRUIT, ROCHER, ROCHER, ROCHER, ROCHER, HERBE, HERBE, MUR, FRUIT, FRUIT, FRUIT, FRUIT, FRUIT, FRUIT, MUR, FRUIT, ROCHER, MUR, HERBE, HERBE, HERBE, HERBE, FRUIT},
@@ -79,6 +69,9 @@ int main(int argc, char *argv[])
     	{HERBE, HERBE, HERBE, HERBE, HERBE, HERBE, HERBE, HERBE, HERBE, HERBE, HERBE, HERBE, HERBE, HERBE, HERBE, HERBE, HERBE, HERBE, HERBE, HERBE, HERBE, HERBE, HERBE, HERBE, HERBE}
     };*/
 
+    Partie_liberer(partie);
+    Mode_liberer(mode);
+    Profil_liberer(profil);
     TTF_Quit();
     SDL_Quit();
 

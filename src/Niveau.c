@@ -57,14 +57,14 @@ void Niveau_ordonner(Niveau *niveau)
 					/*
 						Un rocher tombant cherchera à aller en dessous directement en priorité.
 					*/
-					else if (j > 0 && niveau->grille[i+1][j-1]) {
+					else if (j > 0 && niveau->grille[i+1][j-1] == VIDE && niveau->grille[i][j-1] == VIDE) {
 						niveau->grille[i][j] = VIDE;
 						niveau->grille[i+1][j-1] = ROCHER_TOMBANT;
 					}
 					/*
 						S'il ne peut pas, il cherchera à aller en bas à gauche.
 					*/
-					else if (j < LARGEUR - 1 && niveau->grille[i+1][j+1]) {
+					else if (j < LARGEUR - 1 && niveau->grille[i+1][j+1] == VIDE && niveau->grille[i][j+1] == VIDE) {
 						niveau->grille[i][j] = VIDE;
 						niveau->grille[i+1][j+1] = ROCHER_TOMBANT;
 					}

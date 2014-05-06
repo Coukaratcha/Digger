@@ -20,9 +20,9 @@ unsigned int Item_enlever(Item *item, TypeItem type);
 void Item_faireEffet(TypeItem type);
 void Item_utiliser(Item *item, TypeItem type);
 void Item_liberer(Item *item);
-Personnage* Item_force(Personnage *perso, Niveau* niveau);
-Niveau* Item_flashback(Niveau* niveau, Bloc** grilleSauv);
-Personnage* Item_keyswitch(Personnage *perso, Niveau *niveau);
-Niveau* Item_rock(Niveau* niveau);
+void Item_force(Personnage *perso, Niveau* niveau);
+void Item_flashback(Niveau* niveau, Bloc** grilleSauv);
+void Item_keyswitch(Personnage *perso, Niveau *niveau);
+void Item_rock(Niveau* niveau);
 
 #endif

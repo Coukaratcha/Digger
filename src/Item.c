@@ -79,12 +79,11 @@ unsigned int Item_enlever(Item *item, TypeItem type)
     }
 }
 
-Personnage* Item_force(Personnage* perso, Niveau* niveau)
+void Item_force(Personnage* perso, Niveau* niveau)
 {
-    return perso;
 }
 
-Niveau* Item_flashback(Niveau* niveau, Bloc** grilleSauv)
+void Item_flashback(Niveau* niveau, Bloc** grilleSauv)
 {
     unsigned int i;
     unsigned int j;
@@ -96,13 +95,11 @@ Niveau* Item_flashback(Niveau* niveau, Bloc** grilleSauv)
             niveau->grille[i][j]=grilleSauv[i][j];
         }
     }
-
-    return niveau;
 }
 
-Personnage* Item_keyswitch(Personnage *perso, Niveau* niveau)
+void Item_keyswitch(Personnage *perso, Niveau* niveau)
 {
-    SDL_Event event;
+    /*SDL_Event event;
     unsigned int nb_tours=0;
     unsigned int postemp=0;
 
@@ -161,10 +158,10 @@ Personnage* Item_keyswitch(Personnage *perso, Niveau* niveau)
                 break;
         }
     }
-    return perso;
+    return perso;*/
 }
 
-Niveau* Item_rock(Niveau* niveau)
+void Item_rock(Niveau* niveau)
 {
     srand(time(NULL)); /* initialisation de rand */
     unsigned int i= rand()%18; /* on génère des coordonnées aléatoires dans le but de trouver une pierre au hasard dans le niveau */
@@ -197,7 +194,6 @@ Niveau* Item_rock(Niveau* niveau)
         niveau->grille[i][j]=VIDE; /* On le fait disparaitre ... */
         Niveau_ordonner(niveau); /* Puis on ordonne le niveau */
     } /* Sinon on retourne simplement le niveau */
-    return niveau;
 }
 
 void Item_liberer(Item *item) {

@@ -70,8 +70,8 @@ int Partie_estFinie(Partie *partie) {
     int finie = 1;
     unsigned int i, j;
 
-    for (i=0; !finie && i < HAUTEUR; i++) {
-        for (j=0; !finie && j < LARGEUR; j++) {
+    for (i=0; finie && i < HAUTEUR; i++) {
+        for (j=0; finie && j < LARGEUR; j++) {
             if (partie->niveau->grille[i][j] == FRUIT)
                 finie = 0;
         }
@@ -82,11 +82,11 @@ int Partie_estFinie(Partie *partie) {
 
 void Partie_derouler(Partie *partie) {
     SDL_Event event;
-    int loop;
+    int loop = 1;
 
     Personnage personnage;
 
-    Personnage_initialiser(&personnage, partie->niveau); 
+    Personnage_initialiser(&personnage, partie->niveau);
 
     SDL_Surface *ecran;
 
@@ -102,9 +102,12 @@ void Partie_derouler(Partie *partie) {
                 loop = 0;
                 break;
             case SDL_KEYDOWN:
-                Personnage_seDeplacer(&personnage);
+                if (personnage.libre)
+                    Personnage_seDeplacer(&personnage, event.key.keysym.sym, partie->niveau);
                 break;
             default:
+            case SDL_KEYUP:
+                personnage.libre = 1;
                 break;
         }
 
