@@ -22,12 +22,14 @@ unsigned int Personnage_seDeplacer(Personnage *perso, SDLKey touche, Niveau *niv
     perso->libre =0;
 	unsigned int retour = 0;
     switch(touche) {
-    	case SDLK_UP: /* Si le perso n'est pas au bord sup et il y a (VIDE|HERBE|FRUIT) au dessus */
-    		if (perso->posy > 0 && (niveau->grille[perso->posy - 1][perso->posx] == VIDE || niveau->grille[perso->posy - 1][perso->posx] == HERBE || niveau->grille[perso->posy - 1][perso->posx] == FRUIT)) {
-    			niveau->grille[perso->posy - 1][perso->posx] = PERSO;
-    			niveau->grille[perso->posy][perso->posx] = VIDE;
-    			perso->posy-= 1;
-    			retour = 1;
+    	case SDLK_UP: /* Si le perso n'est pas au bord sup */
+    		if (perso->posy > 0) { /* S'il y a (VIDE|HERBE|FRUIT) au dessus */
+    			if (niveau->grille[perso->posy - 1][perso->posx] == VIDE || niveau->grille[perso->posy - 1][perso->posx] == HERBE || niveau->grille[perso->posy - 1][perso->posx] == FRUIT) {
+                    niveau->grille[perso->posy - 1][perso->posx] = PERSO;
+                    niveau->grille[perso->posy][perso->posx] = VIDE;
+                    perso->posy-= 1;
+                    retour = 1;
+                }
     		}
     		break;
     	case SDLK_DOWN: /* Si le perso n'est pas au bord inf et (il est au bord sup ou il n'y a un rocher au dessus de lui) */
@@ -42,19 +44,19 @@ unsigned int Personnage_seDeplacer(Personnage *perso, SDLKey touche, Niveau *niv
     		}
     		break;
     	case SDLK_RIGHT: /* Si il y un rocher à droite */
-    		if (perso->posx < LARGEUR && (niveau->grille[perso->posy][perso->posx + 1] == VIDE || niveau->grille[perso->posy][perso->posx + 1] == FRUIT || niveau->grille[perso->posy][perso->posx + 1] == HERBE)) {
-    			niveau->grille[perso->posy][perso->posx + 1] = PERSO;
-    			niveau->grille[perso->posy][perso->posx] = VIDE;
-    			perso->posx+= 1;
-    			retour = 1;
-    		} /* Sinon si il y a (VIDE|HERBE|FRUIT) à droite du perso. */
-    		else if (perso->posx < LARGEUR - 2 && niveau->grille[perso->posy][perso->posx + 1] == ROCHER && niveau->grille[perso->posy][perso->posx + 2] == VIDE) {
-    			niveau->grille[perso->posy][perso->posx + 2] = ROCHER;
-    			niveau->grille[perso->posy][perso->posx + 1] = PERSO;
-    			niveau->grille[perso->posy][perso->posx] = VIDE;
-    			perso->posx+= 1;
-    			retour = 1;
-    		}
+            if (perso->posx < LARGEUR - 1 && (niveau->grille[perso->posy][perso->posx + 1] == VIDE || niveau->grille[perso->posy][perso->posx + 1] == FRUIT || niveau->grille[perso->posy][perso->posx + 1] == HERBE)) {
+                niveau->grille[perso->posy][perso->posx + 1] = PERSO;
+                niveau->grille[perso->posy][perso->posx] = VIDE;
+                perso->posx+= 1;
+                retour = 1;
+            } /* Sinon si il y a (VIDE|HERBE|FRUIT) à droite du perso. */
+            else if (perso->posx < LARGEUR - 2 && niveau->grille[perso->posy][perso->posx + 1] == ROCHER && niveau->grille[perso->posy][perso->posx + 2] == VIDE) {
+                niveau->grille[perso->posy][perso->posx + 2] = ROCHER;
+                niveau->grille[perso->posy][perso->posx + 1] = PERSO;
+                niveau->grille[perso->posy][perso->posx] = VIDE;
+                perso->posx+= 1;
+                retour = 1;
+            }
     		break;
     	case SDLK_LEFT:
     		if (perso->posx > 0 && (niveau->grille[perso->posy][perso->posx - 1] == VIDE || niveau->grille[perso->posy][perso->posx - 1] == FRUIT || niveau->grille[perso->posy][perso->posx - 1] == HERBE)) {
@@ -63,7 +65,7 @@ unsigned int Personnage_seDeplacer(Personnage *perso, SDLKey touche, Niveau *niv
     			perso->posx-= 1;
     			retour = 1;
     		} /* Sinon si il y a (VIDE|HERBE|FRUIT) à droite du perso. */
-    		else if (perso->posx < LARGEUR - 2 && niveau->grille[perso->posy][perso->posx - 1] == ROCHER && niveau->grille[perso->posy][perso->posx - 2] == VIDE) {
+    		else if (perso->posx > 1 && niveau->grille[perso->posy][perso->posx - 1] == ROCHER && niveau->grille[perso->posy][perso->posx - 2] == VIDE) {
     			niveau->grille[perso->posy][perso->posx - 2] = ROCHER;
     			niveau->grille[perso->posy][perso->posx - 1] = PERSO;
     			niveau->grille[perso->posy][perso->posx] = VIDE;
