@@ -46,8 +46,6 @@
 		<Unit filename="include/ModeUnit.h" />
 		<Unit filename="include/Niveau.h" />
 		<Unit filename="include/NiveauUnit.h" />
-		<Unit filename="include/Option.h" />
-		<Unit filename="include/OptionUnit.h" />
 		<Unit filename="include/Partie.h" />
 		<Unit filename="include/PartieUnit.h" />
 		<Unit filename="include/Personnage.h" />
@@ -81,12 +79,6 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="src/NiveauUnit.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="src/Option.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="src/OptionUnit.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="src/Partie.c">

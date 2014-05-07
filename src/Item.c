@@ -79,12 +79,77 @@ unsigned int Item_enlever(Item *item, TypeItem type)
     }
 }
 
-void Item_force(Personnage* perso, Niveau* niveau)
+void Item_force(Personnage* perso, SDLKey touche, Niveau* niveau)
 {
+    perso->libre =0;
+    switch(touche) {
+    	case SDLK_UP: /* Si le perso n'est pas au bord sup */
+    		if (perso->posy > 0)
+                { /* S'il y a (VIDE|HERBE|FRUIT) au dessus */
+    			if (niveau->grille[perso->posy - 1][perso->posx] == VIDE || niveau->grille[perso->posy - 1][perso->posx] == HERBE || niveau->grille[perso->posy - 1][perso->posx] == FRUIT)
+    			{
+                    niveau->grille[perso->posy - 1][perso->posx] = PERSO;
+                    niveau->grille[perso->posy][perso->posx] = VIDE;
+                    perso->posy-= 1;
+                }
+    		}
+    		break;
+
+    	case SDLK_DOWN: /* Si le perso n'est pas au bord inf et (il est au bord sup ou il n'y a un rocher au dessus de lui) */
+    		if (perso->posy < HAUTEUR - 1 && (perso->posy == 0 || niveau->grille[perso->posy - 1][perso->posx] != ROCHER))
+                {
+    			/* S'il y a (VIDE|HERBE|FRUIT) sous le perso */
+    			if (niveau->grille[perso->posy + 1][perso->posx] == VIDE || niveau->grille[perso->posy + 1][perso->posx] == HERBE || niveau->grille[perso->posy + 1][perso->posx] == FRUIT)
+    			{
+	    			niveau->grille[perso->posy + 1][perso->posx] = PERSO;
+	    			niveau->grille[perso->posy][perso->posx] = VIDE;
+	    			perso->posy+= 1;
+	    		}
+    		}
+    		break;
+
+    	case SDLK_RIGHT: /* Si il y a (VIDE|HERBE|FRUIT) à droite du perso. */
+            if (perso->posx < LARGEUR - 1 && (niveau->grille[perso->posy][perso->posx + 1] == VIDE || niveau->grille[perso->posy][perso->posx + 1] == FRUIT || niveau->grille[perso->posy][perso->posx + 1] == HERBE))
+            {
+                niveau->grille[perso->posy][perso->posx + 1] = PERSO;
+                niveau->grille[perso->posy][perso->posx] = VIDE;
+                perso->posx+= 1;
+            } /* Si il y deux rocher à droite */
+            else if (perso->posx < LARGEUR - 3 && niveau->grille[perso->posy][perso->posx + 1] == ROCHER && niveau->grille[perso->posy][perso->posx + 2] == ROCHER && niveau->grille[perso->posy][perso->posx + 3] == VIDE)
+            {
+                niveau->grille[perso->posy][perso->posx + 3] = ROCHER;
+                niveau->grille[perso->posy][perso->posx + 2] = ROCHER;
+                niveau->grille[perso->posy][perso->posx + 1] = PERSO;
+                niveau->grille[perso->posy][perso->posx] = VIDE;
+                perso->posx+= 1;
+            }
+    		break;
+
+    	case SDLK_LEFT:/* Si il y a (VIDE|HERBE|FRUIT) à gauche du perso. */
+    		if (perso->posx > 0 && (niveau->grille[perso->posy][perso->posx - 1] == VIDE || niveau->grille[perso->posy][perso->posx - 1] == FRUIT || niveau->grille[perso->posy][perso->posx - 1] == HERBE))
+            {
+    			niveau->grille[perso->posy][perso->posx - 1] = PERSO;
+    			niveau->grille[perso->posy][perso->posx] = VIDE;
+    			perso->posx-= 1;
+    		} /* Si il y deux rocher à gauche */
+    		else if (perso->posx > 2 && niveau->grille[perso->posy][perso->posx - 1] == ROCHER && niveau->grille[perso->posy][perso->posx - 2] == ROCHER && niveau->grille[perso->posy][perso->posx - 3] == VIDE)
+    		{
+    			niveau->grille[perso->posy][perso->posx - 3] = ROCHER;
+    			niveau->grille[perso->posy][perso->posx - 2] = ROCHER;
+    			niveau->grille[perso->posy][perso->posx - 1] = PERSO;
+    			niveau->grille[perso->posy][perso->posx] = VIDE;
+    			perso->posx-= 1;
+    		}
+    		break;
+
+    	default:
+    		break;
+    }
 }
 
 void Item_flashback(Niveau* niveau, Bloc** grilleSauv)
 {
+    /* grilleSauv contient l'état du niveau avant le dernier coup du joueur */
     unsigned int i;
     unsigned int j;
 
@@ -92,6 +157,8 @@ void Item_flashback(Niveau* niveau, Bloc** grilleSauv)
     {
         for(j=0;j<25;j++)
         {
+            /* On parcours toutes les case de grilleSauv et on le remet dans niveau de telles sortes que l'on rétablisse
+            l'état du niveau avant le dernier coup du joueur */
             niveau->grille[i][j]=grilleSauv[i][j];
         }
     }
@@ -99,9 +166,8 @@ void Item_flashback(Niveau* niveau, Bloc** grilleSauv)
 
 void Item_keyswitch(Personnage *perso, Niveau* niveau)
 {
-    /*SDL_Event event;
+    SDL_Event event;
     unsigned int nb_tours=0;
-    unsigned int postemp=0;
 
     while(nb_tours<10)
     {
@@ -111,41 +177,33 @@ void Item_keyswitch(Personnage *perso, Niveau* niveau)
             case SDL_KEYDOWN:
                 switch(event.key.keysym.sym)
                 {
-                    case SDLK_UP: // Flèche haut = gauche
-                        postemp=perso->posx;
-                        if(postemp-32>=0 && Personnage_seDeplacer(perso))
+                    case SDLK_UP: /* Flèche haut = gauche */
+                        if(Personnage_seDeplacer(perso,SDLK_LEFT,niveau)) /* Si le déplacement est possible */
                         {
-                            perso->posx-=32;
                             nb_tours++;
                             Niveau_ordonner(niveau);
                         }
                         break;
 
-                    case SDLK_DOWN: // Flèche bas = haut
-                        postemp=perso->posy;
-                        if(postemp-32>=0 && Personnage_seDeplacer(perso))
+                    case SDLK_DOWN: /* Flèche bas = haut */
+                        if(Personnage_seDeplacer(perso,SDLK_UP,niveau))
                         {
-                            perso->posy-=32;
                             nb_tours++;
                             Niveau_ordonner(niveau);
                         }
                         break;
 
-                    case SDLK_RIGHT: // Flèche droite = bas
-                        postemp=perso->posy;
-                        if(postemp+32<576 && Personnage_seDeplacer(perso)) // 576=32*18
+                    case SDLK_RIGHT: /* Flèche droite = bas */
+                        if(Personnage_seDeplacer(perso,SDLK_DOWN,niveau))
                         {
-                            perso->posy+=32;
                             nb_tours++;
                             Niveau_ordonner(niveau);
                         }
                         break;
 
-                    case SDLK_LEFT: // Flèche gauche = droite
-                        postemp=perso->posx;
-                        if(postemp+32<800 && Personnage_seDeplacer(perso)) // 800=32*25
+                    case SDLK_LEFT: /* Flèche gauche = droite */
+                        if(Personnage_seDeplacer(perso,SDLK_RIGHT,niveau))
                         {
-                            perso->posx+=32;
                             nb_tours++;
                             Niveau_ordonner(niveau);
                         }
@@ -158,7 +216,6 @@ void Item_keyswitch(Personnage *perso, Niveau* niveau)
                 break;
         }
     }
-    return perso;*/
 }
 
 void Item_rock(Niveau* niveau)
@@ -166,7 +223,7 @@ void Item_rock(Niveau* niveau)
     srand(time(NULL)); /* initialisation de rand */
     unsigned int i= rand()%18; /* on génère des coordonnées aléatoires dans le but de trouver une pierre au hasard dans le niveau */
     unsigned int j= rand()%25;
-    unsigned int nb_tentatives=0; /* Cette variable servira à sortir de la boucle si jamais plus aucuns rocher ne se trouve dans le niveau */
+    unsigned int nb_tentatives=0; /* Cette variable servira à sortir de la boucle si jamais plus aucuns rochers ne se trouve dans le niveau */
     while(niveau->grille[i][j]!=ROCHER) /* Tant qu'on ne trouve pas un rocher... */
     {
         while(nb_tentatives<3) /* On tente 3 fois de trouver un rocher*/
