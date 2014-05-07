@@ -80,6 +80,11 @@ void Niveau_ordonner(Niveau *niveau)
 				}
 			}
 		}
+
+		for (j=0; j < LARGEUR; j++) {
+			if (niveau->grille[i][j] == ROCHER_TOMBANT)
+				niveau->grille[i][j] = ROCHER;
+		}
 }
 
 void Niveau_afficher(Niveau *niveau, SDL_Surface *ecran)
