@@ -79,9 +79,72 @@ unsigned int Item_enlever(Item *item, TypeItem type)
     }
 }
 
-void Item_force(Personnage* perso, Niveau* niveau)
+void Item_force(Personnage* perso, SDLKey touche, Niveau* niveau)
 {
+    perso->libre =0;
+    switch(touche) {
+    	case SDLK_UP: /* Si le perso n'est pas au bord sup */
+    		if (perso->posy > 0)
+                { /* S'il y a (VIDE|HERBE|FRUIT) au dessus */
+    			if (niveau->grille[perso->posy - 1][perso->posx] == VIDE || niveau->grille[perso->posy - 1][perso->posx] == HERBE || niveau->grille[perso->posy - 1][perso->posx] == FRUIT)
+    			{
+                    niveau->grille[perso->posy - 1][perso->posx] = PERSO;
+                    niveau->grille[perso->posy][perso->posx] = VIDE;
+                    perso->posy-= 1;
+                }
+    		}
+    		break;
 
+    	case SDLK_DOWN: /* Si le perso n'est pas au bord inf et (il est au bord sup ou il n'y a un rocher au dessus de lui) */
+    		if (perso->posy < HAUTEUR - 1 && (perso->posy == 0 || niveau->grille[perso->posy - 1][perso->posx] != ROCHER))
+                {
+    			/* S'il y a (VIDE|HERBE|FRUIT) sous le perso */
+    			if (niveau->grille[perso->posy + 1][perso->posx] == VIDE || niveau->grille[perso->posy + 1][perso->posx] == HERBE || niveau->grille[perso->posy + 1][perso->posx] == FRUIT)
+    			{
+	    			niveau->grille[perso->posy + 1][perso->posx] = PERSO;
+	    			niveau->grille[perso->posy][perso->posx] = VIDE;
+	    			perso->posy+= 1;
+	    		}
+    		}
+    		break;
+
+    	case SDLK_RIGHT: /* Si il y a (VIDE|HERBE|FRUIT) à droite du perso. */
+            if (perso->posx < LARGEUR - 1 && (niveau->grille[perso->posy][perso->posx + 1] == VIDE || niveau->grille[perso->posy][perso->posx + 1] == FRUIT || niveau->grille[perso->posy][perso->posx + 1] == HERBE))
+            {
+                niveau->grille[perso->posy][perso->posx + 1] = PERSO;
+                niveau->grille[perso->posy][perso->posx] = VIDE;
+                perso->posx+= 1;
+            } /* Si il y deux rocher à droite */
+            else if (perso->posx < LARGEUR - 3 && niveau->grille[perso->posy][perso->posx + 1] == ROCHER && niveau->grille[perso->posy][perso->posx + 2] == ROCHER && niveau->grille[perso->posy][perso->posx + 3] == VIDE)
+            {
+                niveau->grille[perso->posy][perso->posx + 3] = ROCHER;
+                niveau->grille[perso->posy][perso->posx + 2] = ROCHER;
+                niveau->grille[perso->posy][perso->posx + 1] = PERSO;
+                niveau->grille[perso->posy][perso->posx] = VIDE;
+                perso->posx+= 1;
+            }
+    		break;
+
+    	case SDLK_LEFT:/* Si il y a (VIDE|HERBE|FRUIT) à gauche du perso. */
+    		if (perso->posx > 0 && (niveau->grille[perso->posy][perso->posx - 1] == VIDE || niveau->grille[perso->posy][perso->posx - 1] == FRUIT || niveau->grille[perso->posy][perso->posx - 1] == HERBE))
+            {
+    			niveau->grille[perso->posy][perso->posx - 1] = PERSO;
+    			niveau->grille[perso->posy][perso->posx] = VIDE;
+    			perso->posx-= 1;
+    		} /* Si il y deux rocher à gauche */
+    		else if (perso->posx > 2 && niveau->grille[perso->posy][perso->posx - 1] == ROCHER && niveau->grille[perso->posy][perso->posx - 2] == ROCHER && niveau->grille[perso->posy][perso->posx - 3] == VIDE)
+    		{
+    			niveau->grille[perso->posy][perso->posx - 3] = ROCHER;
+    			niveau->grille[perso->posy][perso->posx - 2] = ROCHER;
+    			niveau->grille[perso->posy][perso->posx - 1] = PERSO;
+    			niveau->grille[perso->posy][perso->posx] = VIDE;
+    			perso->posx-= 1;
+    		}
+    		break;
+
+    	default:
+    		break;
+    }
 }
 
 void Item_flashback(Niveau* niveau, Bloc** grilleSauv)
