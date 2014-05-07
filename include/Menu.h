@@ -25,11 +25,13 @@ typedef struct {
 Menu* Menu_initialiser(void);
 void Menu_ajouterOption(Menu *menu, Option option);
 void Menu_supprimerOption(Menu *menu, unsigned int index);
-void Menu_deplacerCurseur(Menu *menu, SDLKey touche); /* SDL Event */
+void Menu_deplacerCurseur(Menu *menu, SDLKey touche, SDL_Surface *ecran); /* SDL Event */
 void Menu_liberer(Menu *menu);
 void Menu_afficher(Menu *menu, SDL_Surface *ecran);
-void Menu_jouer(Menu *menu);
-void Menu_derouler(Menu *menu);
+void Menu_lancer(Menu *menu, SDL_Surface *ecran);
+void Menu_jouer(SDL_Surface *ecran);
+void Menu_derouler(Menu *menu, SDL_Surface *ecran);
 void Menu_afficherCurseur(Menu *menu, SDL_Surface *ecran);
+void Menu_interagir(Menu *menu, SDLKey touche, SDL_Surface *ecran);
 
 #endif

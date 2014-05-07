@@ -10,6 +10,8 @@
 #include <SDL/SDL_ttf.h>
 #include <SDL/SDL_image.h>
 
+SDL_Surface *ecran = NULL;
+
 int main(int argc, char *argv[])
 {
     if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_TIMER) == -1) // Démarrage de la SDL. Si erreur :
@@ -34,6 +36,8 @@ int main(int argc, char *argv[])
     fwrite(&nb, sizeof(unsigned int), 1, fichier);
     fwrite(&nb, sizeof(unsigned int), 1, fichier);
     fwrite(nom, sizeof(char)*21, 1, fichier);*/
+    
+    ecran = SDL_SetVideoMode(800, 600, 32, SDL_HWSURFACE|SDL_DOUBLEBUF);
 
     Menu *menu = NULL;
 
@@ -43,7 +47,7 @@ int main(int argc, char *argv[])
     Menu_ajouterOption(menu, OPTIONS);
     Menu_ajouterOption(menu, QUITTER);
 
-    Menu_derouler(menu);
+    Menu_derouler(menu, ecran);
 
     /*Bloc grille[18][25] = {
     	{FRUIT, FRUIT, FRUIT, ROCHER, ROCHER, ROCHER, ROCHER, HERBE, HERBE, MUR, FRUIT, FRUIT, FRUIT, FRUIT, FRUIT, FRUIT, MUR, FRUIT, ROCHER, MUR, HERBE, HERBE, HERBE, HERBE, FRUIT},
@@ -66,7 +70,7 @@ int main(int argc, char *argv[])
     	{HERBE, HERBE, HERBE, HERBE, HERBE, HERBE, HERBE, HERBE, HERBE, HERBE, HERBE, HERBE, HERBE, HERBE, HERBE, HERBE, HERBE, HERBE, HERBE, HERBE, HERBE, HERBE, HERBE, HERBE, HERBE}
     };*/
 
-    
+
     Menu_liberer(menu);
     TTF_Quit();
     SDL_Quit();

@@ -2,6 +2,7 @@
 
 SDL_Surface *surfaceMenu = NULL;
 SDL_Surface *curseur = NULL;
+int loop = 1;
 
 Menu* Menu_initialiser(void)
 {
@@ -9,8 +10,9 @@ Menu* Menu_initialiser(void)
 	curseur = IMG_Load("img/curseur.png");
     Menu *menu = (Menu*)malloc(sizeof(Menu));
 
+    menu->tableau = NULL;
+
     menu->nb = 0;
-    menu->tableau = (Option*)malloc(0);
     menu->courante = 0;
     menu->libre = 1;
 
@@ -39,7 +41,7 @@ void Menu_supprimerOption(Menu *menu, unsigned int index)
 	}
 }
 
-void Menu_deplacerCurseur(Menu *menu, SDLKey touche)
+void Menu_deplacerCurseur(Menu *menu, SDLKey touche, SDL_Surface *ecran)
 {
 	if (menu->libre) {
 		switch(touche) {
@@ -59,6 +61,8 @@ void Menu_deplacerCurseur(Menu *menu, SDLKey touche)
 
 void Menu_liberer(Menu *menu)
 {
+    SDL_FreeSurface(curseur);
+    SDL_FreeSurface(surfaceMenu);
 	free(menu->tableau);
 	free(menu);
 }
@@ -72,12 +76,8 @@ void Menu_afficher(Menu *menu, SDL_Surface *ecran) {
 	SDL_BlitSurface(surfaceMenu, NULL, ecran, &position);
 }
 
-void Menu_derouler(Menu *menu) {
+void Menu_derouler(Menu *menu, SDL_Surface *ecran) {
 	SDL_Event event;
-	int loop = 1;
-
-	SDL_Surface *ecran = NULL;
-	ecran = SDL_SetVideoMode(800, 600, 32, SDL_HWSURFACE|SDL_DOUBLEBUF);
 
 	while (loop) {
 		SDL_WaitEvent(&event);
@@ -87,7 +87,7 @@ void Menu_derouler(Menu *menu) {
 				loop = 0;
 				break;
 			case SDL_KEYDOWN:
-				Menu_deplacerCurseur(menu, event.key.keysym.sym);
+				Menu_interagir(menu, event.key.keysym.sym, ecran);
 				menu->libre = 0;
 				break;
 			case SDL_KEYUP:
@@ -103,7 +103,7 @@ void Menu_derouler(Menu *menu) {
 	}
 }
 
-void Menu_jouer(Menu *menu) {
+void Menu_jouer(SDL_Surface *ecran) {
 	Mode *mode = NULL;
     mode = Mode_creer();
     Mode_assignerMode(mode, MONTRE);
@@ -115,7 +115,7 @@ void Menu_jouer(Menu *menu) {
     Partie *partie = NULL;
     partie = Partie_creer(profil, mode);
 
-    Partie_derouler(partie);
+    Partie_derouler(partie, ecran);
 
     Partie_liberer(partie);
     Mode_liberer(mode);
@@ -128,14 +128,14 @@ void Menu_afficherCurseur(Menu *menu, SDL_Surface *ecran) {
 	position.x = 240;
 	position.y = 0;
 
-	switch (menu->courante) {
-		case 0:
+	switch (menu->tableau[menu->courante]) {
+		case JOUER:
 			position.y = 230;
 			break;
-		case 1:
+		case OPTIONS:
 			position.y = 310;
 			break;
-		case 2:
+		case QUITTER:
 			position.y = 390;
 			break;
 		default:
@@ -143,4 +143,25 @@ void Menu_afficherCurseur(Menu *menu, SDL_Surface *ecran) {
 	}
 
 	SDL_BlitSurface(curseur, NULL, ecran, &position);
+}
+
+void Menu_lancer(Menu *menu, SDL_Surface *ecran) {
+	switch (menu->tableau[menu->courante]) {
+		case JOUER:
+			Menu_jouer(ecran);
+			break;
+		case QUITTER:
+			loop = 0;
+		default:
+			break;
+	}
+}
+
+void Menu_interagir(Menu *menu, SDLKey touche, SDL_Surface *ecran) {
+	if (touche == SDLK_RETURN) {
+		Menu_lancer(menu, ecran);
+	}
+	else if (touche == SDLK_UP ||touche == SDLK_DOWN) {
+		Menu_deplacerCurseur(menu, touche, ecran);
+	}
 }

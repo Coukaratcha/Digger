@@ -49,7 +49,7 @@ void Niveau_ordonner(Niveau *niveau)
 				/*
 					Si le rocher n'est plus maintenu directement en dessous lui, il devient tombant.
 				*/
-				if (niveau->grille[i][j] == ROCHER_TOMBANT) {
+				if (niveau->grille[i][j] == ROCHER_TOMBANT && niveau->grille[i+1][j] != PERSO) {
 					if (niveau->grille[i+1][j] == VIDE){
 						niveau->grille[i][j] = VIDE;
 						niveau->grille[i+1][j] = ROCHER_TOMBANT;
@@ -59,14 +59,14 @@ void Niveau_ordonner(Niveau *niveau)
 					*/
 					else if (j > 0 && niveau->grille[i+1][j-1] == VIDE && niveau->grille[i][j-1] == VIDE) {
 						niveau->grille[i][j] = VIDE;
-						niveau->grille[i+1][j-1] = ROCHER_TOMBANT;
+						niveau->grille[i][j-1] = ROCHER_TOMBANT;
 					}
 					/*
 						S'il ne peut pas, il cherchera à aller en bas à gauche.
 					*/
 					else if (j < LARGEUR - 1 && niveau->grille[i+1][j+1] == VIDE && niveau->grille[i][j+1] == VIDE) {
 						niveau->grille[i][j] = VIDE;
-						niveau->grille[i+1][j+1] = ROCHER_TOMBANT;
+						niveau->grille[i][j+1] = ROCHER_TOMBANT;
 					}
 					/*
 						S'il ne peut pas non plus, il cherchera à aller en bas à droite.

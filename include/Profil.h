@@ -10,7 +10,7 @@
 
 typedef struct {
     unsigned int identifiant;
-    char nom[NOM_TAILLE_MAX];
+    char nom[NOM_TAILLE_MAX+1];
 } Profil;
 
 /* 

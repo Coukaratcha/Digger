@@ -89,7 +89,13 @@ unsigned int Personnage_seDeplacer(Personnage *perso, SDLKey touche, Niveau *niv
     return retour;
 }
 
-unsigned int Personnage_estVivant(Personnage *perso)
+unsigned int Personnage_estVivant(Personnage *perso, Niveau *niveau)
 {
+    if (perso->posy > 0) {
+        if (niveau->grille[perso->posy-1][perso->posx] == ROCHER_TOMBANT) {
+            return 0;
+        }
+    }
+
     return 1;
 }
