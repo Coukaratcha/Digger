@@ -64,7 +64,7 @@ unsigned int Personnage_seDeplacer(Personnage *perso, SDLKey touche, Niveau *niv
     			niveau->grille[perso->posy][perso->posx] = VIDE;
     			perso->posx-= 1;
     			retour = 1;
-    		} /* Sinon si il y a (VIDE|HERBE|FRUIT) à droite du perso. */
+    		} /* Sinon si il y a (VIDE|HERBE|FRUIT) à gauche du perso. */
     		else if (perso->posx > 1 && niveau->grille[perso->posy][perso->posx - 1] == ROCHER && niveau->grille[perso->posy][perso->posx - 2] == VIDE) {
     			niveau->grille[perso->posy][perso->posx - 2] = ROCHER;
     			niveau->grille[perso->posy][perso->posx - 1] = PERSO;

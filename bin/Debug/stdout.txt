@@ -1,2 +1,0 @@
-Sprites correctement chargÃ©s. 
-Police correctement chargée. 
