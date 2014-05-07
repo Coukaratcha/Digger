@@ -56,6 +56,7 @@ void Partie_liberer(Partie *partie)
     Score_liberer(partie->score);
     Niveau_liberer(partie->niveau);
     Item_liberer(partie->item);
+    free(partie);
 }
 
 void Partie_detruireSauv(Partie *partie) {
@@ -80,7 +81,7 @@ int Partie_estFinie(Partie *partie) {
     return finie;
 }
 
-void Partie_derouler(Partie *partie) {
+void Partie_derouler(Partie *partie, SDL_Surface *ecran) {
     SDL_Event event;
     int loop = 1;
 
@@ -88,12 +89,8 @@ void Partie_derouler(Partie *partie) {
 
     Personnage_initialiser(&personnage, partie->niveau);
 
-    SDL_Surface *ecran;
-
-    ecran = SDL_SetVideoMode(800, 600, 32, SDL_HWSURFACE|SDL_DOUBLEBUF);
-
     while (loop) {
-        if (Partie_estFinie(partie) || !Personnage_estVivant(&personnage))
+        if (Partie_estFinie(partie) || !Personnage_estVivant(&personnage, partie->niveau))
             loop = 0;
 
         SDL_PollEvent(&event);
@@ -115,7 +112,6 @@ void Partie_derouler(Partie *partie) {
 
         Score_miseAJour(partie->score);
         Score_afficher(partie->score, ecran);
-
         Niveau_ordonner(partie->niveau);
         Niveau_afficher(partie->niveau, ecran);
 
