@@ -35,18 +35,15 @@ int main(int argc, char *argv[])
     fwrite(&nb, sizeof(unsigned int), 1, fichier);
     fwrite(nom, sizeof(char)*21, 1, fichier);*/
 
-    Mode *mode = NULL;
-    mode = Mode_creer();
-    Mode_assignerMode(mode, MONTRE);
+    Menu *menu = NULL;
 
-    Profil *profil = NULL;
-    profil = Profil_charger(1);
-    printf("Identifiant: %d, Nom : %s\n", profil->identifiant, profil->nom);
+    menu = Menu_initialiser();
 
-    Partie *partie = NULL;
-    partie = Partie_creer(profil, mode);
+    Menu_ajouterOption(menu, JOUER);
+    Menu_ajouterOption(menu, OPTIONS);
+    Menu_ajouterOption(menu, QUITTER);
 
-    Partie_derouler(partie);
+    Menu_derouler(menu);
 
     /*Bloc grille[18][25] = {
     	{FRUIT, FRUIT, FRUIT, ROCHER, ROCHER, ROCHER, ROCHER, HERBE, HERBE, MUR, FRUIT, FRUIT, FRUIT, FRUIT, FRUIT, FRUIT, MUR, FRUIT, ROCHER, MUR, HERBE, HERBE, HERBE, HERBE, FRUIT},
@@ -69,9 +66,8 @@ int main(int argc, char *argv[])
     	{HERBE, HERBE, HERBE, HERBE, HERBE, HERBE, HERBE, HERBE, HERBE, HERBE, HERBE, HERBE, HERBE, HERBE, HERBE, HERBE, HERBE, HERBE, HERBE, HERBE, HERBE, HERBE, HERBE, HERBE, HERBE}
     };*/
 
-    Partie_liberer(partie);
-    Mode_liberer(mode);
-    Profil_liberer(profil);
+    
+    Menu_liberer(menu);
     TTF_Quit();
     SDL_Quit();
 
