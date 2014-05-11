@@ -6,6 +6,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <SDL/SDL.h>
+#include <SDL/SDL_image.h>
 #include <SDL/SDL_ttf.h>
 
 typedef struct {
@@ -28,5 +29,7 @@ int Profil_chercherFichier(Profil *profil);
 void Profil_liberer(Profil *profil);
 void Profil_detruire(Profil *profil);
 unsigned int Profil_prochainID(void);
+void Profil_afficherListe(SDL_Surface *ecran);
+int Profil_estIndexValide(unsigned int index);
 
 #endif

@@ -1,6 +1,8 @@
 #include "../include/Profil.h"
 
 const char *cheminFichier = "profil/profil.base";
+TTF_Font *policeProfil = NULL;
+static SDL_Color blanc = {255, 255, 255};
 
 void Profil_recupererPseudo(Profil* profil)
 {
@@ -333,4 +335,61 @@ unsigned int Profil_prochainID(void)
     fclose(fichier);
 
     return maxID+1;
+}
+
+void Profil_afficherListe(SDL_Surface *ecran) {
+    unsigned int nbEnregistrements, i;
+    char tempNom[NOM_TAILLE_MAX+1];
+    unsigned tempId;
+
+    SDL_Rect position;
+    position.x = 200;
+    position.y = 200;
+
+    policeProfil = TTF_OpenFont("fonts/coolvetica.ttf", 20);
+
+    SDL_Surface *nom;
+
+    FILE *fichier = fopen(cheminFichier, "rb");
+
+    fread(&nbEnregistrements, sizeof(unsigned int), 1, fichier);
+
+    for (i = 0; i < nbEnregistrements; i++) {
+        fread(&tempId, sizeof(unsigned int), 1, fichier);
+        fread(tempNom, sizeof(unsigned int)*(NOM_TAILLE_MAX+1), 1, fichier);
+
+        nom = TTF_RenderText_Solid(policeProfil, tempNom, blanc);
+
+        SDL_BlitSurface(nom, NULL, ecran, &position);
+        position.y+= 50;
+
+        SDL_FreeSurface(nom);
+    }
+
+    TTF_CloseFont(policeProfil);
+    fclose(fichier);
+}
+
+int Profil_estIndexValide(unsigned int index) {
+    int estValide = 0;
+
+    unsigned int nbEnregistrements, i, tempId;
+
+    FILE *fichier = fopen(cheminFichier, "rb");
+
+    fread(&nbEnregistrements, sizeof(unsigned int), 1, fichier);
+
+    for (i = 0; i < nbEnregistrements && !estValide; i++) {
+        fread(&tempId, sizeof(unsigned int), 1, fichier);
+
+        if (tempId == index) {
+            estValide = 1;
+        }
+
+        fseek(fichier, sizeof(char)*(NOM_TAILLE_MAX+1), SEEK_CUR);
+    }
+
+    fclose(fichier);
+
+    return estValide;
 }

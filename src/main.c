@@ -10,8 +10,6 @@
 #include <SDL/SDL_ttf.h>
 #include <SDL/SDL_image.h>
 
-SDL_Surface *ecran = NULL;
-
 int main(int argc, char *argv[])
 {
     if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_TIMER) == -1) // Démarrage de la SDL. Si erreur :
@@ -36,6 +34,8 @@ int main(int argc, char *argv[])
     fwrite(&nb, sizeof(unsigned int), 1, fichier);
     fwrite(&nb, sizeof(unsigned int), 1, fichier);
     fwrite(nom, sizeof(char)*21, 1, fichier);*/
+
+    SDL_Surface *ecran = NULL;
     
     ecran = SDL_SetVideoMode(800, 600, 32, SDL_HWSURFACE|SDL_DOUBLEBUF);
 

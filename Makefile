@@ -15,11 +15,11 @@ TARGET   = Digger
 
 CC       = gcc
 # compiling flags here
-CFLAGS   = -Wall `sdl-config --cflags`
+CFLAGS   = -Wall `sdl-config --cflags` -lSDL_image -lSDL_ttf
 
 LINKER   = gcc -o
 # linking flags here
-LFLAGS   = -Wall -I. -lm `sdl-config --libs` -lSDL_image -lSDL_ttf
+LFLAGS   = -Wall -I. -lm `sdl-config --cflags --libs` -lSDL_image -lSDL_ttf
 
 # change these to set the proper directories where each files should be
 SRCDIR   = src
@@ -37,11 +37,11 @@ launch: $(BINDIR)/$(TARGET)
 all: $(BINDIR)/$(TARGET)
 
 $(BINDIR)/$(TARGET): $(OBJECTS)
-	@$(LINKER) $@ $(LFLAGS) $(OBJECTS)
+	@$(LINKER) $@ $(OBJECTS) $(LFLAGS)
 	@echo "Linking complete!"
 
 $(OBJECTS): $(OBJDIR)/%.o : $(SRCDIR)/%.c
-	@$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) -c $< -o $@ $(CFLAGS)
 	@echo "Compiled "$<" successfully!"
 
 .PHONY: clean
