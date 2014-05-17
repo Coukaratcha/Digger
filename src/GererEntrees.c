@@ -10,16 +10,17 @@ Entree* Entree_creer(TypeEntree type) {
 	entree->type = type;
 	entree->surfaceCurrent = NULL;
 	entree->surfaceTexte = NULL;
+	entree->fin = 0;
 
 	if (type == TEXTE) {
 		entree->current = 'A';
 		memset(entree->texte, '\0', TEXTE_TAILLE_MAX+1);
-		entree->surfaceCurrent = TTF_RenderText_Solid(policeGE, "A", blancGE);
-		entree->surfaceTexte = TTF_RenderText_Solid(policeGE, "", blancGE);
+		entree->surfaceCurrent = TTF_RenderText_Blended(policeGE, "A", blancGE);
+		entree->surfaceTexte = TTF_RenderText_Blended(policeGE, "", blancGE);
 	}
 	else if (type == NUM) {
 		entree->num = 0;
-		entree->surfaceCurrent = TTF_RenderText_Solid(policeGE, "0", blancGE);
+		entree->surfaceCurrent = TTF_RenderText_Blended(policeGE, "0", blancGE);
 	}
 
 	return entree;
@@ -34,42 +35,43 @@ void Entree_liberer(Entree *entree) {
 }
 
 void GererEntrees_initialiser(void) {
-	policeGE = TTF_OpenFont("fonts/coolvetica.ttf", 20);
+	policeGE = TTF_OpenFont("fonts/orangejuice.ttf", 30);
 }
 
-void GererEntrees_derouler(SDL_Surface *ecran, Entree *entree, SDL_Event *event) {
+
+
+void GererEntrees_interface(Entree *entree, SDL_Event *event) {
 	switch (event->type) {
 		case SDL_KEYDOWN:
-			GererEntrees_interface(event->key.keysym.sym, entree);
+			if (libre) {
+				if (entree->type == TEXTE) {
+					if (event->key.keysym.sym == SDLK_SPACE) {
+						GererEntrees_ajouterCar(entree);
+					}
+					else if (event->key.keysym.sym == SDLK_BACKSPACE) {
+						GererEntrees_supprimerCar(entree);
+					}
+					else if (event->key.keysym.sym == SDLK_RETURN) {
+						entree->fin = 1;
+					}
+					else {
+						GererEntrees_changerCar(event->key.keysym.sym, entree);
+					}
+				}
+				else if (entree->type == NUM) {
+					if (event->key.keysym.sym == SDLK_RETURN) {
+						entree->fin = 1;
+					}
+					else {
+						GererEntrees_changerNum(event->key.keysym.sym, entree);
+					}
+				}
+			}
 			libre = 0;
 			break;
 		case SDL_KEYUP:
 			libre = 1;
 			break;
-	}
-}
-
-void GererEntrees_interface(SDLKey touche, Entree *entree) {
-	if (libre) {
-		if (entree->type == TEXTE) {
-			if (touche == SDLK_RETURN) {
-				GererEntrees_ajouterCar(entree);
-			}
-			else if (touche == SDLK_BACKSPACE) {
-				GererEntrees_supprimerCar(entree);
-			}
-			else {
-				GererEntrees_changerCar(touche, entree);
-			}
-		}
-		else if (entree->type == NUM) {
-			if (touche == SDLK_RETURN) {
-
-			}
-			else {
-				GererEntrees_changerNum(touche, entree);
-			}
-		}
 	}
 }
 
@@ -126,7 +128,7 @@ void GererEntrees_afficherNum(Entree *entree, SDL_Surface *ecran) {
 
 	SDL_FreeSurface(entree->surfaceCurrent);
 
-	entree->surfaceCurrent = TTF_RenderText_Solid(policeGE, temp, blancGE);
+	entree->surfaceCurrent = TTF_RenderText_Blended(policeGE, temp, blancGE);
 
 	SDL_BlitSurface(entree->surfaceCurrent, NULL, ecran, &position);
 }
@@ -142,7 +144,7 @@ void GererEntrees_afficherCar(Entree *entree, SDL_Surface *ecran) {
 
 	SDL_FreeSurface(entree->surfaceCurrent);
 
-	entree->surfaceCurrent = TTF_RenderText_Solid(policeGE, temp, blancGE);
+	entree->surfaceCurrent = TTF_RenderText_Blended(policeGE, temp, blancGE);
 
 	SDL_BlitSurface(entree->surfaceCurrent, NULL, ecran, &position);
 }
@@ -164,7 +166,7 @@ void GererEntrees_ajouterCar(Entree *entree) {
 	}
 
 	SDL_FreeSurface(entree->surfaceTexte);
-	entree->surfaceTexte = TTF_RenderText_Solid(policeGE, entree->texte, blancGE);
+	entree->surfaceTexte = TTF_RenderText_Blended(policeGE, entree->texte, blancGE);
 }
 
 void GererEntrees_supprimerCar(Entree *entree) {
@@ -175,7 +177,7 @@ void GererEntrees_supprimerCar(Entree *entree) {
 	}
 
 	SDL_FreeSurface(entree->surfaceTexte);
-	entree->surfaceTexte = TTF_RenderText_Solid(policeGE, entree->texte, blancGE);
+	entree->surfaceTexte = TTF_RenderText_Blended(policeGE, entree->texte, blancGE);
 }
 
 void GererEntrees_liberer(void) {

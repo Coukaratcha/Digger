@@ -48,7 +48,7 @@ int main(int argc, char *argv[])
 
     entree = Entree_creer(TEXTE);
 
-    while (loop) {
+    while (!entree->fin && loop) {
         SDL_PollEvent(&event);
 
         switch (event.type) {
@@ -59,7 +59,7 @@ int main(int argc, char *argv[])
                 break;
         }
 
-        GererEntrees_derouler(ecran, entree, &event);
+        GererEntrees_interface(entree, &event);
 
         SDL_FillRect(ecran, NULL, SDL_MapRGB(ecran->format, 25, 25, 25));
         GererEntrees_afficherEntree(entree, ecran);

@@ -19,14 +19,14 @@ typedef struct {
 	unsigned int num;
 	SDL_Surface *surfaceCurrent;
 	SDL_Surface *surfaceTexte;
+	int fin;
 } Entree;
 
 Entree* Entree_creer(TypeEntree type);
 void Entree_liberer(Entree *entree);
 
 void GererEntrees_initialiser(void);
-void GererEntrees_derouler(SDL_Surface *ecran, Entree *entree, SDL_Event *event);
-void GererEntrees_interface(SDLKey touche, Entree *entree);
+void GererEntrees_interface(Entree *entree, SDL_Event *event);
 void GererEntrees_changerNum(SDLKey touche, Entree *entree);
 void GererEntrees_changerCar(SDLKey touche, Entree *entree);
 void GererEntrees_afficherEntree(Entree *entree, SDL_Surface *ecran);
