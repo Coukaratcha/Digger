@@ -46,7 +46,7 @@ int main(int argc, char *argv[])
 
     Entree *entree = NULL;
 
-    entree = Entree_creer(NUM);
+    entree = Entree_creer(TEXTE);
 
     while (loop) {
         SDL_PollEvent(&event);
@@ -60,6 +60,9 @@ int main(int argc, char *argv[])
         }
 
         GererEntrees_derouler(ecran, entree, &event);
+
+        SDL_FillRect(ecran, NULL, SDL_MapRGB(ecran->format, 25, 25, 25));
+        GererEntrees_afficherEntree(entree, ecran);
         SDL_Flip(ecran);
     }
 
