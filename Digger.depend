@@ -169,11 +169,11 @@
 
 1398446477 source:/home/mickael/ProjetsC/Digger/src/ScoreUnit.c
 
-1399368837 source:/home/mickael/ProjetsC/Digger/src/Item.c
+1399496406 source:/home/mickael/ProjetsC/Digger/src/Item.c
 	"../include/Item.h"
 	<time.h>
 
-1399368713 /home/mickael/ProjetsC/Digger/include/Item.h
+1399496406 /home/mickael/ProjetsC/Digger/include/Item.h
 	<stdio.h>
 	<stdlib.h>
 	"../include/Niveau.h"
@@ -190,22 +190,24 @@
 	<stdlib.h>
 	"../include/Niveau.h"
 
-1399463871 source:/home/mickael/ProjetsC/Digger/src/main.c
+1399991025 source:/home/mickael/ProjetsC/Digger/src/main.c
 	"../include/Profil.h"
 	"../include/Partie.h"
 	"../include/Personnage.h"
 	"../include/Record.h"
 	"../include/Menu.h"
+	"../include/GererEntrees.h"
 	<stdlib.h>
 	<stdio.h>
 	<SDL/SDL.h>
 	<SDL/SDL_ttf.h>
 	<SDL/SDL_image.h>
 
-1399468151 /home/mickael/ProjetsC/Digger/include/Profil.h
+1399833045 /home/mickael/ProjetsC/Digger/include/Profil.h
 	<stdio.h>
 	<stdlib.h>
 	<SDL/SDL.h>
+	<SDL/SDL_image.h>
 	<SDL/SDL_ttf.h>
 
 1399458109 /home/mickael/ProjetsC/Digger/include/Partie.h
@@ -231,15 +233,23 @@
 1399478542 source:/home/mickael/ProjetsC/Digger/src/Niveau.c
 	"../include/Niveau.h"
 
-1399478458 source:/home/mickael/ProjetsC/Digger/src/Partie.c
+1399478668 source:/home/mickael/ProjetsC/Digger/src/Partie.c
 	"../include/Partie.h"
 
-1399475547 source:/home/mickael/ProjetsC/Digger/src/Personnage.c
+1399496406 source:/home/mickael/ProjetsC/Digger/src/Personnage.c
 	"../include/Personnage.h"
 
-1399375300 source:/home/mickael/ProjetsC/Digger/src/Profil.c
+1399833039 source:/home/mickael/ProjetsC/Digger/src/Profil.c
 	"../include/Profil.h"
 
 1399371483 source:/home/mickael/ProjetsC/Digger/src/Score.c
 	"../include/Score.h"
+
+1399991007 /home/mickael/ProjetsC/Digger/include/GererEntrees.h
+	<stdlib.h>
+	<stdio.h>
+	<SDL/SDL_ttf.h>
+
+1400344146 source:/home/mickael/ProjetsC/Digger/src/GererEntrees.c
+	"../include/GererEntrees.h"
 

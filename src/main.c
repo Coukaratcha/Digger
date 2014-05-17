@@ -3,6 +3,7 @@
 #include "../include/Personnage.h"
 #include "../include/Record.h"
 #include "../include/Menu.h"
+#include "../include/GererEntrees.h"
 
 #include <stdlib.h>
 #include <stdio.h>
@@ -36,10 +37,37 @@ int main(int argc, char *argv[])
     fwrite(nom, sizeof(char)*21, 1, fichier);*/
 
     SDL_Surface *ecran = NULL;
-    
+    SDL_Event event;
+    int loop = 1;
+
     ecran = SDL_SetVideoMode(800, 600, 32, SDL_HWSURFACE|SDL_DOUBLEBUF);
 
-    Menu *menu = NULL;
+    GererEntrees_initialiser();
+
+    Entree *entree = NULL;
+
+    entree = Entree_creer(NUM);
+
+    while (loop) {
+        SDL_PollEvent(&event);
+
+        switch (event.type) {
+            case SDL_QUIT:
+                loop = 0;
+                break;
+            default:
+                break;
+        }
+
+        GererEntrees_derouler(ecran, entree, &event);
+        SDL_Flip(ecran);
+    }
+
+    Entree_liberer(entree);
+
+    GererEntrees_liberer();
+
+    /*Menu *menu = NULL;
 
     menu = Menu_initialiser();
 
@@ -47,7 +75,7 @@ int main(int argc, char *argv[])
     Menu_ajouterOption(menu, OPTIONS);
     Menu_ajouterOption(menu, QUITTER);
 
-    Menu_derouler(menu, ecran);
+    Menu_derouler(menu, ecran);*/
 
     /*Bloc grille[18][25] = {
     	{FRUIT, FRUIT, FRUIT, ROCHER, ROCHER, ROCHER, ROCHER, HERBE, HERBE, MUR, FRUIT, FRUIT, FRUIT, FRUIT, FRUIT, FRUIT, MUR, FRUIT, ROCHER, MUR, HERBE, HERBE, HERBE, HERBE, FRUIT},
@@ -71,7 +99,7 @@ int main(int argc, char *argv[])
     };*/
 
 
-    Menu_liberer(menu);
+    /*Menu_liberer(menu);*/
     TTF_Quit();
     SDL_Quit();
 

@@ -53,3 +53,6 @@ clean:
 remove: clean
 	@rm -f $(BINDIR)/$(TARGET)
 	@echo "Executable removed!"
+
+rebuild: remove all
+	@echo "Rebuild complete!"
