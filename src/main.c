@@ -3,6 +3,7 @@
 #include "../include/Personnage.h"
 #include "../include/Record.h"
 #include "../include/Menu.h"
+#include "../include/GererEntrees.h"
 
 #include <stdlib.h>
 #include <stdio.h>
@@ -36,12 +37,45 @@ int main(int argc, char *argv[])
     fwrite(nom, sizeof(char)*21, 1, fichier);*/
 
     SDL_Surface *ecran = NULL;
+<<<<<<< HEAD
+=======
+    SDL_Event event;
+    int loop = 1;
+>>>>>>> b18223cf8c30c8e7fcc3fb8f6b64b39a32156280
 
     ecran = SDL_SetVideoMode(800, 600, 32, SDL_HWSURFACE|SDL_DOUBLEBUF);
     SDL_WM_SetCaption("Digger", NULL);
     SDL_WM_SetIcon(IMG_Load("img/perso.png"), NULL);
 
-    Menu *menu = NULL;
+    GererEntrees_initialiser();
+
+    Entree *entree = NULL;
+
+    entree = Entree_creer(TEXTE);
+
+    while (loop) {
+        SDL_PollEvent(&event);
+
+        switch (event.type) {
+            case SDL_QUIT:
+                loop = 0;
+                break;
+            default:
+                break;
+        }
+
+        GererEntrees_derouler(ecran, entree, &event);
+
+        SDL_FillRect(ecran, NULL, SDL_MapRGB(ecran->format, 25, 25, 25));
+        GererEntrees_afficherEntree(entree, ecran);
+        SDL_Flip(ecran);
+    }
+
+    Entree_liberer(entree);
+
+    GererEntrees_liberer();
+
+    /*Menu *menu = NULL;
 
 /* NIVEAU 3
     FILE *fichier = fopen("niveau/3.niveau", "wb");
@@ -110,10 +144,10 @@ int main(int argc, char *argv[])
     Menu_ajouterOption(menu, OPTIONS);
     Menu_ajouterOption(menu, QUITTER);
 
-    Menu_derouler(menu, ecran);
+    Menu_derouler(menu, ecran);*/
 
 
-    Menu_liberer(menu);
+    /*Menu_liberer(menu);*/
     TTF_Quit();
     SDL_Quit();
 

@@ -38,6 +38,7 @@
 			<Add option="-lSDL_ttf" />
 			<Add option="-lSDL_image" />
 		</Linker>
+		<Unit filename="include/GererEntrees.h" />
 		<Unit filename="include/Item.h" />
 		<Unit filename="include/ItemUnit.h" />
 		<Unit filename="include/Menu.h" />
@@ -57,6 +58,9 @@
 		<Unit filename="include/Score.h" />
 		<Unit filename="include/ScoreUnit.h" />
 		<Unit filename="include/mainUnit.h" />
+		<Unit filename="src/GererEntrees.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="src/Item.c">
 			<Option compilerVar="CC" />
 		</Unit>
