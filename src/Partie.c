@@ -96,10 +96,14 @@ void Partie_derouler(Partie *partie, SDL_Surface *ecran) {
         SDL_PollEvent(&event);
         switch(event.type) {
             case SDL_QUIT:
-                loop = 0;
+            loop = 0;
                 break;
             case SDL_KEYDOWN:
-                if (personnage.libre)
+                if(event.key.keysym.sym==SDLK_ESCAPE) /*Si on appuie sur Echap, on retourne au menu principal*/
+                    loop=0;
+                if(event.key.keysym.sym==SDLK_s) /* Si on appuie sur S on sauvegarde la partie*/
+                    Partie_sauvegarder(partie);
+                else if (personnage.libre)
                     Personnage_seDeplacer(&personnage, event.key.keysym.sym, partie->niveau);
                 break;
             default:

@@ -171,7 +171,7 @@ void Item_keyswitch(Personnage *perso, Niveau* niveau)
 
     while(nb_tours<10)
     {
-        SDL_WaitEvent(&event);
+        SDL_PollEvent(&event);
         switch(event.type)
         {
             case SDL_KEYDOWN:

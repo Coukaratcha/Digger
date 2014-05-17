@@ -3,10 +3,10 @@
 
 1398604622 source:c:\users\florian\documents\github\digger\src\mainunit.c
 
-1399476423 source:c:\users\florian\documents\github\digger\src\menu.c
+1399479753 source:c:\users\florian\documents\github\digger\src\menu.c
 	"../include/Menu.h"
 
-1399476423 c:\users\florian\documents\github\digger\include\menu.h
+1399479753 c:\users\florian\documents\github\digger\include\menu.h
 	<stdio.h>
 	<stdlib.h>
 	<SDL/SDL.h>
@@ -27,10 +27,10 @@
 
 1398604622 source:c:\users\florian\documents\github\digger\src\partieunit.c
 
-1399476804 source:c:\users\florian\documents\github\digger\src\personnage.c
+1399479754 source:c:\users\florian\documents\github\digger\src\personnage.c
 	"../include/Personnage.h"
 
-1399476423 c:\users\florian\documents\github\digger\include\personnage.h
+1399479753 c:\users\florian\documents\github\digger\include\personnage.h
 	<stdio.h>
 	<stdlib.h>
 	"../include/Niveau.h"
@@ -55,7 +55,7 @@
 
 1398604622 source:c:\users\florian\documents\github\digger\src\scoreunit.c
 
-1399476423 source:c:\users\florian\documents\github\digger\src\main.c
+1400081113 source:c:\users\florian\documents\github\digger\src\main.c
 	"../include/Profil.h"
 	"../include/Partie.h"
 	"../include/Personnage.h"
@@ -67,13 +67,14 @@
 	<SDL/SDL_ttf.h>
 	<SDL/SDL_image.h>
 
-1399146538 c:\users\florian\documents\github\digger\include\profil.h
+1400081113 c:\users\florian\documents\github\digger\include\profil.h
 	<stdio.h>
 	<stdlib.h>
 	<SDL/SDL.h>
+	<SDL/SDL_image.h>
 	<SDL/SDL_ttf.h>
 
-1399150503 c:\users\florian\documents\github\digger\include\partie.h
+1399479753 c:\users\florian\documents\github\digger\include\partie.h
 	<stdio.h>
 	<stdlib.h>
 	<dirent.h>
@@ -105,19 +106,19 @@
 1399146538 source:c:\users\florian\documents\github\digger\src\mode.c
 	"../include/Mode.h"
 
-1399476423 source:c:\users\florian\documents\github\digger\src\niveau.c
+1399479753 source:c:\users\florian\documents\github\digger\src\niveau.c
 	"../include/Niveau.h"
 
-1399476423 source:c:\users\florian\documents\github\digger\src\partie.c
+1400332871 source:c:\users\florian\documents\github\digger\src\partie.c
 	"../include/Partie.h"
 
-1399476423 source:c:\users\florian\documents\github\digger\src\profil.c
+1400081113 source:c:\users\florian\documents\github\digger\src\profil.c
 	"../include/Profil.h"
 
 1399146538 source:c:\users\florian\documents\github\digger\src\score.c
 	"../include/Score.h"
 
-1399479410 source:c:\users\florian\documents\github\digger\src\item.c
+1400330844 source:c:\users\florian\documents\github\digger\src\item.c
 	"../include/Item.h"
 	<time.h>
 

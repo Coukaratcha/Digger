@@ -1,0 +1,3 @@
+Identifiant: 1, Nom : Michel
+Police correctement chargée. 
+Sprites correctement chargÃ©s. 
