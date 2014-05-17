@@ -37,11 +37,8 @@ int main(int argc, char *argv[])
     fwrite(nom, sizeof(char)*21, 1, fichier);*/
 
     SDL_Surface *ecran = NULL;
-<<<<<<< HEAD
-=======
     SDL_Event event;
     int loop = 1;
->>>>>>> b18223cf8c30c8e7fcc3fb8f6b64b39a32156280
 
     ecran = SDL_SetVideoMode(800, 600, 32, SDL_HWSURFACE|SDL_DOUBLEBUF);
     SDL_WM_SetCaption("Digger", NULL);
@@ -75,9 +72,9 @@ int main(int argc, char *argv[])
 
     GererEntrees_liberer();
 
-    /*Menu *menu = NULL;
+    Menu *menu = NULL;
 
-/* NIVEAU 3
+    /* NIVEAU 3
     FILE *fichier = fopen("niveau/3.niveau", "wb");
     Bloc grille[18][25] = {
     	{FRUIT, FRUIT, ROCHER, ROCHER, ROCHER, ROCHER, FRUIT, FRUIT, FRUIT, FRUIT, FRUIT, FRUIT, MUR, ROCHER, ROCHER, ROCHER, ROCHER, ROCHER, ROCHER, ROCHER, ROCHER, ROCHER, ROCHER, ROCHER, ROCHER},
@@ -144,7 +141,7 @@ int main(int argc, char *argv[])
     Menu_ajouterOption(menu, OPTIONS);
     Menu_ajouterOption(menu, QUITTER);
 
-    Menu_derouler(menu, ecran);*/
+    Menu_derouler(menu, ecran);
 
 
     /*Menu_liberer(menu);*/
