@@ -93,13 +93,15 @@ void Partie_derouler(Partie *partie, SDL_Surface *ecran) {
         if (Partie_estFinie(partie) || !Personnage_estVivant(&personnage, partie->niveau))
             loop = 0;
 
-        SDL_PollEvent(&event);
+        SDL_WaitEvent(&event);
         switch(event.type) {
             case SDL_QUIT:
-                loop = 0;
+            loop = 0;
                 break;
             case SDL_KEYDOWN:
-                if (personnage.libre)
+                if(event.key.keysym.sym==SDLK_ESCAPE)
+                    loop=0;
+                else if (personnage.libre)
                     Personnage_seDeplacer(&personnage, event.key.keysym.sym, partie->niveau);
                 break;
             default:
