@@ -36,8 +36,10 @@ int main(int argc, char *argv[])
     fwrite(nom, sizeof(char)*21, 1, fichier);*/
 
     SDL_Surface *ecran = NULL;
-    
+
     ecran = SDL_SetVideoMode(800, 600, 32, SDL_HWSURFACE|SDL_DOUBLEBUF);
+    SDL_WM_SetCaption("Digger", NULL);
+    SDL_WM_SetIcon(IMG_Load("img/perso.png"), NULL);
 
     Menu *menu = NULL;
 
