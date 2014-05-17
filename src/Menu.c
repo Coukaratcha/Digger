@@ -110,7 +110,6 @@ void Menu_jouer(SDL_Surface *ecran) {
 
     Profil *profil = NULL;
     profil = Profil_charger(1);
-    printf("Identifiant: %d, Nom : %s\n", profil->identifiant, profil->nom);
 
     Partie *partie = NULL;
     partie = Partie_creer(profil, mode);

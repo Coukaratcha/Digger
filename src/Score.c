@@ -18,7 +18,6 @@ Score* Score_initialiser(Mode *mode)
     {
         printf("Erreur ouverture police. \n");
     }
-    else printf("Police correctement chargée. \n");
 
     score->texte = TTF_RenderText_Solid(police, "0", blanc);
 

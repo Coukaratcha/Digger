@@ -17,7 +17,6 @@ Niveau* Niveau_charger(unsigned int index)
         printf("Erreur chargement sprites. \n");
         exit(34);
     }
-    else printf("Sprites correctement chargés. \n");
 
 	/*
 		On initalise ici "sprites", ce code sera forcément exécuter avant d'utiliser quelconques fonctions de ce module.
