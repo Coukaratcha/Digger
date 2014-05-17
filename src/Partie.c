@@ -93,7 +93,7 @@ void Partie_derouler(Partie *partie, SDL_Surface *ecran) {
         if (Partie_estFinie(partie) || !Personnage_estVivant(&personnage, partie->niveau))
             loop = 0;
 
-        SDL_WaitEvent(&event);
+        SDL_PollEvent(&event);
         switch(event.type) {
             case SDL_QUIT:
             loop = 0;
