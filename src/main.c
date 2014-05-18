@@ -63,7 +63,6 @@ int main(int argc, char *argv[])
 
         GererEntrees_interface(entree, &event);
 
-        SDL_FillRect(ecran, NULL, SDL_MapRGB(ecran->format, 25, 25, 25));
         GererEntrees_afficherEntree(entree, ecran);
         SDL_Flip(ecran);
     }
@@ -148,5 +147,5 @@ int main(int argc, char *argv[])
     TTF_Quit();
     SDL_Quit();
 
-    return 0;
+    return EXIT_SUCCESS;
 }

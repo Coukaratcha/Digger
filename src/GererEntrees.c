@@ -1,8 +1,9 @@
 #include "../include/GererEntrees.h"
 
 TTF_Font *policeGE = NULL;
-SDL_Color blancGE = {255, 255, 255};
+SDL_Color couleurGE = {0,0,0};
 int libre = 1;
+SDL_Surface *fond = NULL;
 
 Entree* Entree_creer(TypeEntree type) {
 	Entree *entree = (Entree*)malloc(sizeof(Entree));
@@ -13,14 +14,16 @@ Entree* Entree_creer(TypeEntree type) {
 	entree->fin = 0;
 
 	if (type == TEXTE) {
+        fond = IMG_Load("img/entrees_texte.png");
 		entree->current = 'A';
 		memset(entree->texte, '\0', TEXTE_TAILLE_MAX+1);
-		entree->surfaceCurrent = TTF_RenderText_Blended(policeGE, "A", blancGE);
-		entree->surfaceTexte = TTF_RenderText_Blended(policeGE, "", blancGE);
+		entree->surfaceCurrent = TTF_RenderText_Blended(policeGE, "A", couleurGE);
+		entree->surfaceTexte = TTF_RenderText_Blended(policeGE, "", couleurGE);
 	}
 	else if (type == NUM) {
+        fond = IMG_Load("img/entrees_num.png");
 		entree->num = 0;
-		entree->surfaceCurrent = TTF_RenderText_Blended(policeGE, "0", blancGE);
+		entree->surfaceCurrent = TTF_RenderText_Blended(policeGE, "0", couleurGE);
 	}
 
 	return entree;
@@ -28,6 +31,7 @@ Entree* Entree_creer(TypeEntree type) {
 
 void Entree_liberer(Entree *entree) {
 	SDL_FreeSurface(entree->surfaceCurrent);
+	SDL_FreeSurface(fond);
 	if (entree->type == TEXTE) {
 		SDL_FreeSurface(entree->surfaceTexte);
 	}
@@ -37,8 +41,6 @@ void Entree_liberer(Entree *entree) {
 void GererEntrees_initialiser(void) {
 	policeGE = TTF_OpenFont("fonts/orangejuice.ttf", 30);
 }
-
-
 
 void GererEntrees_interface(Entree *entree, SDL_Event *event) {
 	switch (event->type) {
@@ -77,10 +79,10 @@ void GererEntrees_interface(Entree *entree, SDL_Event *event) {
 
 void GererEntrees_changerNum(SDLKey touche, Entree *entree) {
 	switch(touche) {
-		case SDLK_UP:
+		case SDLK_RIGHT:
 			entree->num++;
 			break;
-		case SDLK_DOWN:
+		case SDLK_LEFT:
 			if (entree->num > 0) {
 				entree->num--;
 			}
@@ -108,6 +110,7 @@ void GererEntrees_changerCar(SDLKey touche, Entree *entree) {
 }
 
 void GererEntrees_afficherEntree(Entree *entree, SDL_Surface *ecran) {
+	SDL_BlitSurface(fond, NULL, ecran, NULL);
 	if (entree->type == NUM) {
 		GererEntrees_afficherNum(entree, ecran);
 	}
@@ -128,7 +131,7 @@ void GererEntrees_afficherNum(Entree *entree, SDL_Surface *ecran) {
 
 	SDL_FreeSurface(entree->surfaceCurrent);
 
-	entree->surfaceCurrent = TTF_RenderText_Blended(policeGE, temp, blancGE);
+	entree->surfaceCurrent = TTF_RenderText_Blended(policeGE, temp, couleurGE);
 
 	SDL_BlitSurface(entree->surfaceCurrent, NULL, ecran, &position);
 }
@@ -144,7 +147,7 @@ void GererEntrees_afficherCar(Entree *entree, SDL_Surface *ecran) {
 
 	SDL_FreeSurface(entree->surfaceCurrent);
 
-	entree->surfaceCurrent = TTF_RenderText_Blended(policeGE, temp, blancGE);
+	entree->surfaceCurrent = TTF_RenderText_Blended(policeGE, temp, couleurGE);
 
 	SDL_BlitSurface(entree->surfaceCurrent, NULL, ecran, &position);
 }
@@ -161,12 +164,12 @@ void GererEntrees_afficherText(Entree *entree, SDL_Surface *ecran) {
 void GererEntrees_ajouterCar(Entree *entree) {
 	unsigned int taille = strlen(entree->texte);
 
-	if (taille < TEXTE_TAILLE_MAX + 1) {
+	if (taille < TEXTE_TAILLE_MAX) {
 		entree->texte[taille] = entree->current;
 	}
 
 	SDL_FreeSurface(entree->surfaceTexte);
-	entree->surfaceTexte = TTF_RenderText_Blended(policeGE, entree->texte, blancGE);
+	entree->surfaceTexte = TTF_RenderText_Blended(policeGE, entree->texte, couleurGE);
 }
 
 void GererEntrees_supprimerCar(Entree *entree) {
@@ -177,7 +180,7 @@ void GererEntrees_supprimerCar(Entree *entree) {
 	}
 
 	SDL_FreeSurface(entree->surfaceTexte);
-	entree->surfaceTexte = TTF_RenderText_Blended(policeGE, entree->texte, blancGE);
+	entree->surfaceTexte = TTF_RenderText_Blended(policeGE, entree->texte, couleurGE);
 }
 
 void GererEntrees_liberer(void) {

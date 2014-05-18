@@ -8,7 +8,7 @@ Partie* Partie_creer(Profil *profil, Mode* mode)
     partie->item= Item_initialiser();
     partie->mode= mode;
     partie->score= Score_initialiser(mode);
-    partie->niveau= Niveau_charger(1);
+    partie->niveau= Niveau_charger(3);
     return partie;
 }
 
