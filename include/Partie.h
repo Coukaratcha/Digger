@@ -39,6 +39,7 @@ unsigned int Partie_nbPartie(void);
 Partie** Partie_lister(void);
 void Parti_libererListe(Partie **liste);
 
-void Partie_prochainNiveau(Partie* partie, SDL_Surface *ecran, Personnage personnage);
+void Partie_prochainNiveau(Partie* partie, SDL_Surface *ecran);
+void Partie_recommencerNiveau(Partie* partie, SDL_Surface *ecran);
 
 #endif

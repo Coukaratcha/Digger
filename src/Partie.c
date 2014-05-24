@@ -119,7 +119,7 @@ void Partie_derouler(Partie *partie, SDL_Surface *ecran) {
 
                 if(partie->niveau->index!=NB_NIVEAUX)
                 {
-                    Partie_prochainNiveau(partie, ecran, personnage);
+                    Partie_prochainNiveau(partie, ecran);
                     Personnage_initialiser(&personnage,partie->niveau);
                 }
                 else loop=0;
@@ -139,6 +139,8 @@ void Partie_derouler(Partie *partie, SDL_Surface *ecran) {
                     default:
                         break;
                 }
+                Partie_recommencerNiveau(partie,ecran);
+                Personnage_initialiser(&personnage,partie->niveau);
             }
 
             else
@@ -154,6 +156,11 @@ void Partie_derouler(Partie *partie, SDL_Surface *ecran) {
                             loop=0;
                         if(event.key.keysym.sym==SDLK_s) /* Si on appuie sur S on sauvegarde la partie*/
                             Partie_sauvegarder(partie);
+                        if(event.key.keysym.sym==SDLK_RETURN)/* Si on appuie sur Entree on recommence le niveau*/
+                        {
+                            Partie_recommencerNiveau(partie,ecran);
+                            Personnage_initialiser(&personnage,partie->niveau);
+                        }
                         else if (personnage.libre)
                             Personnage_seDeplacer(&personnage, event.key.keysym.sym, partie->niveau);
                         break;
@@ -256,7 +263,7 @@ void Partie_libererListe(Partie **liste) {
     free(liste);
 }
 
-void Partie_prochainNiveau(Partie* partie, SDL_Surface *ecran, Personnage personnage)
+void Partie_prochainNiveau(Partie* partie, SDL_Surface *ecran)
 {
     unsigned int nouvelIndex=partie->niveau->index;
     nouvelIndex++;
@@ -267,6 +274,21 @@ void Partie_prochainNiveau(Partie* partie, SDL_Surface *ecran, Personnage person
 
     partie->score=Score_initialiser(partie->mode);
     partie->niveau=Niveau_charger(nouvelIndex);
+    partie->item=Item_initialiser();
+
+    Niveau_afficher(partie->niveau,ecran);
+}
+
+void Partie_recommencerNiveau(Partie* partie, SDL_Surface *ecran)
+{
+    unsigned int indexNiveau=partie->niveau->index;
+
+    Score_liberer(partie->score);
+    Niveau_liberer(partie->niveau);
+    Item_liberer(partie->item);
+
+    partie->score=Score_initialiser(partie->mode);
+    partie->niveau=Niveau_charger(indexNiveau);
     partie->item=Item_initialiser();
 
     Niveau_afficher(partie->niveau,ecran);
