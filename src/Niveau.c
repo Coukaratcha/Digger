@@ -144,3 +144,4 @@ void Niveau_liberer(Niveau *niveau) {
 	free(niveau);
 	SDL_FreeSurface(sprites);
 }
+

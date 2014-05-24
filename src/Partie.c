@@ -8,7 +8,7 @@ Partie* Partie_creer(Profil *profil, Mode* mode)
     partie->item= Item_initialiser();
     partie->mode= mode;
     partie->score= Score_initialiser(mode);
-    partie->niveau= Niveau_charger(2);
+    partie->niveau= Niveau_charger(1);
     return partie;
 }
 
@@ -102,16 +102,27 @@ void Partie_derouler(Partie *partie, SDL_Surface *ecran) {
                 gagne=IMG_Load("img/gagne.png");
                 SDL_BlitSurface(gagne, NULL, ecran, &position); /*On affiche l'image 'Gagné' et on sort de la boucle*/
                 SDL_Flip(ecran);
-                SDL_WaitEvent(&event);
-                switch(event.type) /*On attend que le joueur appuie sur une touche pour avoir le temps de voir l'image*/
+
+                unsigned int attente=1;
+                while(attente)
                 {
-                    case SDL_KEYDOWN:
-                        loop=0;
-                        break;
-                    default:
-                        break;
+                    SDL_PollEvent(&event);
+                    switch(event.type) /*On attend que le joueur appuie sur une touche pour avoir le temps de voir l'image*/
+                    {
+                        case SDL_KEYDOWN:
+                            attente=0;
+                            break;
+                        default:
+                            break;
+                    }
                 }
 
+                if(partie->niveau->index!=NB_NIVEAUX)
+                {
+                    Partie_prochainNiveau(partie, ecran, personnage);
+                    Personnage_initialiser(&personnage,partie->niveau);
+                }
+                else loop=0;
             }
 
             else if(!Personnage_estVivant(&personnage, partie->niveau)) /*Si on est mort...*/
@@ -243,4 +254,20 @@ void Partie_libererListe(Partie **liste) {
     }
 
     free(liste);
+}
+
+void Partie_prochainNiveau(Partie* partie, SDL_Surface *ecran, Personnage personnage)
+{
+    unsigned int nouvelIndex=partie->niveau->index;
+    nouvelIndex++;
+
+    Score_liberer(partie->score);
+    Niveau_liberer(partie->niveau);
+    Item_liberer(partie->item);
+
+    partie->score=Score_initialiser(partie->mode);
+    partie->niveau=Niveau_charger(nouvelIndex);
+    partie->item=Item_initialiser();
+
+    Niveau_afficher(partie->niveau,ecran);
 }
