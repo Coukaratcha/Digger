@@ -8,7 +8,7 @@ Partie* Partie_creer(Profil *profil, Mode* mode)
     partie->item= Item_initialiser();
     partie->mode= mode;
     partie->score= Score_initialiser(mode);
-    partie->niveau= Niveau_charger(3);
+    partie->niveau= Niveau_charger(2);
     return partie;
 }
 
@@ -77,50 +77,91 @@ int Partie_estFinie(Partie *partie) {
                 finie = 0;
         }
     }
-
     return finie;
 }
 
 void Partie_derouler(Partie *partie, SDL_Surface *ecran) {
     SDL_Event event;
+    SDL_Surface *perdu = NULL;
+    SDL_Surface *gagne = NULL;
+
+    SDL_Rect position;
+	position.x = 0;
+	position.y = 0;
+
     int loop = 1;
 
     Personnage personnage;
 
     Personnage_initialiser(&personnage, partie->niveau);
 
-    while (loop) {
-        if (Partie_estFinie(partie) || !Personnage_estVivant(&personnage, partie->niveau))
-            loop = 0;
+    while (loop)
+        {
+            if (Partie_estFinie(partie)) /*Si la partie est fini, i.e. on a ramassé tous les fruits ...*/
+            {
+                gagne=IMG_Load("img/gagne.png");
+                SDL_BlitSurface(gagne, NULL, ecran, &position); /*On affiche l'image 'Gagné' et on sort de la boucle*/
+                SDL_Flip(ecran);
+                SDL_WaitEvent(&event);
+                switch(event.type) /*On attend que le joueur appuie sur une touche pour avoir le temps de voir l'image*/
+                {
+                    case SDL_KEYDOWN:
+                        loop=0;
+                        break;
+                    default:
+                        break;
+                }
 
-        SDL_PollEvent(&event);
-        switch(event.type) {
-            case SDL_QUIT:
-            loop = 0;
-                break;
-            case SDL_KEYDOWN:
-                if(event.key.keysym.sym==SDLK_ESCAPE) /*Si on appuie sur Echap, on retourne au menu principal*/
-                    loop=0;
-                if(event.key.keysym.sym==SDLK_s) /* Si on appuie sur S on sauvegarde la partie*/
-                    Partie_sauvegarder(partie);
-                else if (personnage.libre)
-                    Personnage_seDeplacer(&personnage, event.key.keysym.sym, partie->niveau);
-                break;
-            default:
-            case SDL_KEYUP:
-                personnage.libre = 1;
-                break;
+            }
+
+            else if(!Personnage_estVivant(&personnage, partie->niveau)) /*Si on est mort...*/
+            {
+                perdu=IMG_Load("img/perdu.png");
+                SDL_BlitSurface(perdu, NULL, ecran, &position);/*on affiche l'image 'Perdu' et on sort de la boucle*/
+                SDL_Flip(ecran);
+                SDL_WaitEvent(&event);
+                switch(event.type) /*On attend que le joueur appuie sur une touche pour avoir le temps de voir l'image*/
+                {
+                    case SDL_KEYDOWN:
+                        loop=0;
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+            else
+            {
+                SDL_PollEvent(&event);
+                switch(event.type)
+                {
+                    case SDL_QUIT:
+                    loop = 0;
+                        break;
+                    case SDL_KEYDOWN:
+                        if(event.key.keysym.sym==SDLK_ESCAPE) /*Si on appuie sur Echap, on retourne au menu principal*/
+                            loop=0;
+                        if(event.key.keysym.sym==SDLK_s) /* Si on appuie sur S on sauvegarde la partie*/
+                            Partie_sauvegarder(partie);
+                        else if (personnage.libre)
+                            Personnage_seDeplacer(&personnage, event.key.keysym.sym, partie->niveau);
+                        break;
+                    default:
+                    case SDL_KEYUP:
+                        personnage.libre = 1;
+                        break;
+                }
+
+
+            SDL_FillRect(ecran, NULL, SDL_MapRGB(ecran->format, 0, 0, 0));
+
+            Score_miseAJour(partie->score);
+            Score_afficher(partie->score, ecran);
+            Niveau_ordonner(partie->niveau);
+            Niveau_afficher(partie->niveau, ecran);
+            SDL_Flip(ecran);
+            }
         }
-
-        SDL_FillRect(ecran, NULL, SDL_MapRGB(ecran->format, 0, 0, 0));
-
-        Score_miseAJour(partie->score);
-        Score_afficher(partie->score, ecran);
-        Niveau_ordonner(partie->niveau);
-        Niveau_afficher(partie->niveau, ecran);
-
-        SDL_Flip(ecran);
-    }
 }
 
 unsigned int Partie_nbFruitsRestants(Partie *partie) {
