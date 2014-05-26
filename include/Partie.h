@@ -15,6 +15,8 @@
 #include "../include/Score.h"
 #include "../include/Profil.h"
 
+#define NB_NIVEAUX 4
+
 typedef struct {
     Profil *profil;
     Item *item;
@@ -36,5 +38,8 @@ void Partie_derouler(Partie *partie, SDL_Surface *ecran);
 unsigned int Partie_nbPartie(void);
 Partie** Partie_lister(void);
 void Parti_libererListe(Partie **liste);
+
+void Partie_prochainNiveau(Partie* partie, SDL_Surface *ecran);
+void Partie_recommencerNiveau(Partie* partie, SDL_Surface *ecran);
 
 #endif
