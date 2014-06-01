@@ -53,7 +53,7 @@ unsigned int Personnage_seDeplacer(Personnage *perso, SDLKey touche, Niveau *niv
                 niveau->grille[perso->posy][perso->posx] = VIDE;
                 perso->posx+= 1;
                 retour = 1;
-            } /* Si il y un rocher à droite */
+            } /* Si il y un rocher à droite avec du vide derière*/
             else if (perso->posx < LARGEUR - 2 && niveau->grille[perso->posy][perso->posx + 1] == ROCHER && niveau->grille[perso->posy][perso->posx + 2] == VIDE)
             {
                 niveau->grille[perso->posy][perso->posx + 2] = ROCHER;
@@ -71,7 +71,7 @@ unsigned int Personnage_seDeplacer(Personnage *perso, SDLKey touche, Niveau *niv
     			niveau->grille[perso->posy][perso->posx] = VIDE;
     			perso->posx-= 1;
     			retour = 1;
-    		} /* Si il y un rocher à gauche */
+    		} /* Si il y un rocher à gauche avec du vide derière*/
     		else if (perso->posx > 1 && niveau->grille[perso->posy][perso->posx - 1] == ROCHER && niveau->grille[perso->posy][perso->posx - 2] == VIDE)
     		{
     			niveau->grille[perso->posy][perso->posx - 2] = ROCHER;
