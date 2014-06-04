@@ -46,7 +46,7 @@ void Partie_sauvegarder(Partie *partie)
     fwrite(partie->item, sizeof(Item), 1, fichier);
     fwrite(partie->mode, sizeof(Mode), 1, fichier);
     fwrite(partie->score, sizeof(Score), 1, fichier);
-    fwrite(&(partie->profil->identifiant), sizeof(unsigned int), 1, fichier);
+    fwrite(&(partie->niveau->index), sizeof(unsigned int), 1, fichier);
 
     fclose(fichier);
 }
