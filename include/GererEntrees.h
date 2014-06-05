@@ -4,11 +4,12 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <SDL/SDL_ttf.h>
+#include <SDL/SDL_image.h>
 
 #define TEXTE_TAILLE_MAX 20
 
 typedef enum {
-	NUM, 
+	NUM,
 	TEXTE
 } TypeEntree;
 
@@ -24,7 +25,6 @@ typedef struct {
 
 Entree* Entree_creer(TypeEntree type);
 void Entree_liberer(Entree *entree);
-
 void GererEntrees_initialiser(void);
 void GererEntrees_interface(Entree *entree, SDL_Event *event);
 void GererEntrees_changerNum(SDLKey touche, Entree *entree);

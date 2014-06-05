@@ -339,16 +339,16 @@ unsigned int Profil_prochainID(void)
 
 void Profil_afficherListe(SDL_Surface *ecran) {
     unsigned int nbEnregistrements, i;
-    char tempNom[NOM_TAILLE_MAX+1];
+    char tempNom[NOM_TAILLE_MAX+1], tempChaineId[255];
     unsigned tempId;
 
     SDL_Rect position;
-    position.x = 200;
-    position.y = 200;
+    position.x = 50;
+    position.y = 50;
 
     policeProfil = TTF_OpenFont("fonts/coolvetica.ttf", 20);
 
-    SDL_Surface *nom;
+    SDL_Surface *nom, *id;
 
     FILE *fichier = fopen(cheminFichier, "rb");
 
@@ -358,9 +358,15 @@ void Profil_afficherListe(SDL_Surface *ecran) {
         fread(&tempId, sizeof(unsigned int), 1, fichier);
         fread(tempNom, sizeof(unsigned int)*(NOM_TAILLE_MAX+1), 1, fichier);
 
+        sprintf(tempChaineId, "%d", tempId);
+
+        id = TTF_RenderText_Blended(policeProfil, tempChaineId, blanc);
         nom = TTF_RenderText_Solid(policeProfil, tempNom, blanc);
 
+        SDL_BlitSurface(id, NULL, ecran, &position);
+        position.x+= 50;
         SDL_BlitSurface(nom, NULL, ecran, &position);
+        position.x-= 50;
         position.y+= 50;
 
         SDL_FreeSurface(nom);
