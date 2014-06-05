@@ -10,8 +10,8 @@
 #define OPTION_TAILLE_MAX 20
 
 typedef enum {
-	JOUER, 
-	OPTIONS, 
+	JOUER,
+	OPTIONS,
 	QUITTER
 } Option;
 
@@ -28,10 +28,10 @@ void Menu_supprimerOption(Menu *menu, unsigned int index);
 void Menu_deplacerCurseur(Menu *menu, SDLKey touche, SDL_Surface *ecran); /* SDL Event */
 void Menu_liberer(Menu *menu);
 void Menu_afficher(Menu *menu, SDL_Surface *ecran);
-void Menu_lancer(Menu *menu, SDL_Surface *ecran);
-void Menu_jouer(SDL_Surface *ecran);
-void Menu_derouler(Menu *menu, SDL_Surface *ecran);
+void Menu_lancer(Menu *menu, SDL_Surface *ecran, Profil *profil);
+void Menu_jouer(SDL_Surface *ecran, Profil *profil);
+void Menu_derouler(Menu *menu, SDL_Surface *ecran, Profil *profil);
 void Menu_afficherCurseur(Menu *menu, SDL_Surface *ecran);
-void Menu_interagir(Menu *menu, SDLKey touche, SDL_Surface *ecran);
+void Menu_interagir(Menu *menu, SDLKey touche, SDL_Surface *ecran, Profil *profil);
 
 #endif

@@ -68,8 +68,8 @@ void GererEntrees_interface(Entree *entree, SDL_Event *event) {
 						GererEntrees_changerNum(event->key.keysym.sym, entree);
 					}
 				}
+				libre = 0;
 			}
-			libre = 0;
 			break;
 		case SDL_KEYUP:
 			libre = 1;

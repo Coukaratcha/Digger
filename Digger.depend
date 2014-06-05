@@ -3,10 +3,10 @@
 
 1398604622 source:c:\users\florian\documents\github\digger\src\mainunit.c
 
-1400366624 source:c:\users\florian\documents\github\digger\src\menu.c
+1401975270 source:c:\users\florian\documents\github\digger\src\menu.c
 	"../include/Menu.h"
 
-1399479753 c:\users\florian\documents\github\digger\include\menu.h
+1401975208 c:\users\florian\documents\github\digger\include\menu.h
 	<stdio.h>
 	<stdlib.h>
 	<SDL/SDL.h>
@@ -55,7 +55,7 @@
 
 1398604622 source:c:\users\florian\documents\github\digger\src\scoreunit.c
 
-1400751908 source:c:\users\florian\documents\github\digger\src\main.c
+1401975123 source:c:\users\florian\documents\github\digger\src\main.c
 	"../include/Profil.h"
 	"../include/Partie.h"
 	"../include/Personnage.h"
@@ -110,10 +110,10 @@
 1400942192 source:c:\users\florian\documents\github\digger\src\niveau.c
 	"../include/Niveau.h"
 
-1400943873 source:c:\users\florian\documents\github\digger\src\partie.c
+1401975270 source:c:\users\florian\documents\github\digger\src\partie.c
 	"../include/Partie.h"
 
-1400081113 source:c:\users\florian\documents\github\digger\src\profil.c
+1401972895 source:c:\users\florian\documents\github\digger\src\profil.c
 	"../include/Profil.h"
 
 1400366624 source:c:\users\florian\documents\github\digger\src\score.c
@@ -256,11 +256,12 @@
 1400415363 source:/home/mickael/ProjetsC/Digger/src/GererEntrees.c
 	"../include/GererEntrees.h"
 
-1400366623 source:c:\users\florian\documents\github\digger\src\gererentrees.c
+1401974407 source:c:\users\florian\documents\github\digger\src\gererentrees.c
 	"../include/GererEntrees.h"
 
-1400366623 c:\users\florian\documents\github\digger\include\gererentrees.h
+1401959637 c:\users\florian\documents\github\digger\include\gererentrees.h
 	<stdlib.h>
 	<stdio.h>
 	<SDL/SDL_ttf.h>
+	<SDL/SDL_image.h>
 

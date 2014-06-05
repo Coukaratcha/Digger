@@ -356,7 +356,7 @@ void Profil_afficherListe(SDL_Surface *ecran) {
 
     for (i = 0; i < nbEnregistrements; i++) {
         fread(&tempId, sizeof(unsigned int), 1, fichier);
-        fread(tempNom, sizeof(unsigned int)*(NOM_TAILLE_MAX+1), 1, fichier);
+        fread(tempNom, sizeof(char)*(NOM_TAILLE_MAX+1), 1, fichier);
 
         sprintf(tempChaineId, "%d", tempId);
 
