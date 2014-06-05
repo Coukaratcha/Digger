@@ -206,7 +206,7 @@ Profil* Profil_charger(unsigned int id)
 
         fread(profil->nom, sizeof(char)*(NOM_TAILLE_MAX+1), 1, fichier);
 
-        //fclose(fichier);
+        fclose(fichier);
 
         return profil;
     }
