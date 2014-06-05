@@ -44,13 +44,9 @@ int main(int argc, char *argv[])
     SDL_WM_SetCaption("Digger", NULL);
     SDL_WM_SetIcon(IMG_Load("img/perso.png"), NULL);
 
-    GererEntrees_initialiser();
+    //Profil *profil = NULL;
 
-    Entree *entree = NULL;
-
-    entree = Entree_creer(TEXTE);
-
-    while (!entree->fin && loop) {
+    while (loop) {
         SDL_PollEvent(&event);
 
         switch (event.type) {
@@ -61,15 +57,10 @@ int main(int argc, char *argv[])
                 break;
         }
 
-        GererEntrees_interface(entree, &event);
+        Profil_afficherListe(ecran);
 
-        GererEntrees_afficherEntree(entree, ecran);
         SDL_Flip(ecran);
     }
-
-    Entree_liberer(entree);
-
-    GererEntrees_liberer();
 
     Menu *menu = NULL;
 
